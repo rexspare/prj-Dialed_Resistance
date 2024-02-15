@@ -263,7 +263,7 @@ export const Presentation = ({
                           fontFamily: typography.primaryBold
                         }}
                       >
-                        Adjust Resistance{"\n"} 1/2 a turn at a time {"\n"} until your cadence is {Number(targetCadence) + 6}-{Number(targetCadence)} RPM
+                        Adjust Resistance{"\n"}1/2 A Turn At A Time{"\n"}Until Your Cadence Is {Number(targetCadence) + 6}-{Number(targetCadence)}
                       </Text>
                     )}
                   <View

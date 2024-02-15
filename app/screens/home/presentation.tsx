@@ -165,13 +165,18 @@ export const Presentation = observer(
               // justifyContent: "space-between",
             }}
           >
-            <DeviceListItem title="Resistance Monitor" status={statusPuck} onPress={connectPuck} />
             <DeviceListItem
               title="Cadence Sensor"
               status={statusWahoo}
               onPress={connectWahoo}
               error={false}
             />
+
+            <DeviceListItem
+              title="Resistance Monitor"
+              status={statusPuck}
+              onPress={connectPuck} />
+
           </View>
           {/* <View
             style={{

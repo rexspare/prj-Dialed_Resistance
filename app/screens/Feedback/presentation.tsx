@@ -164,7 +164,8 @@ export const Presentation = observer(({
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 12 }}>
                   <Text style={{ fontSize: responsiveFontSize(14), }}>Category *</Text>
-                  <Dropdown updateControllers={updateControllers} placeholder="Select Category" value={category} items={["Bug",
+                  <Dropdown updateControllers={updateControllers} placeholder="Select Category" value={category} items={[
+                    "Bug",
                     "Feature Request",
                     "Questions",
                     "Feedback",
@@ -176,7 +177,8 @@ export const Presentation = observer(({
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 12 }}>
                   <Text style={{ fontSize: responsiveFontSize(14), }}>Urgency *</Text>
-                  <Dropdown updateControllers={updateControllers} placeholder="Select Urgency" value={urgency} items={["Trivial",
+                  <Dropdown updateControllers={updateControllers} placeholder="Select Urgency" value={urgency} items={[
+                    "Trivial",
                     "Minor",
                     "Major",
                     "Unable to use app"
@@ -271,7 +273,13 @@ export const Presentation = observer(({
                 fontWeight: "400",
                 fontSize: 14
               }} >
-              {isLoading && <ActivityIndicator size="small" color="#fff" style={{ marginRight: 16 }} />}
+              {
+                isLoading &&
+                <ActivityIndicator
+                  size="small"
+                  color="#fff"
+                  style={{ marginRight: 16 }} />
+              }
               <Text text="Submit" /></Button>
           </View>
 

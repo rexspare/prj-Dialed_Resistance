@@ -62,44 +62,159 @@ export const Presentation = ({
     return duration === -1 ? 0 : date.valueOf()
   }
 
+  // OLD IMPROVEMENT LOGIC
+
+  // React.useEffect(() => {
+  //   let previousDate = 0
+  //   let PRCount = 0
+  //   let totalRides = 0
+
+  //   switch (timeFrame) {
+  //     case "All Time":
+  //       previousDate = -1
+  //       break
+  //     case "1 week":
+  //       previousDate = 7
+  //       break
+  //     case "1 month":
+  //       previousDate = 30
+  //       break
+  //     case "3 months":
+  //       previousDate = 90
+  //       break
+  //     case "6 months":
+  //       previousDate = 180
+  //       break
+  //     case "1 year":
+  //       previousDate = 365
+  //       break
+  //     default:
+  //       break
+  //   }
+
+  //   console.log(personalRecords)
+
+  //   const durationData = personalRecords.filter((pr) => {
+  //     if (
+  //       pr.date > getpreviosTimeStamp(previousDate) &&
+  //       pr.profileId === selectedProfile.anonymous_id
+  //     ) {
+  //       totalRides++
+  //       if (pr.isPR) {
+  //         PRCount++
+  //       }
+  //     }
+
+  //     return (
+  //       pr.duration === length &&
+  //       pr.date > getpreviosTimeStamp(previousDate) &&
+  //       pr.profileId === selectedProfile.anonymous_id
+  //     )
+  //   })
+  //   const sortedRecords = durationData.sort((a, b) => b.date - a.date)
+  //   console.log(sortedRecords)
+  //   if (sortedRecords.length === 1) {
+  //     setImprovement(`First Ride \n From here we grow stronger`)
+  //   } else {
+  //     let improvement = 0
+  //     // for (let i = sortedRecords.length - 1; i >= 1; i--) {
+  //     //   if (sortedRecords[i].total_output !== 0) {
+  //     //     improvement =
+  //     //       ((sortedRecords[0]?.total_output - sortedRecords[i].total_output) /
+  //     //         sortedRecords[i].total_output) *
+  //     //       100
+  //     //     break
+  //     //   }
+  //     // }
+
+  //     if (sortedRecords.length > 3) {
+  //       let totalOutputSum = 0
+  //       let validRecordsCount = 0
+
+  //       for (let i = sortedRecords.length - 1; i >= sortedRecords.length - 3; i--) {
+  //         if (sortedRecords[i].total_output !== 0) {
+  //           totalOutputSum += sortedRecords[i].total_output
+  //           validRecordsCount++
+  //         }
+  //       }
+
+  //       if (validRecordsCount > 0) {
+  //         improvement =
+  //           ((sortedRecords[0]?.total_output - totalOutputSum / validRecordsCount) /
+  //             (totalOutputSum / validRecordsCount)) *
+  //           100
+  //       }
+  //     } else {
+  //       let totalOutputSum = 0
+  //       let validRecordsCount = 0
+
+  //       for (let i = sortedRecords.length - 1; i >= 0; i--) {
+  //         if (sortedRecords[i].total_output !== 0) {
+  //           totalOutputSum += sortedRecords[i].total_output
+  //           validRecordsCount++
+  //         }
+  //       }
+
+  //       if (validRecordsCount > 0) {
+  //         improvement =
+  //           ((sortedRecords[0]?.total_output - totalOutputSum / validRecordsCount) /
+  //             (totalOutputSum / validRecordsCount)) *
+  //           100
+  //       }
+  //     }
+
+  //     if (isNaN(improvement)) {
+  //       improvement = 0
+  //     }
+  //     setImprovement(improvement.toString())
+  //   }
+
+  //   setSortedRides(sortedRecords)
+  //   setTotalRecords(totalRides)
+  //   setTotalPRs(PRCount)
+  // }, [timeFrame, length])
+
+  // OLD IMPROVEMENT LOGIC
+
   React.useEffect(() => {
-    let previousDate = 0
-    let PRCount = 0
-    let totalRides = 0
+    let previousDate = 0;
+    let PRCount = 0;
+    let totalRides = 0;
 
     switch (timeFrame) {
       case "All Time":
-        previousDate = -1
-        break
+        previousDate = -1;
+        break;
       case "1 week":
-        previousDate = 7
-        break
+        previousDate = 7;
+        break;
       case "1 month":
-        previousDate = 30
-        break
+        previousDate = 30;
+        break;
       case "3 months":
-        previousDate = 90
-        break
+        previousDate = 90;
+        break;
       case "6 months":
-        previousDate = 180
-        break
+        previousDate = 180;
+        break;
       case "1 year":
-        previousDate = 365
-        break
+        previousDate = 365;
+        break;
       default:
-        break
+        break;
     }
 
-    console.log(personalRecords)
+    const oldestRecordInTimeFrame = personalRecords
+      .filter((pr) => pr.date > getpreviosTimeStamp(previousDate) && pr.profileId === selectedProfile.anonymous_id)
+      .reduce((oldest, current) => (current.date < oldest.date ? current : oldest), { date: Infinity });
+
+    console.log(personalRecords);
 
     const durationData = personalRecords.filter((pr) => {
-      if (
-        pr.date > getpreviosTimeStamp(previousDate) &&
-        pr.profileId === selectedProfile.anonymous_id
-      ) {
-        totalRides++
+      if (pr.date > getpreviosTimeStamp(previousDate) && pr.profileId === selectedProfile.anonymous_id) {
+        totalRides++;
         if (pr.isPR) {
-          PRCount++
+          PRCount++;
         }
       }
 
@@ -107,70 +222,31 @@ export const Presentation = ({
         pr.duration === length &&
         pr.date > getpreviosTimeStamp(previousDate) &&
         pr.profileId === selectedProfile.anonymous_id
-      )
-    })
-    const sortedRecords = durationData.sort((a, b) => b.date - a.date)
-    console.log(sortedRecords)
+      );
+    });
+
+    const sortedRecords = durationData.sort((a, b) => b.date - a.date);
+    console.log(sortedRecords);
+
     if (sortedRecords.length === 1) {
-      setImprovement(`First Ride \n From here we grow stronger`)
+      setImprovement(`First Ride \n From here we grow stronger`);
     } else {
-      let improvement = 0
-      // for (let i = sortedRecords.length - 1; i >= 1; i--) {
-      //   if (sortedRecords[i].total_output !== 0) {
-      //     improvement =
-      //       ((sortedRecords[0]?.total_output - sortedRecords[i].total_output) /
-      //         sortedRecords[i].total_output) *
-      //       100
-      //     break
-      //   }
-      // }
-
-      if (sortedRecords.length > 3) {
-        let totalOutputSum = 0
-        let validRecordsCount = 0
-
-        for (let i = sortedRecords.length - 1; i >= sortedRecords.length - 3; i--) {
-          if (sortedRecords[i].total_output !== 0) {
-            totalOutputSum += sortedRecords[i].total_output
-            validRecordsCount++
-          }
-        }
-
-        if (validRecordsCount > 0) {
-          improvement =
-            ((sortedRecords[0]?.total_output - totalOutputSum / validRecordsCount) /
-              (totalOutputSum / validRecordsCount)) *
-            100
-        }
-      } else {
-        let totalOutputSum = 0
-        let validRecordsCount = 0
-
-        for (let i = sortedRecords.length - 1; i >= 0; i--) {
-          if (sortedRecords[i].total_output !== 0) {
-            totalOutputSum += sortedRecords[i].total_output
-            validRecordsCount++
-          }
-        }
-
-        if (validRecordsCount > 0) {
-          improvement =
-            ((sortedRecords[0]?.total_output - totalOutputSum / validRecordsCount) /
-              (totalOutputSum / validRecordsCount)) *
-            100
-        }
-      }
+      const improvement =
+        ((sortedRecords[0]?.total_output - oldestRecordInTimeFrame.total_output) / oldestRecordInTimeFrame.total_output) *
+        100;
 
       if (isNaN(improvement)) {
-        improvement = 0
+        setImprovement("0");
+      } else {
+        setImprovement(improvement.toString());
       }
-      setImprovement(improvement.toString())
     }
 
-    setSortedRides(sortedRecords)
-    setTotalRecords(totalRides)
-    setTotalPRs(PRCount)
-  }, [timeFrame, length])
+    setSortedRides(sortedRecords);
+    setTotalRecords(totalRides);
+    setTotalPRs(PRCount);
+  }, [timeFrame, length, personalRecords, selectedProfile]);
+
 
   React.useEffect(() => {
     let previousDate = 0
@@ -404,47 +480,47 @@ export const Presentation = ({
                       {improvement}
                     </Text>
                   ) : (
-                      <Text
-                        style={{
-                          marginTop: 14,
-                          fontSize: 24,
-                          fontFamily: typography.primaryBold,
-                          color: color.palette.textColor,
-                          textAlign: "center",
-                          lineHeight: 38,
-                        }}
-                      >
-                        {Number(improvement) !== 0 && Math.sign(Number(improvement)) === 1 ? (
-                          <>
-                            <Text
-                              style={{
-                                fontSize: 14,
-                                fontFamily: typography.primaryBold,
-                                marginBottom: 8,
-                              }}
-                            >
-                              You just accomplished {"\n"}
-                            </Text>
-                            {Math.round(Number(improvement))}%{" "}
-                            {Number(improvement) !== 0 && Math.sign(Number(improvement)) === 1
-                              ? "more \n"
-                              : "\n"}
-                            <Text
-                              style={{
-                                fontSize: 14,
-                                fontFamily: typography.primaryBold,
-                                marginTop: 8,
-                              }}
-                            >
-                              than your average ride{" "}
-                              {timeFrame === "All Time" ? getDurationFromFirstRide() : timeFrame} ago.{" "}
-                            </Text>
-                          </>
-                        ) : (
-                            `No improvement - YET. \n Keep Going`
-                          )}
-                      </Text>
-                    )}
+                    <Text
+                      style={{
+                        marginTop: 14,
+                        fontSize: 24,
+                        fontFamily: typography.primaryBold,
+                        color: color.palette.textColor,
+                        textAlign: "center",
+                        lineHeight: 38,
+                      }}
+                    >
+                      {Number(improvement) !== 0 && Math.sign(Number(improvement)) === 1 ? (
+                        <>
+                          <Text
+                            style={{
+                              fontSize: 14,
+                              fontFamily: typography.primaryBold,
+                              marginBottom: 8,
+                            }}
+                          >
+                            You just accomplished {"\n"}
+                          </Text>
+                          {Math.round(Number(improvement))}%{" "}
+                          {Number(improvement) !== 0 && Math.sign(Number(improvement)) === 1
+                            ? "more \n"
+                            : "\n"}
+                          <Text
+                            style={{
+                              fontSize: 14,
+                              fontFamily: typography.primaryBold,
+                              marginTop: 8,
+                            }}
+                          >
+                            than your average ride{" "}
+                            {timeFrame === "All Time" ? getDurationFromFirstRide() : timeFrame} ago.{" "}
+                          </Text>
+                        </>
+                      ) : (
+                        `No improvement - YET. \n Keep Going`
+                      )}
+                    </Text>
+                  )}
 
                   {/* <Dropdown value={length} items={["10", "20"]} onValueChange={value => setLength(value)}/> */}
                 </View>

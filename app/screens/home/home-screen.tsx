@@ -10,6 +10,7 @@ import { captureScreen } from "react-native-view-shot"
 import RNFS from "react-native-fs"
 import { storeLogs } from "../../services/storage/asyncServices"
 import { getCurrentUnixTime } from "../../utils/dateUtils"
+import Toast from 'react-native-toast-message';
 // import { useStores } from "../models/root-store"
 
 export const Home: React.FunctionComponent<HomeProps> = observer((props) => {
@@ -53,6 +54,17 @@ export const Home: React.FunctionComponent<HomeProps> = observer((props) => {
   console.log(PermissionsAndroid.PERMISSIONS.BLUETOOTH_SCAN)
 
   const connectPuck = async () => {
+
+    if (statusWahoo != "connected") {
+      Toast.show({
+        type: 'error',
+        text1: 'Please connect the cadence sensor first!',
+        autoHide: true,
+        visibilityTime: 2000
+      });
+      return
+    }
+
     PermissionsAndroid.requestMultiple([
       PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
       "android.permission.BLUETOOTH_SCAN",

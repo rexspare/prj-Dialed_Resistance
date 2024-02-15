@@ -36,6 +36,8 @@ import { SDKContext, SDKProvider } from "./utils/bluetoothSdk"
 import { props } from "ramda"
 import { Alert, Dimensions, LogBox } from "react-native"
 import Orientation from "react-native-orientation-locker"
+import Toast, { BaseToast, ErrorToast } from 'react-native-toast-message';
+
 enableScreens()
 
 export const NAVIGATION_PERSISTENCE_KEY = (Math.random() * Math.random() * 1540).toString()
@@ -48,10 +50,10 @@ function App(props) {
     if (isFatal) {
       Alert.alert('JSError: ' + error.name, error.message)
     }
-  // This is your custom global error handler
-  // You do stuff like show an error dialog
-  // or hit google analytics to track crashes
-  // or hit a custom api to inform the dev team.
+    // This is your custom global error handler
+    // You do stuff like show an error dialog
+    // or hit google analytics to track crashes
+    // or hit a custom api to inform the dev team.
   }, true)
   setNativeExceptionHandler(() => null,)
   const navigationRef = useRef<NavigationContainerRef>()
@@ -85,20 +87,23 @@ function App(props) {
 
   // otherwise, we're ready to render the app
   return (
-    <ToggleStorybook enabled={false}>
-      <KeepAwake />
-      <RootStoreProvider value={rootStore}>
-        <SDKProvider>
-          <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-            <RootNavigator
-              ref={navigationRef}
-              initialState={initialNavigationState}
-              onStateChange={onNavigationStateChange}
-            />
-          </SafeAreaProvider>
+    <>
+      <ToggleStorybook enabled={false}>
+        <KeepAwake />
+        <RootStoreProvider value={rootStore}>
+          <SDKProvider>
+            <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+              <RootNavigator
+                ref={navigationRef}
+                initialState={initialNavigationState}
+                onStateChange={onNavigationStateChange}
+              />
+            </SafeAreaProvider>
           </SDKProvider>
-      </RootStoreProvider>
-    </ToggleStorybook>
+        </RootStoreProvider>
+      </ToggleStorybook>
+      <Toast />
+    </>
   )
 }
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
