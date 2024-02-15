@@ -1,0 +1,33 @@
+import { ViewStyle, TextStyle } from "react-native"
+import { color, spacing } from "../../theme"
+
+/**
+ * All views will start off looking like this.
+ */
+const BASE_VIEW: ViewStyle = {
+  paddingVertical: spacing[2],
+  paddingHorizontal: spacing[2],
+  borderRadius: 4,
+  justifyContent: "center",
+  alignItems: "center",
+}
+const BASE_TEXT = {
+  color: color.palette.black
+}
+
+/**
+ * All the variations of this component
+ *
+ * You want to customize these to whatever you need in your app.
+ */
+export const deviceListItemPresets = {
+  primary: {
+    viewStyle: { ...BASE_VIEW, backgroundColor: color.palette.white } as ViewStyle,
+    textStyle: { ...BASE_TEXT } as TextStyle,
+  }
+}
+
+/**
+ * A list of preset names.
+ */
+export type DeviceListItemPresetNames = keyof typeof deviceListItemPresets
