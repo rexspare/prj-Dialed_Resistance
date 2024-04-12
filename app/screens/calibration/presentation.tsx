@@ -38,7 +38,8 @@ export interface CalibrationProps {
   setLengthModalVisible: (visible: boolean) => void
   setDuration: (duration: number) => void
   onPressToCalibrating: () => void
-  navigateToFeedback: () => void
+  navigateToFeedback: () => void,
+  targetRPM: number;
 }
 
 export const Presentation = ({
@@ -67,6 +68,7 @@ export const Presentation = ({
   heartRate,
   navigateToFeedback,
   onPressHome,
+  targetRPM
 }: CalibrationProps) => {
   const scrollViewRef = React.useRef()
   return (
@@ -250,7 +252,7 @@ export const Presentation = ({
                       fontSize: 19,
                       fontWeight: "600",
                       fontFamily: typography.primaryBold
-                    }}>Find A Natural Cadence {"\n"} Above 90 RPM</Text>
+                    }}>Find A Natural Cadence {"\n"} Above 90</Text>
                   ) : (
                       <Text
                         preset="calibration"
@@ -263,7 +265,7 @@ export const Presentation = ({
                           fontFamily: typography.primaryBold
                         }}
                       >
-                        Adjust Resistance{"\n"}1/2 A Turn At A Time{"\n"}Until Your Cadence Is {Number(targetCadence) + 6}-{Number(targetCadence)}
+                        Adjust Resistance{"\n"}1/2 A Turn At A Time{"\n"}Until Your Cadence Is {Number(targetCadence) + Number(targetRPM)}-{Number(targetCadence) - Number(targetRPM)}
                       </Text>
                     )}
                   <View

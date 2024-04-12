@@ -230,9 +230,6 @@ export const Presentation = observer(
                   ? "primary"
                   : "inactive"
               }
-              /*
-          REMOVE THIS AFTER TESTING UNCOMMENT
-                */
               disabled={!(connectedDevices.includes("wahoo") && connectedDevices.includes("puck"))}
               onPress={onPressContinue}
               style={{ height: 48, flex: 1, borderWidth: 0 }}

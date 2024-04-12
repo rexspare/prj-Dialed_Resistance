@@ -63,7 +63,7 @@ export async function setupRootStore() {
           title: "Target Cadence",
           type: "numeric",
           hidden: false,
-          value: "72",
+          value: "75",
         },
         {
           title: "Target Time range (s)",
@@ -100,13 +100,13 @@ export async function setupRootStore() {
           title: "Screen 3 Auto Advance (s)",
           type: "numeric",
           hidden: false,
-          value: "100",
+          value: "60",
         },
         {
           title: "Strength Rating",
           type: "numeric",
           hidden: false,
-          value: "37",
+          value: "45",
         },
         {
           title: "Show logs",

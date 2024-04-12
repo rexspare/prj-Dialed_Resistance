@@ -22,8 +22,8 @@ export const WorkoutHistory: React.FunctionComponent = observer((props) => {
 
   const onFeedbackPressButton = () => {
     navigation.navigate("workoutfeedback", {
-      duration: props.route.params.duration,
-      totalOutput: props.route.params.duration.totalOutput,
+      duration: props?.route?.params?.duration,
+      totalOutput: props?.route?.params?.duration?.totalOutput,
       next: "home",
     })
   }
@@ -37,13 +37,6 @@ export const WorkoutHistory: React.FunctionComponent = observer((props) => {
         result: "zip-base64",
       })
 
-      // Store the base64 data to a file
-      // const base64Data = uri.replace("data:image/png;base64,", "")
-      // const destPath = `${RNFS.DocumentDirectoryPath}/captured_image.png`
-
-      // await RNFS.writeFile(destPath, base64Data, "base64")
-
-      // console.log("Image saved successfully at:", destPath)
       navigation.navigate("feedback", {
         fromScreen: "Workout History",
         imageBase64: uri,
@@ -59,7 +52,7 @@ export const WorkoutHistory: React.FunctionComponent = observer((props) => {
       onPressButton={onPressButton}
       onFeedbackPressButton={onFeedbackPressButton}
       personalRecords={personalRecords}
-      duration={props.route.params.duration}
+      duration={props.route?.params?.duration}
       navigateToFeedback={navigateToFeedback}
       getRLRChnage={getRLRChnage}
     />

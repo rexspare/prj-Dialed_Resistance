@@ -265,6 +265,7 @@ export const Calibration: React.FunctionComponent<CalibrationProps> = observer((
       cadence={Number(Number(subscribe("cadence")).toFixed(0))}
       trp={subscribe("rotation")}
       targetCadence={Number(getVar("Target Cadence"))}
+      targetRPM={Number(getVar("Target RPM Range"))}
       logs={applicationValues.log}
       onPressWorkout={() => {
         updatePostWorkoutFeedback("option", {

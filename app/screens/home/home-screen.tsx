@@ -287,7 +287,7 @@ export const Home: React.FunctionComponent<HomeProps> = observer((props) => {
     /*
     REMOVE THIS AFTER TESTING
     */
-    // navigation.navigate("feedback", { next: "workout" })
+    // navigation.navigate("workouthistory", { next: "workout" })
     // console.log('====================================');
     // console.log("HERE");
     // console.log('====================================');

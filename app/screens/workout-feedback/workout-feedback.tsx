@@ -97,9 +97,8 @@ export const WorkoutFeedback: React.FunctionComponent = observer((props) => {
             updateRLRChnage("Updating RLR to", [
               ...pendingChanges?.reverse(),
               {
-                Date: `${
-                  new Date().getMonth() + 1
-                }/${new Date().getDate()}/${new Date().getFullYear()}`,
+                Date: `${new Date().getMonth() + 1
+                  }/${new Date().getDate()}/${new Date().getFullYear()}`,
                 Identifier: selectedProfile.anonymous_id,
                 Age: selectedProfile.age,
                 Sex: selectedProfile.gender,
@@ -120,9 +119,8 @@ export const WorkoutFeedback: React.FunctionComponent = observer((props) => {
           updateRLRChnage("Updating RLR to", [
             ...pendingChanges?.reverse(),
             {
-              Date: `${
-                new Date().getMonth() + 1
-              }/${new Date().getDate()}/${new Date().getFullYear()}`,
+              Date: `${new Date().getMonth() + 1
+                }/${new Date().getDate()}/${new Date().getFullYear()}`,
               Identifier: selectedProfile.anonymous_id,
               Age: selectedProfile.age,
               Sex: selectedProfile.gender,
@@ -158,7 +156,7 @@ export const WorkoutFeedback: React.FunctionComponent = observer((props) => {
 
     switch (sliderValue) {
       case -2:
-        multiplyRLR = 1.1
+        multiplyRLR = 1.15
         break
       case -1:
         multiplyRLR = 1.05
@@ -173,7 +171,7 @@ export const WorkoutFeedback: React.FunctionComponent = observer((props) => {
         multiplyRLR = 0.95
         break
       case 2:
-        multiplyRLR = 0.9
+        multiplyRLR = 0.85
         break
       default:
         multiplyRLR = 1
@@ -216,5 +214,7 @@ export const WorkoutFeedback: React.FunctionComponent = observer((props) => {
     }
   }
 
-  return <Presentation onPressButton={onPressButton} navigateToFeedback={navigateToFeedback} />
+  return <Presentation
+    onPressButton={onPressButton}
+    navigateToFeedback={navigateToFeedback} />
 })

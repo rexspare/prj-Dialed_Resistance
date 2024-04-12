@@ -187,10 +187,12 @@ export const Workout: React.FunctionComponent<WorkoutProps> = observer((props) =
               updatePersonalRecord("update Personal Record", nso)
             })
             updateRLRChnage("Updatring RLR to", [])
-            insertPersonalRecord("insertNew", {
-              ...datatostore,
-              onlineStored: true,
-            })
+            setTimeout(() => {
+              insertPersonalRecord("insertNew", {
+                ...datatostore,
+                onlineStored: true,
+              })
+            }, 300);
           } else {
             insertPersonalRecord("insertNew", datatostore)
           }
