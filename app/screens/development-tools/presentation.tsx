@@ -31,7 +31,7 @@ export const Presentation = observer(({
   updateOption,
   goBack,
   applicationValues
-}:DevelopmentToolsProps) => {
+}: DevelopmentToolsProps) => {
   const [controllers, setControllers] = React.useState([])
 
   const updateControllers = (instance) => {
@@ -45,71 +45,72 @@ export const Presentation = observer(({
   return (
     <TouchableWithoutFeedback onPress={closeDropdown}>
       <View style={{ flex: 1 }}>
-      <Screen style={ROOT}>
-        <View style={{
-          flexDirection:"row",
-          justifyContent:"space-between",
-          alignItems:"center",
-          
-        }}>
+        <Screen style={ROOT}>
+          <View style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
 
-        <TouchableOpacity style={{marginLeft:20,padding:10}} onPress={goBack}>
+          }}>
 
-        <Image source={require("../../../assets/backArrow.png")} ></Image>
-        </TouchableOpacity>
-          <Text preset='header' text="Development Tools" style={{ margin: 20,marginLeft:-20, alignSelf: 'center', fontSize:16}}/>
-          <View></View>
-        </View>
+            <TouchableOpacity style={{ marginLeft: 20, padding: 10 }} onPress={goBack}>
+
+              <Image source={require("../../../assets/backArrow.png")} ></Image>
+            </TouchableOpacity>
+            <Text preset='header' text="Development Tools" style={{ margin: 20, marginLeft: -20, alignSelf: 'center', fontSize: 16 }} />
+            <View></View>
+          </View>
           {/* <View style={{ borderColor: color.primaryDarker, borderBottomWidth: 2 }}/> */}
-        <View style={{ flex: 1, padding: responsiveWidth(20) }}>
+          <View style={{ flex: 1, padding: responsiveWidth(20) }}>
 
-          <ScrollView style={{ width: '100%', height: 30, flex: 1 }}>
+            <ScrollView style={{ width: '100%', height: 30, flex: 1 }}>
 
-            {options.map((option, i) => (
-              <>
-              {option.hidden ? <></> : (
+              {options.map((option, i) => (
                 <>
-                <View key={i} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: responsiveWidth(7) }}>
-                  <Text style={{ fontSize: responsiveFontSize(14), }}>{option.title}</Text>
-                  {option.type === 'numeric' ? (
-                    <TextField value={option.value} onChangeText={value => updateOption(option.title, value)} style={{maxWidth:80}}/>
-                  ) : (
-                      <Dropdown updateControllers={updateControllers} value={option.value} items={option.values} onValueChange={value => updateOption(option.title, value)}/>
-                  )
-                  }
-                </View>
-                <View style={{ width: '100%', borderBottomWidth: 1, borderColor: color.line, opacity:0.2 }}/>
-              </>
-              )}
-              </>
-            ))}
-            <View style={{ height: 30 }}/>
-            {applicationValues && Object.keys(applicationValues).map(item => item && (
-              item === "resistanceLevelRatio" || item === "finalTRP" ? (<View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15, marginHorizontal: 40, paddingHorizontal: 20, backgroundColor: 'grey' }}>
-                <Text style={{ fontSize: responsiveFontSize(17), }}>{item}</Text>
-                <Text style={{ fontSize: responsiveFontSize(17), }}>{Number(applicationValues[item]).toFixed(1)}</Text>
-              </View>):<></>
-            ))}
-          </ScrollView>
-        </View>
-        <View style={{
-                    marginHorizontal: 10,
-                    marginVertical:20
-        }}>
-          <Button text='Save, and return.' preset='primary' onPress={goBack} style={{
-                    width: "100%",
-                    alignSelf: "center",
-                    backgroundColor: color.palette.primaryColor,
-                  }}
-                  textStyle={{
-                    color: color.palette.textColor,
-                    fontWeight:"400",
-                    fontSize: 14
-                  }} />
-        </View>
+                  {option.hidden ? <></> : (
+                    <>
+                      <View key={i} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: responsiveWidth(7) }}>
+                        <Text style={{ fontSize: responsiveFontSize(14), }}>{
+                        option.title}</Text>
+                        {option.type === 'numeric' ? (
+                          <TextField value={option.value} onChangeText={value => updateOption(option.title, value)} style={{ maxWidth: 80 }} />
+                        ) : (
+                          <Dropdown updateControllers={updateControllers} value={option.value} items={option.values} onValueChange={value => updateOption(option.title, value)} />
+                        )
+                        }
+                      </View>
+                      <View style={{ width: '100%', borderBottomWidth: 1, borderColor: color.line, opacity: 0.2 }} />
+                    </>
+                  )}
+                </>
+              ))}
+              <View style={{ height: 30 }} />
+              {applicationValues && Object.keys(applicationValues).map(item => item && (
+                item === "resistanceLevelRatio" || item === "finalTRP" ? (<View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15, marginHorizontal: 40, paddingHorizontal: 20, backgroundColor: 'grey' }}>
+                  <Text style={{ fontSize: responsiveFontSize(17), }}>{item}</Text>
+                  <Text style={{ fontSize: responsiveFontSize(17), }}>{Number(applicationValues[item]).toFixed(1)}</Text>
+                </View>) : <></>
+              ))}
+            </ScrollView>
+          </View>
+          <View style={{
+            marginHorizontal: 10,
+            marginVertical: 20
+          }}>
+            <Button text='Save, and return.' preset='primary' onPress={goBack} style={{
+              width: "100%",
+              alignSelf: "center",
+              backgroundColor: color.palette.primaryColor,
+            }}
+              textStyle={{
+                color: color.palette.textColor,
+                fontWeight: "400",
+                fontSize: 14
+              }} />
+          </View>
 
-      </Screen>
-    </View>
+        </Screen>
+      </View>
     </TouchableWithoutFeedback>
   )
 })

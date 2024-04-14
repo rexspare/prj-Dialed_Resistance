@@ -35,11 +35,11 @@ export const Calibration: React.FunctionComponent<CalibrationProps> = observer((
         useNativeDriver: false,
       }),
       hideCalibrating &&
-        Animated.timing(opacityCalibrating, {
-          toValue: 0,
-          duration: 1000,
-          useNativeDriver: false,
-        }),
+      Animated.timing(opacityCalibrating, {
+        toValue: 0,
+        duration: 1000,
+        useNativeDriver: false,
+      }),
     ]).start(({ finished }) => {
       // Switch text
       setShow(showText)
@@ -72,6 +72,9 @@ export const Calibration: React.FunctionComponent<CalibrationProps> = observer((
   }
 
   const firstTransition = () => {
+    transition(99, false, false)
+  }
+  const newTransition = () => {
     transition(2, false, false)
   }
   const secondTransition = () => {
@@ -180,19 +183,19 @@ export const Calibration: React.FunctionComponent<CalibrationProps> = observer((
       Number(getVar("Screen 3 RPM range")),
       90,
       undefined,
-      Number(getVar("Screen 3 Auto Advance (s)")) * 1000,
+      Number(getVar("Final Cadence Auto Advance")) * 1000,
     )
     thirdTransition()
     const lowerStable = await checkStability(
       Number(getVar("Cadence poll time (ms)")),
-      Number(getVar("Target Time range (s)")) * 1000,
-      Number(getVar("Target RPM Range")),
+      Number(getVar("Initial Cadence Time")) * 1000,
+      Number(getVar("Final Cadence Range")),
       undefined,
-      Number(getVar("Target Cadence")),
-      Number(getVar("Screen 3 Auto Advance (s)")) * 1000,
+      Number(getVar("Final Cadence Target")),
+      Number(getVar("Final Cadence Auto Advance")) * 1000,
     )
     const rotation = subscribe("rotation")
-    const targetCadence = Number(getVar("Target Cadence"))
+    const targetCadence = Number(getVar("Final Cadence Target"))
     const cadence = Number(Number(subscribe("cadence")).toFixed(0))
     const strengthRating = Number(getVar("Strength Rating"))
     applicationValues.logValue(`
@@ -219,9 +222,9 @@ export const Calibration: React.FunctionComponent<CalibrationProps> = observer((
     applicationValues.resetLogs()
   }, [])
 
-  const navigateToFeedback = async() => {
+  const navigateToFeedback = async () => {
     try {
-    // Capture the screen
+      // Capture the screen
       const uri = await captureScreen({
         format: "png",
         quality: 0.8,
@@ -260,12 +263,14 @@ export const Calibration: React.FunctionComponent<CalibrationProps> = observer((
       // age={applicationValues.age}
       // hrr={applicationValues.HrR}
       onPressContinue={onPressContinue}
+      onPressContinue2={newTransition}
       showLogs={getVar("Show logs") === "Yes"}
       // heartRate={(((subscribe('heartRate') - applicationValues.HrR) / (220 - applicationValues.age - applicationValues.HrR)) * 100).toFixed(0)}
       cadence={Number(Number(subscribe("cadence")).toFixed(0))}
       trp={subscribe("rotation")}
-      targetCadence={Number(getVar("Target Cadence"))}
-      targetRPM={Number(getVar("Target RPM Range"))}
+      targetCadence={Number(getVar("Final Cadence Target"))}
+      initialCadence={Number(getVar("Initial Cadence Target"))}
+      targetRPM={Number(getVar("Final Cadence Range"))}
       logs={applicationValues.log}
       onPressWorkout={() => {
         updatePostWorkoutFeedback("option", {

@@ -34,12 +34,15 @@ export interface CalibrationProps {
   trp: number
   duration: number
   onPressContinue: () => void
+  onPressContinue2: () => void
   lengthModalVisible: boolean
   setLengthModalVisible: (visible: boolean) => void
   setDuration: (duration: number) => void
   onPressToCalibrating: () => void
   navigateToFeedback: () => void,
   targetRPM: number;
+  targetCadence: number;
+  initialCadence: number;
 }
 
 export const Presentation = ({
@@ -54,6 +57,7 @@ export const Presentation = ({
   logs,
   duration,
   onPressContinue,
+  onPressContinue2,
   setLengthModalVisible,
   lengthModalVisible,
   setDuration,
@@ -64,6 +68,7 @@ export const Presentation = ({
   trp,
   hrr,
   targetCadence,
+  initialCadence,
   cadence,
   heartRate,
   navigateToFeedback,
@@ -131,7 +136,7 @@ export const Presentation = ({
                       // backgroundColor:"#fff"
                     }}>
                       Help Us Tailor The Resistance {"\n"} Levels To You And Your Bike.
-                </Text>
+                    </Text>
                   </View>
                   <Button
                     text="OK"
@@ -151,6 +156,93 @@ export const Presentation = ({
                   />
                 </Animated.View>
               )}
+
+              {showText === 99 && (
+                <Animated.View
+                  style={{
+                    opacity: opacity,
+                    justifyContent: "flex-start",
+                    // marginTop: responsiveHeight(60),
+                    flex: 1,
+                    paddingBottom: 20
+                  }}
+                >
+                  <ScrollView style={{
+                    flex: 1,
+                    marginTop: 150
+                  }}>
+
+                    <View style={{
+                      flex: 1,
+                      justifyContent: 'flex-start',
+                      paddingHorizontal: '5%'
+
+                    }}>
+                      <Text preset="calibration" style={{
+                        fontSize: 19,
+                        fontWeight: "600",
+                        fontFamily: typography.primaryBold,
+                        textTransform: "capitalize",
+                        marginVertical: 40
+                      }}>
+                        A Few Tips:
+                      </Text>
+
+                      <Text preset="calibration" style={{
+                        fontSize: 16,
+                        fontFamily: typography.primary,
+                        fontWeight: "400",
+                        textAlign: 'left',
+                        lineHeight: 27
+                      }}>
+                        {`During Calibration You Will Accelerate And Then Gradually Add On Resistance.
+
+Allow Your Cadence To Gradually Slow In Response To The Added Resistance.
+
+Your Goal Is To Maintain The Target Cadence With Light Effort Applied.
+
+If Your Cadence Falls Below The Target - Lessen The Resistance.
+
+This is not the workout.
+If It Feels Like A Workout You Are Trying Too Hard To Maintain The Cadence. 
+Do Not Get Out Of The Saddle While Calibrating.
+                       `}
+                      </Text>
+
+                      <Text preset="calibration" style={{
+                        fontSize: 14,
+                        fontWeight: "600",
+                        fontFamily: typography.primary,
+                        textAlign: 'left',
+                        marginBottom: 10
+                      }}>
+                        {`Note: If Your Resistance Levels Feel A Little Off - That's Okay - The Calibration Will Be Honed Over The Next Couple Rides.
+                        
+Double Note: If Your Resistance Levels Feel Wildly Off - It's Best To Re-Calibrate. This Can Be Done From The Edit Menu Of Your Profile.
+                        `}
+                      </Text>
+                    </View>
+                    <Button
+                      text="OK"
+                      preset="primary"
+                      onPress={onPressContinue2}
+                      style={{
+                        width: "98%",
+                        alignSelf: "center",
+                        backgroundColor: color.palette.primaryColor,
+                        marginBottom: 50
+                      }}
+                      textStyle={{
+                        color: color.palette.textColor,
+                        fontWeight: "400",
+                        fontSize: 14
+                      }}
+                    />
+                  </ScrollView>
+
+                </Animated.View>
+              )}
+
               {showText === 2 && (
                 <Animated.View
                   style={{
@@ -176,7 +268,7 @@ export const Presentation = ({
                       // backgroundColor:"#fff"
                     }}>
                       Turn the resistance knob {"\n"} all the way to the left.
-                </Text>
+                    </Text>
                   </View>
                   <Button
                     text="OK"
@@ -252,22 +344,22 @@ export const Presentation = ({
                       fontSize: 19,
                       fontWeight: "600",
                       fontFamily: typography.primaryBold
-                    }}>Find A Natural Cadence {"\n"} Above 90</Text>
+                    }}>Accelerate To A Cadence {"\n"} Above {initialCadence}</Text>
                   ) : (
-                      <Text
-                        preset="calibration"
-                        style={{
-                          alignItems: "center",
-                          width: "90%",
-                          textAlign: "center",
-                          fontSize: 19,
-                          fontWeight: "600",
-                          fontFamily: typography.primaryBold
-                        }}
-                      >
-                        Adjust Resistance{"\n"}1/2 A Turn At A Time{"\n"}Until Your Cadence Is {Number(targetCadence) + Number(targetRPM)}-{Number(targetCadence) - Number(targetRPM)}
-                      </Text>
-                    )}
+                    <Text
+                      preset="calibration"
+                      style={{
+                        alignItems: "center",
+                        width: "90%",
+                        textAlign: "center",
+                        fontSize: 19,
+                        fontWeight: "600",
+                        fontFamily: typography.primaryBold
+                      }}
+                    >
+                      Adjust Resistance{"\n"}Until Your Cadence Is {Number(targetCadence) - Number(targetRPM)}-{Number(targetCadence) + Number(targetRPM)}
+                    </Text>
+                  )}
                   <View
                     style={{
                       flexDirection: "row",
@@ -277,7 +369,7 @@ export const Presentation = ({
                   >
                     <Text style={{ justifyContent: "center", fontSize: 16, color: color.palette.primaryColor }} preset="calibration">
                       Calibrating
-                </Text>
+                    </Text>
                     <AnimatedEllipsis
                       style={{
                         fontFamily: typography.primary,
@@ -366,7 +458,7 @@ export const Presentation = ({
                 <Animated.View style={{ opacity: opacity, justifyContent: "space-between", flex: 1 }}>
                   <Text preset="calibration" style={{ height: responsiveWidth(50) }}>
                     Plase enter your age
-                </Text>
+                  </Text>
                   <TextField
                     value={age.toString()}
                     style={{ marginTop: -responsiveWidth(50) }}
@@ -385,7 +477,7 @@ export const Presentation = ({
                 <Animated.View style={{ opacity: opacity, justifyContent: "space-between", flex: 1 }}>
                   <Text preset="calibration" style={{ height: responsiveWidth(50) }}>
                     Plase enter your Resting Heartrate
-                </Text>
+                  </Text>
                   <TextField
                     value={hrr.toString()}
                     style={{ marginTop: -responsiveWidth(24) }}
@@ -404,10 +496,10 @@ export const Presentation = ({
                 <Animated.View style={{ opacity: opacity, justifyContent: "space-around", flex: 1 }}>
                   <Text style={{ top: -70 }} preset="calibration">
                     This is taking longer than expected.
-                </Text>
+                  </Text>
                   <Text style={{ top: -50 }} preset="calibration">
                     Please check that the electrodes are making proper contact.
-                </Text>
+                  </Text>
                 </Animated.View>
               )}
 

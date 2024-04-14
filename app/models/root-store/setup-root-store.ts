@@ -60,7 +60,13 @@ export async function setupRootStore() {
           value: "3",
         },
         {
-          title: "Target Cadence",
+          title: "Initial Cadence Target",
+          type: "numeric",
+          hidden: false,
+          value: "100",
+        },
+        {
+          title: "Final Cadence Target",
           type: "numeric",
           hidden: false,
           value: "75",
@@ -68,11 +74,23 @@ export async function setupRootStore() {
         {
           title: "Target Time range (s)",
           type: "numeric",
+          hidden: true,
+          value: "5",
+        },
+        {
+          title: "Initial Cadence Time",
+          type: "numeric",
+          hidden: false,
+          value: "11",
+        },
+        {
+          title: "Final Cadence Time",
+          type: "numeric",
           hidden: false,
           value: "5",
         },
         {
-          title: "Target RPM Range",
+          title: "Final Cadence Range",
           type: "numeric",
           hidden: false,
           value: "3",
@@ -97,10 +115,10 @@ export async function setupRootStore() {
           value: "47.6",
         },
         {
-          title: "Screen 3 Auto Advance (s)",
+          title: "Final Cadence Auto Advance",
           type: "numeric",
           hidden: false,
-          value: "60",
+          value: "90",
         },
         {
           title: "Strength Rating",

@@ -49,11 +49,11 @@ export const Presentation = observer(
         fontWeight: "500",
         fontFamily: "Poppins-Regular",
       } as TextStyle,
-      line: { borderColor: color.palette.textColor, borderWidth: 1, height:"80%", width:2, opacity:0.5 } as ViewStyle,
+      line: { borderColor: color.palette.textColor, borderWidth: 1, height: "80%", width: 2, opacity: 0.5 } as ViewStyle,
       container: { paddingHorizontal: responsiveWidth(20), flex: 1 } as ViewStyle,
       row: { flex: 1, flexDirection: "row" } as ViewStyle,
-      rowCardLeft: { marginTop: 0, borderRadius:0 } as ViewStyle,
-      rowCardRight: { marginTop: 0, borderRadius:0 },
+      rowCardLeft: { marginTop: 0, borderRadius: 0 } as ViewStyle,
+      rowCardRight: { marginTop: 0, borderRadius: 0 },
       buttonContainer: {
         // backgroundColor: color.palette.workoutBtnBg,
         marginTop: responsiveHeight(30),
@@ -69,10 +69,10 @@ export const Presentation = observer(
         borderRadius: 8,
         justifyContent: "center",
         alignItems: "center",
-        flex:1,
+        flex: 1,
         // marginLeft:24
       },
-      pipbutton:{flex:0.2, backgroundColor: "transparent", borderWidth: 1, borderColor: color.palette.primaryColor },
+      pipbutton: { flex: 0.2, backgroundColor: "transparent", borderWidth: 1, borderColor: color.palette.primaryColor },
       btnText: {
         color: color.palette.workoutText,
         fontFamily: "Poppins-Regular",
@@ -81,8 +81,8 @@ export const Presentation = observer(
       },
     }
     return (
-         <Screen style={ROOT}>
-          <TouchableOpacity onPress={navigateToFeedback} style={{
+      <Screen style={ROOT}>
+        <TouchableOpacity onPress={navigateToFeedback} style={{
           borderWidth: 0,
           borderColor: color.palette.textColor,
           alignSelf: "flex-end",
@@ -95,29 +95,34 @@ export const Presentation = observer(
           backgroundColor: "#0399A5D9",
           padding: 4,
         }}>
-           <Text style={{
-             fontSize: 14,
-             color: color.palette.textColor,
-             fontWeight: "400",
-             fontFamily: "NotoSans-Regular"
-           }}>Feedback</Text>
+          <Text style={{
+            fontSize: 14,
+            color: color.palette.textColor,
+            fontWeight: "400",
+            fontFamily: "NotoSans-Regular"
+          }}>Feedback</Text>
         </TouchableOpacity>
         <Text preset="header" text="Workout" style={styles.headerText} />
         <KeepAwake />
         {/* <View style={styles.line} /> */}
         <View style={styles.container}>
+
           <Card
-            title="ResistAnce Level"
+            title="Cadence"
+            preset="resistanceCard"
+            value={Number(cadence).toFixed()} />
+
+          <Card
+            title="Resistance Level"
             preset="resistanceCard"
             value={Math.floor(Number(resistanceLevel))}
             showResistanceButtons={enableIncrements}
             onIncrementResistance={onIncrementResistance}
             onDecrementResistance={onDecrementResistance}
           />
-          <Card title="Cadence" preset="resistanceCard" value={Number(cadence).toFixed()} />
-          <View style={[styles.row,{
+          <View style={[styles.row, {
             flex: 1.2,
-            backgroundColor:color.palette.secondaryBgColor,
+            backgroundColor: color.palette.secondaryBgColor,
             borderRadius: 10
           }]}>
             <Card
@@ -125,14 +130,14 @@ export const Presentation = observer(
               preset="cardSmall"
               value={power}
               style={styles.rowCardLeft}
-              subTitle="(EFQs)"
+              subTitle=""
             />
             <View style={{
-              height:"100%",
-              alignItems:"center",
-              justifyContent:'center'
+              height: "100%",
+              alignItems: "center",
+              justifyContent: 'center'
             }}>
-            <View style={styles.line} />
+              <View style={styles.line} />
             </View>
             <Card
               title="TOTAL OUTPUT"
@@ -142,7 +147,7 @@ export const Presentation = observer(
                 totalOutput
               }
               subTitle={personalRecord ? `PR: ${personalRecord}` : "No PR"}
-              
+
               style={styles.rowCardRight}
             />
           </View>
