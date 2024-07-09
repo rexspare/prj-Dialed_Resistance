@@ -34,9 +34,23 @@ import { setJSExceptionHandler, getJSExceptionHandler, setNativeExceptionHandler
 import { enableScreens } from "react-native-screens"
 import { SDKContext, SDKProvider } from "./utils/bluetoothSdk"
 import { props } from "ramda"
-import { Alert, Dimensions, LogBox } from "react-native"
+import { Alert, Dimensions, LogBox, Platform } from "react-native"
 import Orientation from "react-native-orientation-locker"
 import Toast, { BaseToast, ErrorToast } from 'react-native-toast-message';
+import {
+  initConnection,
+  endConnection,
+  flushFailedPurchasesCachedAsPendingAndroid,
+  getSubscriptions,
+  getAvailablePurchases,
+  getProducts, //For fetching available products
+  requestPurchase, //For initiating in-app purchases
+  purchaseUpdatedListener, //For listening to purchase events
+  purchaseErrorListener, //For listening to purchase errors
+  finishTransaction, //For acknowledging a purchase
+  PurchaseError
+} from 'react-native-iap'
+import { AppProvider } from "./context/appContext"
 
 enableScreens()
 
@@ -59,12 +73,16 @@ function App(props) {
   const navigationRef = useRef<NavigationContainerRef>()
   const [rootStore, setRootStore] = useState<RootStore | undefined>(undefined)
 
+
   setRootNavigation(navigationRef)
   useBackButtonHandler(navigationRef, canExit)
   const { initialNavigationState, onNavigationStateChange } = useNavigationPersistence(
     storage,
     NAVIGATION_PERSISTENCE_KEY,
   )
+
+
+
 
   // Kick off initial async loading actions, like loading fonts and RootStore
   useEffect(() => {
@@ -92,13 +110,15 @@ function App(props) {
         <KeepAwake />
         <RootStoreProvider value={rootStore}>
           <SDKProvider>
-            <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-              <RootNavigator
-                ref={navigationRef}
-                initialState={initialNavigationState}
-                onStateChange={onNavigationStateChange}
-              />
-            </SafeAreaProvider>
+            <AppProvider>
+              <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+                <RootNavigator
+                  ref={navigationRef}
+                  initialState={initialNavigationState}
+                  onStateChange={onNavigationStateChange}
+                />
+              </SafeAreaProvider>
+            </AppProvider>
           </SDKProvider>
         </RootStoreProvider>
       </ToggleStorybook>

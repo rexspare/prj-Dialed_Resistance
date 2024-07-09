@@ -2,12 +2,13 @@
 /* eslint-disable react-native/no-inline-styles */
 import { observer, useObserver } from "mobx-react-lite"
 import * as React from "react"
-import { Alert, Image, Modal, TouchableOpacity, View, ViewStyle } from "react-native"
+import { Alert, Image, Linking, Modal, TouchableOpacity, View, ViewStyle } from "react-native"
 import { Button, DeviceListItem, Icon, Screen, StatusIndicator, Text } from "../../components"
 // import { useStores } from "../models/root-store"
 import { color, typography } from "../../theme"
 import SDK, { SDKContext } from "../../utils/bluetoothSdk"
 import { responsiveHeight, responsiveWidth } from "../../utils/responsiveDimensions"
+import { tryCatch } from "ramda"
 export type devices = "all" | "puck" | "wahoo" | false
 const ROOT: ViewStyle = {
   backgroundColor: color.palette.mainBgColor,
@@ -51,6 +52,7 @@ export const Presentation = observer(
     navigateToFeedback,
   }: HomeProps) => {
     const [isUserModalOpen, setIsUserModalOpen] = React.useState(false)
+    const [isAccountModalOpen, setisAccountModalOpen] = React.useState(false)
     const SDKState = React.useContext(SDKContext)
 
     return (
@@ -250,6 +252,9 @@ export const Presentation = observer(
          </View> */}
         </View>
 
+
+        {/* ACCOUNT MODAL */}
+
         <Modal
           animationType="slide"
           transparent={true}
@@ -291,26 +296,30 @@ export const Presentation = observer(
               <TouchableOpacity
                 onPress={() => {
                   setIsUserModalOpen(false)
-                  navigateToFeedback()
+                  setTimeout(() => { setisAccountModalOpen(true) }, 300)
                 }}
                 style={{
                   position: "absolute",
                   left: 16,
                   top: 20,
-                  backgroundColor: "#0399A5D9",
-                  padding: 4,
+                  backgroundColor: "transparent",
+                  paddingHorizontal: 6,
+                  paddingVertical: 4,
                   borderRadius: 8,
+                  borderWidth: 1,
+                  borderColor: color.palette.textColor
                 }}
               >
                 <Text
                   style={{
-                    fontSize: 14,
+                    fontSize: 13,
                     color: color.palette.textColor,
                     fontWeight: "400",
                     fontFamily: "NotoSans-Regular",
+                    lineHeight: 14
                   }}
                 >
-                  Feedback
+                  Account
                 </Text>
               </TouchableOpacity>
 
@@ -446,6 +455,115 @@ export const Presentation = observer(
             </View>
           </View>
         </Modal>
+
+        {/* SUBSCRIPTION MODAL */}
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={isAccountModalOpen}
+          onRequestClose={() => {
+          }}
+        >
+          <View
+            style={{
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "#00000095",
+            }}
+          >
+            <View
+              style={{
+                margin: 20,
+                backgroundColor: color.palette.mainBgColor,
+                borderRadius: 16,
+                paddingVertical: 14,
+                paddingHorizontal: 20,
+                alignItems: "center",
+                width: "75%",
+                borderWidth: 1,
+                borderColor: color.palette.primaryColor,
+              }}
+            >
+
+              <TouchableOpacity
+                onPress={() => {
+                  setisAccountModalOpen(false)
+                  setTimeout(() => { setIsUserModalOpen(true) }, 300)
+                }}
+                style={{
+                  position: "absolute",
+                  left: 16,
+                  top: 20,
+                  backgroundColor: "transparent",
+                  paddingHorizontal: 15,
+                  paddingVertical: 4,
+                  borderRadius: 8,
+                  borderWidth: 1,
+                  borderColor: color.palette.textColor
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: 12,
+                    color: color.palette.textColor,
+                    fontWeight: "400",
+                    fontFamily: "NotoSans-Regular",
+                    lineHeight: 14
+                  }}
+                >
+                  Back
+                </Text>
+              </TouchableOpacity>
+
+              <Text
+                style={{
+                  fontSize: 16,
+
+                  marginTop: 6,
+                  marginBottom: 18,
+                  color: color.palette.textColor,
+                }}
+              >
+                Account
+              </Text>
+              <TouchableOpacity
+                style={{ position: "absolute", right: 24, top: 24 }}
+                onPress={() => {
+                  setisAccountModalOpen(false)
+                }}
+              >
+                <Image style={{ width: 16, height: 16 }} source={require("./cross.png")}></Image>
+              </TouchableOpacity>
+              {/* </View> */}
+              <Text
+                style={{
+                  fontSize: 12,
+                  color: color.palette.textColor,
+                  fontWeight: "500",
+                  fontFamily: "NotoSans-Medium",
+                  lineHeight: 18,
+                  marginBottom: 20
+                }}
+              >
+                Your subscription is managed through your google play account. Please visit <Text 
+                onPress={() => {
+                  try {
+                    Linking.openURL('https://play.google.com/store/account/subscriptions?hl=en')
+                  } catch (error) {
+                    
+                  }
+                }}
+                style={{
+                  color: "#0399A5D9",
+                  lineHeight: 18,
+                }}>HERE</Text> to review or update your subscription details.
+              </Text>
+
+            </View>
+          </View>
+        </Modal>
+
       </Screen>
     )
   },
