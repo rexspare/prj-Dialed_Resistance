@@ -5,7 +5,7 @@ import { color } from "../../theme"
 export const Splash: React.FunctionComponent = ({navigation}) => {
   React.useEffect(()=>{
     setTimeout(()=>{
-      navigation.replace('home')
+      navigation.replace('app')
     },2500)
   },[])
   return (

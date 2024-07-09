@@ -51,9 +51,8 @@ export function MainNavigator() {
           />)
       }}
       mode='card'
-      initialRouteName="splash"
+      initialRouteName="home"
     >
-      <Stack.Screen name="splash" component={Splash} />
       <Stack.Screen name="home" component={Home} />
       <Stack.Screen name="settings" component={Settings} />
       <Stack.Screen name="calibration" component={Calibration} />

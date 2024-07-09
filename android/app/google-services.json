@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "52648711006",
+    "project_id": "dialed-resista",
+    "storage_bucket": "dialed-resista.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:52648711006:android:0a405f9660ef64587635cf",
+        "android_client_info": {
+          "package_name": "com.stationaryblenew"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4OAy2VIgyjqXjVhBcre2B474tHCDyl6U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

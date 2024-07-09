@@ -4,10 +4,14 @@
  * and a "main" flow (which is contained in your MainNavigator) which the user
  * will use once logged in.
  */
-import React from "react"
+import React, { useContext } from "react"
 import { NavigationContainer, NavigationContainerRef } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 import { MainNavigator } from "./main-navigator"
+import { Subscribe } from "../screens/subscribe/subscribe-screen"
+import { Feedback } from "../screens/Feedback/feedback"
+import { AppContext } from "../context/appContext"
+import { Splash } from "../screens/splash/splash"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -20,25 +24,62 @@ import { MainNavigator } from "./main-navigator"
  *   https://reactnavigation.org/docs/typescript#type-checking-the-navigator
  */
 export type RootParamList = {
+  splash: undefined
+  app: undefined
   mainStack: undefined
+  Subscribe: any
+  feedback: undefined
 }
 
 const Stack = createStackNavigator<RootParamList>()
 
 const RootStack = () => {
+  const { isSubscribed } = useContext(AppContext)
+
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+      initialRouteName="splash"
+    >
+      <Stack.Screen name="splash" component={Splash} />
+      <Stack.Screen name="app" component={AppStack} />
+    </Stack.Navigator>
+  )
+}
+
+const AppStack = () => {
+  const { isSubscribed } = useContext(AppContext)
+
+
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
       }}
     >
-      <Stack.Screen
-        name="mainStack"
-        component={MainNavigator}
-        options={{
-          headerShown: false,
-        }}
-      />
+      {
+        isSubscribed == false ?
+          <>
+            <Stack.Screen
+              name="Subscribe"
+              component={Subscribe}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen name="feedback" component={Feedback} />
+          </>
+          :
+          <Stack.Screen
+            name="mainStack"
+            component={MainNavigator}
+            options={{
+              headerShown: false,
+            }}
+          />
+      }
     </Stack.Navigator>
   )
 }
