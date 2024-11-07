@@ -20,6 +20,12 @@ import org.unimodules.adapters.react.ModuleRegistryAdapter;
 import org.unimodules.adapters.react.ReactModuleRegistryProvider;
 import org.unimodules.core.interfaces.SingletonModule;
 import org.wonday.orientation.OrientationActivityLifecycle;
+import android.content.BroadcastReceiver;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Build;
+
+import androidx.annotation.Nullable;
 
 public class MainApplication extends Application implements ReactApplication {
   private final ReactModuleRegistryProvider mModuleRegistryProvider = new ReactModuleRegistryProvider(new BasePackageList().getPackageList(), null);
@@ -58,6 +64,15 @@ public class MainApplication extends Application implements ReactApplication {
   public ReactNativeHost getReactNativeHost() {
     return mReactNativeHost;
   }
+
+    @Override
+    public Intent registerReceiver(@Nullable BroadcastReceiver receiver, IntentFilter filter) {
+        if (Build.VERSION.SDK_INT >= 34 && getApplicationInfo().targetSdkVersion >= 34) {
+            return super.registerReceiver(receiver, filter, Context.RECEIVER_EXPORTED);
+        } else {
+            return super.registerReceiver(receiver, filter);
+        }
+    }
 
   @Override
   public void onCreate() {

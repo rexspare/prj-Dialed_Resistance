@@ -1,6 +1,6 @@
 import { tryCatch } from 'ramda'
 import React, { createContext, useContext, useState, useEffect } from 'react'
-import { Platform } from 'react-native'
+import { Alert, Platform } from 'react-native'
 import {
     initConnection,
     endConnection,
@@ -20,17 +20,18 @@ import AsyncStorage from '@react-native-community/async-storage'
 export const AppContext = createContext({
     isSubscribed: false,
     setisSubscribed: (val: boolean) => { },
-    handlePurchase: () => { }
+    handlePurchase: () => { },
+    subscribeAccessCode: (code: string) => { }
 })
 
-export const useAuth = () => useContext(AppContext)
+export const useApp = () => useContext(AppContext)
 
 export const AppProvider = ({ children }) => {
     const [isSubscribed, setisSubscribed] = useState<any>(false)
     const [subsciptionList, setsubsciptionList] = useState<any>([])
     const PRODUCT_IDS = ['testproduct']
-    // const SUB_IDS = ['annual-subscription']
-    const SUB_IDS = ['base-annual-plan', 'dialed_annual_subs', 'annual-subscription', 'baseplanannual']
+    const SUB_IDS = ['base-monthly-plan', 'base_monthly_plan']
+    const ACCESS_CODE = ['GMT01']
 
     const getSubs = async () => {
         try {
@@ -38,7 +39,7 @@ export const AppProvider = ({ children }) => {
                 // const result = await getProducts({ skus: PRODUCT_IDS })
                 // console.log('===>>', result)
                 const res = await getSubscriptions({ skus: SUB_IDS })
-                // console.log('===>>', JSON.stringify(res))
+                console.log('===>>', JSON.stringify(res))
                 setsubsciptionList(res)
             }
             catch (error) {
@@ -64,6 +65,7 @@ export const AppProvider = ({ children }) => {
                 })
                 console.log({ res });
                 setisSubscribed(true)
+                await AsyncStorage.setItem("@USER_TYPE", "Individual")
                 getAvailablePurchase()
             }
 
@@ -86,18 +88,48 @@ export const AppProvider = ({ children }) => {
 
     const getAvailablePurchase = async () => {
         try {
-            const subscriptions = await getSubscriptions({ skus: SUB_IDS })
+            const userType = await AsyncStorage.getItem("@USER_TYPE")
 
-            // Fetch the user's purchases
-            const purchases = await getAvailablePurchases();
+            if (userType == "Gym") {
+                const isGymMember = await AsyncStorage.getItem("@SUBSCRIBED")
+                if (isGymMember == "true") {
+                    setisSubscribed(true)
+                }
+            } else {
+                const subscriptions = await getSubscriptions({ skus: SUB_IDS })
 
-            // Check if any of the purchases match the subscription ID
-            const subscribed = hasSubscription(purchases, subscriptions)
+                // Fetch the user's purchases
+                const purchases = await getAvailablePurchases();
 
-            setisSubscribed(subscribed ? true : false);
+                // Check if any of the purchases match the subscription ID
+                const subscribed = hasSubscription(purchases, subscriptions)
+
+                setisSubscribed(subscribed ? true : false);
+            }
+
         } catch (error) {
 
         }
+    }
+
+    const subscribeAccessCode = async (code: string) => {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const valid = ACCESS_CODE.includes(code)
+                if (valid == true) {
+                    await AsyncStorage.setItem("@USER_TYPE", "Gym")
+                    await AsyncStorage.setItem("@SUBSCRIBED", "true")
+                    setisSubscribed(true)
+                    resolve(true)
+                } else {
+                    Alert.alert("Invalid Code", "The ocde you enter is invalid!")
+                    resolve(false)
+                }
+            } catch (error) {
+                console.log("subscribeAccessCode ==>>", error);
+                resolve(false)
+            }
+        })
     }
 
 
@@ -151,7 +183,8 @@ export const AppProvider = ({ children }) => {
             value={{
                 isSubscribed,
                 setisSubscribed,
-                handlePurchase
+                handlePurchase,
+                subscribeAccessCode
             }}>
             {children}
         </AppContext.Provider>

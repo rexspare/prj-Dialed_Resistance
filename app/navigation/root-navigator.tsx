@@ -12,6 +12,9 @@ import { Subscribe } from "../screens/subscribe/subscribe-screen"
 import { Feedback } from "../screens/Feedback/feedback"
 import { AppContext } from "../context/appContext"
 import { Splash } from "../screens/splash/splash"
+import { OnBoarding } from "../screens/onboarding/onboarding-screen"
+import { UserType } from "../screens/user-type/user-type-screen"
+import { AccessCode } from "../screens/access-code/access-code-screen"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -29,6 +32,9 @@ export type RootParamList = {
   mainStack: undefined
   Subscribe: any
   feedback: undefined
+  Onboarding: undefined
+  UserType: undefined
+  AccessCode: undefined
 }
 
 const Stack = createStackNavigator<RootParamList>()
@@ -62,6 +68,27 @@ const AppStack = () => {
       {
         isSubscribed == false ?
           <>
+            <Stack.Screen
+              name="UserType"
+              component={UserType}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="AccessCode"
+              component={AccessCode}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="Onboarding"
+              component={OnBoarding}
+              options={{
+                headerShown: false,
+              }}
+            />
             <Stack.Screen
               name="Subscribe"
               component={Subscribe}

@@ -136,8 +136,8 @@ android {
         applicationId "com.stationaryblenew"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 13
-        versionName "6.3.4"
+        versionCode 29
+        versionName "6.5.0"
         multiDexEnabled true
     }
     splits {
@@ -150,10 +150,10 @@ android {
     }
     signingConfigs {
         debug {
-            storeFile file('debug.keystore')
-            storePassword 'android'
-            keyAlias 'androiddebugkey'
-            keyPassword 'android'
+            storeFile file('release.keystore')
+            storePassword 'Kris@2023'
+            keyAlias 'dialedalias'
+            keyPassword 'Kris@2023'
         }
         release {
             storeFile file('release.keystore')
@@ -198,9 +198,9 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:0.63.4"  // From node_modules
-
+    implementation 'org.jetbrains:annotations:16.0.2'
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
-    
+    implementation "com.facebook.soloader:soloader:$soLoaderVersion"
      compile 'com.facebook.fresco:fresco:1.+'
 
     // For animated GIF support

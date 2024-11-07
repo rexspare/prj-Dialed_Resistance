@@ -65,11 +65,16 @@ export const Subscribe: React.FunctionComponent<HomeProps> = observer((props) =>
     }
   }
 
+  const goBack = () => {
+    navigation.goBack()
+  }
+
 
   return (
     <Presentation
       navigateToFeedback={navigateToFeedback}
       handleSubscribe={handleSubscribe}
+      goBack={goBack}
     />
   )
 })
