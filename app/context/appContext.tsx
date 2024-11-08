@@ -1,6 +1,6 @@
 import { tryCatch } from 'ramda'
 import React, { createContext, useContext, useState, useEffect } from 'react'
-import { Alert, Platform } from 'react-native'
+import { Alert, Platform, ToastAndroid } from 'react-native'
 import {
     initConnection,
     endConnection,
@@ -29,9 +29,9 @@ export const useApp = () => useContext(AppContext)
 export const AppProvider = ({ children }) => {
     const [isSubscribed, setisSubscribed] = useState<any>(false)
     const [subsciptionList, setsubsciptionList] = useState<any>([])
-    const PRODUCT_IDS = ['testproduct']
     const SUB_IDS = ['base-monthly-plan', 'base_monthly_plan']
     const ACCESS_CODE = ['GMT01']
+    const USER_TYPE_KEY = "@USER_TYPE"
 
     const getSubs = async () => {
         try {
@@ -65,7 +65,7 @@ export const AppProvider = ({ children }) => {
                 })
                 console.log({ res });
                 setisSubscribed(true)
-                await AsyncStorage.setItem("@USER_TYPE", "Individual")
+                await AsyncStorage.setItem(USER_TYPE_KEY, "Individual")
                 getAvailablePurchase()
             }
 
@@ -88,7 +88,7 @@ export const AppProvider = ({ children }) => {
 
     const getAvailablePurchase = async () => {
         try {
-            const userType = await AsyncStorage.getItem("@USER_TYPE")
+            const userType = await AsyncStorage.getItem(USER_TYPE_KEY)
 
             if (userType == "Gym") {
                 const isGymMember = await AsyncStorage.getItem("@SUBSCRIBED")
@@ -117,12 +117,18 @@ export const AppProvider = ({ children }) => {
             try {
                 const valid = ACCESS_CODE.includes(code)
                 if (valid == true) {
-                    await AsyncStorage.setItem("@USER_TYPE", "Gym")
+                    await AsyncStorage.setItem(USER_TYPE_KEY, "Gym")
                     await AsyncStorage.setItem("@SUBSCRIBED", "true")
                     setisSubscribed(true)
                     resolve(true)
                 } else {
-                    Alert.alert("Invalid Code", "The ocde you enter is invalid!")
+                    ToastAndroid.showWithGravityAndOffset(
+                        "The entered code is invalid",
+                        ToastAndroid.LONG,
+                        ToastAndroid.BOTTOM,
+                        25,
+                        50
+                    )
                     resolve(false)
                 }
             } catch (error) {

@@ -45,33 +45,51 @@ export const Presentation = observer(
           resizeMode='contain'
         />
 
-        <TouchableOpacity
-          onPress={navigateToFeedback}
-          style={{
-            borderWidth: 0,
-            borderColor: color.palette.textColor,
-            alignSelf: "flex-end",
-            paddingVertical: 3,
-            paddingHorizontal: 15,
-            borderRadius: 8,
-            top: 15,
-            left: 15,
-            position: "absolute",
-            backgroundColor: "#0399A5D9",
-            padding: 4,
-          }}
-        >
-          <Text
+        <View style={{
+          top: 15,
+          paddingHorizontal: 15,
+          position: "absolute",
+          width: '100%',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center'
+
+        }}>
+          <TouchableOpacity
+            onPress={navigateToFeedback}
             style={{
-              fontSize: 14,
-              color: color.palette.textColor,
-              fontWeight: "400",
-              fontFamily: "NotoSans-Regular",
+              borderWidth: 0,
+              borderColor: color.palette.textColor,
+              paddingVertical: 3,
+              paddingHorizontal: 15,
+              borderRadius: 8,
+              backgroundColor: "#0399A5D9",
+              padding: 4,
+              position: 'absolute',
+              left: 15
             }}
           >
-            Feedback
-          </Text>
-        </TouchableOpacity>
+            <Text
+              style={{
+                fontSize: 14,
+                color: color.palette.textColor,
+                fontWeight: "400",
+                fontFamily: "NotoSans-Regular",
+              }}
+            >
+              Feedback
+            </Text>
+          </TouchableOpacity>
+
+          <Text style={{
+            color: '#0399A5',
+            fontSize: 22,
+            fontFamily: 'Poppins-SemiBold',
+            fontWeight: '600',
+            textAlign: 'center',
+          }}>Welcome</Text>
+
+        </View>
 
         {/* CONTEXT */}
         <View style={{
@@ -82,54 +100,6 @@ export const Presentation = observer(
           alignItems: 'center',
           alignSelf: 'center'
         }}>
-
-
-          <View style={{
-            width: '100%',
-            marginTop: 60,
-            marginBottom: '7%',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between'
-          }}>
-
-            <TouchableOpacity
-              style={{
-                borderWidth: 1,
-                borderColor: "#0399A5",
-                borderRadius: 21,
-                width: 21,
-                height: 21,
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-              hitSlop={{ top: 10, left: 10, bottom: 10, right: 10 }}
-              onPress={goBack}>
-
-              <Image
-                source={require("../../../assets/backArrow.png")}
-                style={{
-                  width: 6,
-                }} />
-            </TouchableOpacity>
-
-            <Text style={{
-              color: '#0399A5',
-              fontSize: 23,
-              fontFamily: 'Poppins-SemiBold',
-              fontWeight: '600',
-              textAlign: 'center',
-            }}>Welcome</Text>
-
-            <View
-              style={{
-                width: 21,
-              }}
-            ></View>
-
-          </View>
-
-
 
           <View style={{
             flex: 1,
