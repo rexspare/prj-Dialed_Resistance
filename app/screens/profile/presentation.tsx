@@ -218,15 +218,15 @@ export const Presentation = observer(({
                     onChangeText={(value) => { setHeartRatio(value) }}
                     placeholderTextColor={color.palette.lighterGrey}
                     underlineColorAndroid={color.transparent}
-                    style={{ backgroundColor: color.palette.textColor, color: "#000", width: 208, borderRadius: 8, fontSize: 14, paddingVertical: 3, paddingHorizontal: 10 }}
+                    style={{ backgroundColor: color.palette.textColor, color: "#000", flex: 1, borderRadius: 8, fontSize: 14, paddingVertical: 3, paddingHorizontal: 10, marginLeft: 5 }}
                   />
                 </View>
                 <View style={{ width: '100%', borderBottomWidth: 1, borderColor: color.line, opacity: 0.2 }} />
 
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 12 }}>
+                {/* <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 12 }}>
                   <Text style={{ fontSize: responsiveFontSize(14), }}>Ride Preference *</Text>
                   <Dropdown updateControllers={updateControllers} value={ridePreference} items={["Light", "Average", "Heavy"]} onValueChange={(value) => { setRidePreference(value) }} style={{ paddingVertical: 3, minWidth: 208, maxWidth: 208, height: "auto" }} />
-                </View>
+                </View> */}
                 <View style={{ width: '100%', borderBottomWidth: 1, borderColor: color.line, opacity: 0.2 }} />
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 12 }}>
@@ -242,17 +242,17 @@ export const Presentation = observer(({
 
                 <View style={{ width: '100%', borderBottomWidth: 1, borderColor: color.line, opacity: 0.2 }} />
 
-                <View style={{paddingBottom: 12}}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingTop: 12, paddingBottom:6 }}>
+                <View style={{ paddingBottom: 12 }}>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingTop: 12, paddingBottom: 6 }}>
                     <Text style={{ fontSize: responsiveFontSize(14), }}>Anonymous ID</Text>
                     <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
                       <Text
-                        style={{ color: "#A2ABB8", fontWeight: "500", width: 208 - 15, borderRadius: 8, fontSize: 14, paddingVertical: 3, paddingHorizontal: 10, textAlign:'center' }}
+                        style={{ color: "#A2ABB8", fontWeight: "500", width: 208 - 15, borderRadius: 8, fontSize: 14, paddingVertical: 3, paddingHorizontal: 10, textAlign: 'center' }}
                       >
                         {anonymousId}
                       </Text>
                       {/* <View style={{position:"relative"}}> */}
-                      <Popable backgroundColor={color.palette.mainBgColor} style={{ width: 300,borderRadius: 16 }} position="left" content={<View style={{
+                      <Popable backgroundColor={color.palette.mainBgColor} style={{ width: 300, borderRadius: 16 }} position="left" content={<View style={{
                         // margin: 20,
                         backgroundColor: color.palette.mainBgColor,
                         borderRadius: 16,
@@ -286,7 +286,7 @@ You can however, request the removal of specific Anonymous ID information from o
 
                     </View>
                   </View>
-                  <Text style={{ fontSize: responsiveFontSize(10), color: "#FAFAFA", fontWeight: "500",}}>{`Save this ID. It is required to restore your ride history from backup.`}</Text>
+                  <Text style={{ fontSize: responsiveFontSize(10), color: "#FAFAFA", fontWeight: "500", }}>{`Save this ID. It is required to restore your ride history from backup.`}</Text>
                 </View>
 
                 <View style={{ width: '100%', borderBottomWidth: 1, borderColor: color.line, opacity: 0.2 }} />
@@ -294,7 +294,7 @@ You can however, request the removal of specific Anonymous ID information from o
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 15 }}>
                   <Text style={{ fontSize: responsiveFontSize(12), color: "#A2ABB8", fontWeight: "500", width: '85%' }}>{`How this information is used in the app`}</Text>
                   <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-                    <Popable caretPosition="right" backgroundColor={color.palette.mainBgColor} style={{ width: 300,borderRadius: 16 }} position="left" content={<View style={{
+                    <Popable caretPosition="right" backgroundColor={color.palette.mainBgColor} style={{ width: 300, borderRadius: 16 }} position="left" content={<View style={{
                       // margin: 20,
                       backgroundColor: color.palette.mainBgColor,
                       borderRadius: 16,
@@ -326,8 +326,8 @@ You can however, request the removal of specific Anonymous ID information from o
 
 
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-                        <Popable caretPosition="right" backgroundColor={color.palette.mainBgColor} style={{ width: 300 ,borderRadius: 16,}} position="right" content={<View style={{
+                      <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+                        <Popable caretPosition="right" backgroundColor={color.palette.mainBgColor} style={{ width: 300, borderRadius: 16, }} position="right" content={<View style={{
                           backgroundColor: color.palette.mainBgColor,
                           borderRadius: 16,
                           paddingVertical: 14,
@@ -349,7 +349,7 @@ To restore your ride history and calibrations you’ll need to provide your Anon
                       </View>
 
                       <Text style={{ fontSize: responsiveFontSize(12), color: "#FAFAFA", fontWeight: "500", paddingLeft: 10 }}>Enable ride history & calibration backups</Text>
-                    
+
                     </View>
 
                   </TouchableWithoutFeedback>
