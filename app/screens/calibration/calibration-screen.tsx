@@ -8,12 +8,32 @@ import { useStores } from "../../models"
 import SDK from "../../utils/bluetoothSdk"
 import { boolean, number } from "mobx-state-tree/dist/internal"
 import { captureScreen } from "react-native-view-shot"
+import axios from "axios"
+import { getCurrentUnixTime } from "../../utils/dateUtils"
+import { storeLogs } from "../../services/storage/asyncServices"
 // import { useStores } from "../models/root-store"
 const timeDurations = [10, 15, 20, 30, 45, 60, 75, 90]
 
 export const Calibration: React.FunctionComponent<CalibrationProps> = observer((props) => {
   // Pull in one of our MST stores
-  const { applicationValues, selectedProfile, variables, setHRi, setHRa, getVar, updateUEL, updatePostWorkoutFeedback, updateProfile } = useStores()
+  const {
+    applicationValues,
+    selectedProfile,
+    variables,
+    setHRi,
+    setHRa,
+    getVar,
+    updateUEL,
+    updatePostWorkoutFeedback,
+    updateProfile,
+    insertPersonalRecord,
+    updatePersonalRecord,
+    personalRecords,
+    postWorkoutFeedback,
+    updateRLRChnage,
+    getRLRChnage,
+    getProfile,
+  } = useStores()
   const [opacity, setOpacity] = React.useState(new Animated.Value(1))
   const [opacityCalibrating, setOpacityCalibrating] = React.useState(new Animated.Value(0))
   const [duration, setDuration] = React.useState(10)
@@ -247,6 +267,128 @@ export const Calibration: React.FunctionComponent<CalibrationProps> = observer((
     }
   }
 
+  const onPressWorkout = () => {
+    const updatedRLR = Number(selectedProfile.RLR)
+    const notSentOnline = personalRecords.filter((pr) => !pr.onlineStored)
+    const storedPendingChanges = getRLRChnage("GETRLRCHANGE", {})
+    console.log(storedPendingChanges, "eiurhfuehriufhurehu")
+    const pendingChanges = [...storedPendingChanges] || []
+    const datatosend = [
+      ...pendingChanges?.reverse(),
+      ...notSentOnline
+        .map((nso) => {
+          const profile = getProfile("GetProfile", nso.profileId)
+          return {
+            Ride_Length: nso.duration,
+            Date: `${new Date(nso.date).getMonth() + 1}/${new Date(nso.date).getDate()}/${new Date(
+              nso.date,
+            ).getFullYear()}`,
+            Ride_Total_Output: nso.total_output,
+            RLR: Number(nso.RLR),
+            Personal_Record: nso.isPR?.toString(),
+            Identifier: nso.profileId,
+            Record_Type: "Ride Record",
+            Age: profile.age,
+            Sex: profile.gender,
+            Weight: profile.weight,
+            Resting_Heart_Rate: profile.restingHeartRate,
+            Stationary_Bike: profile.bike,
+            Ride_Preference: profile.ridePreference,
+          }
+        })
+        ?.reverse(),
+      {
+        Date: `${new Date().getMonth() + 1}/${new Date().getDate()}/${new Date().getFullYear()}`,
+        Identifier: selectedProfile.anonymous_id,
+        Age: selectedProfile.age,
+        Sex: selectedProfile.gender,
+        Weight: selectedProfile.weight,
+        Resting_Heart_Rate: selectedProfile.restingHeartRate,
+        Stationary_Bike: selectedProfile.bike,
+        Ride_Preference: selectedProfile.ridePreference,
+        Ride_Length: null,
+        RLR: updatedRLR,
+        Post_Workout_Rating: null,
+        Ride_Total_Output: null,
+        Record_Type: "Calibration",
+      },
+    ]
+    if (selectedProfile.allow_logs) {
+      axios
+        .post(
+          "https://sheetdb.io/api/v1/aj7xnliblipem",
+          {
+            data: datatosend,
+          },
+          { headers: { Authorization: "Bearer 9yxqfka3hx71rb48ho4w9hef92vez8g2rsb7kzrp" } },
+        )
+        .then((response) => {
+          if (response.data.created) {
+            notSentOnline.map((nso) => {
+              updatePersonalRecord("update Personal Record", nso)
+            })
+            updateRLRChnage("Updating RLR to", [])
+          } else {
+            updateRLRChnage("Updating RLR to", [
+              ...pendingChanges?.reverse(),
+              {
+                Date: `${new Date().getMonth() + 1
+                  }/${new Date().getDate()}/${new Date().getFullYear()}`,
+                Identifier: selectedProfile.anonymous_id,
+                Age: selectedProfile.age,
+                Sex: selectedProfile.gender,
+                Weight: selectedProfile.weight,
+                Resting_Heart_Rate: selectedProfile.restingHeartRate,
+                Stationary_Bike: selectedProfile.bike,
+                Ride_Preference: selectedProfile.ridePreference,
+                Ride_Length: null,
+                RLR: updatedRLR,
+                Post_Workout_Rating: null,
+                Ride_Total_Output: null,
+                Record_Type: "Calibration",
+              },
+            ])
+          }
+        })
+        .catch(async (e) => {
+          updateRLRChnage("Updating RLR to", [
+            ...pendingChanges?.reverse(),
+            {
+              Date: `${new Date().getMonth() + 1
+                }/${new Date().getDate()}/${new Date().getFullYear()}`,
+              Identifier: selectedProfile.anonymous_id,
+              Age: selectedProfile.age,
+              Sex: selectedProfile.gender,
+              Weight: selectedProfile.weight,
+              Resting_Heart_Rate: selectedProfile.restingHeartRate,
+              Stationary_Bike: selectedProfile.bike,
+              Ride_Preference: selectedProfile.ridePreference,
+              Ride_Length: null,
+              RLR: updatedRLR,
+              Post_Workout_Rating: null,
+              Ride_Total_Output: null,
+              Record_Type: "Calibration",
+            },
+          ])
+          console.log(e)
+          const createdAt = getCurrentUnixTime()
+          await storeLogs(JSON.stringify({
+            screen: 'workout-Fine-Tune-RLR',
+            id: 'onPressButton',
+            log: e,
+            createdAt
+          }))
+
+        })
+    }
+    updatePostWorkoutFeedback("option", {
+      isRight: false,
+      remainingRides: 5
+    })
+    navigation.navigate("workout", { duration }
+    )
+  }
+
   return (
     <Presentation
       opacity={opacity}
@@ -272,14 +414,7 @@ export const Calibration: React.FunctionComponent<CalibrationProps> = observer((
       initialCadence={Number(getVar("Initial Cadence Target"))}
       targetRPM={Number(getVar("Final Cadence Range"))}
       logs={applicationValues.log}
-      onPressWorkout={() => {
-        updatePostWorkoutFeedback("option", {
-          isRight: false,
-          remainingRides: 5
-        })
-        navigation.navigate("workout", { duration }
-        )
-      }}
+      onPressWorkout={onPressWorkout}
       navigateToFeedback={navigateToFeedback}
     />
   )

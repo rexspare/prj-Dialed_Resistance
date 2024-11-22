@@ -9,6 +9,7 @@ import axios from "axios"
 import { captureScreen } from "react-native-view-shot"
 import { getCurrentUnixTime } from "../../utils/dateUtils"
 import { storeLogs } from "../../services/storage/asyncServices"
+import { useApp } from "../../context/appContext"
 // import { useStores } from "../models/root-store"
 
 function formatSecondsToTime(seconds) {
@@ -38,19 +39,24 @@ export const Workout: React.FunctionComponent<WorkoutProps> = observer((props) =
     getVar,
     getProfile,
     selectedProfile,
-    variables
+    variables,
+    updateUEL,
+    updateProfile
   } = useStores()
+
 
   // Pull in navigation via hook
   const navigation = useNavigation()
   const { subscribe, disconnect, connected } = SDK()
   const error = subscribe("heartRateError")
+  const { isFineTuneEnabled, setisFineTuneEnabled } = useApp()
 
   const [power, setPower] = React.useState(0)
   const [totalOutput, setTotalOutput] = React.useState(0)
   const [powerHistory, setPowerHistory] = React.useState([])
   const [personalRecord, setPersonalRecord] = React.useState({})
   const [timeInRide, setTimeInRide] = React.useState(0)
+  const [isFineTuneModalVisible, setisFineTuneModalVisible] = React.useState(false)
 
   React.useEffect(() => {
     const timeInRideInterval = setInterval(() => {
@@ -217,18 +223,21 @@ export const Workout: React.FunctionComponent<WorkoutProps> = observer((props) =
     } catch (e) {
       console.log(e)
     }
+    setisFineTuneEnabled(false)
 
     if (totalOutput <= (personalRecord.total_output ? personalRecord.total_output : 0)) {
       if (postWorkoutFeedback?.isRight) {
-        navigation.navigate("workouthistory", { duration: params.duration, totalOutput })
+        navigation.replace("workouthistory", { duration: params.duration, totalOutput })
       } else {
-        navigation.navigate("workoutfeedback", { duration: params.duration, totalOutput })
+        // navigation.navigate("workoutfeedback", { duration: params.duration, totalOutput })
+        navigation.replace("workouthistory", { duration: params.duration, totalOutput })
       }
     } else {
       let sendToFeedback = false
       if (!postWorkoutFeedback?.isRight) {
         sendToFeedback = true
       }
+
       navigation.navigate("output", {
         totalOutput,
         duration: params.duration,
@@ -236,6 +245,25 @@ export const Workout: React.FunctionComponent<WorkoutProps> = observer((props) =
         previousPR: personalRecord.total_output ? personalRecord.total_output : 0,
       })
     }
+  }
+
+
+  const onPlus = () => {
+  
+    updateUEL((Number(selectedProfile.RLR) + 1) * selectedProfile.ridePreferenceValue)
+    updateProfile("Update Profile", {
+      ...selectedProfile,
+      RLR: (Number(selectedProfile.RLR) + 1) * selectedProfile.ridePreferenceValue
+    })
+  }
+
+  const onMinus = () => {
+    
+    updateUEL((Number(selectedProfile.RLR) - 1) * selectedProfile.ridePreferenceValue)
+    updateProfile("Update Profile", {
+      ...selectedProfile,
+      RLR: (Number(selectedProfile.RLR) - 1) * selectedProfile.ridePreferenceValue
+    })
   }
 
   const navigateToFeedback = async () => {
@@ -263,6 +291,19 @@ export const Workout: React.FunctionComponent<WorkoutProps> = observer((props) =
     }
   }
 
+  const okayPressed = () => {
+    setisFineTuneModalVisible(false)
+  }
+
+  React.useEffect(() => {
+    const subscribe = navigation.addListener('focus', () => {
+      setisFineTuneModalVisible(isFineTuneEnabled)
+    })
+
+    return subscribe
+  }, [])
+
+
   return (
     <Presentation
       heartRate={subscribe("heartRate")}
@@ -274,10 +315,13 @@ export const Workout: React.FunctionComponent<WorkoutProps> = observer((props) =
       totalOutput={totalOutput}
       personalRecord={personalRecord.total_output}
       onRideComplete={onRideComplete}
-      onDecrementResistance={() => Alert.alert("pressed minus")}
-      onIncrementResistance={() => Alert.alert("pressed plus")}
+      onDecrementResistance={() => onMinus()}
+      onIncrementResistance={() => onPlus()}
       navigateToFeedback={navigateToFeedback}
-    // enableIncrements
+      // enableIncrements
+      isVisible={isFineTuneModalVisible}
+      onClose={okayPressed}
+      isFineTuneEnabled={isFineTuneEnabled}
     />
   )
 })

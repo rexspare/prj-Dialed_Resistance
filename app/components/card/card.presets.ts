@@ -104,7 +104,7 @@ export const cardPresets = {
     valueContainerStyle: { justifyContent: "center" } as ViewStyle,
     titleTextStyle: {
       fontFamily: typography.primary,
-      fontSize: responsiveFontSize(16),
+      fontSize: responsiveFontSize(15),
       fontWeight: "bold",
       textAlign: "center",
       color: color.palette.workoutSecText,
@@ -135,7 +135,7 @@ export const cardPresets = {
     } as TextStyle,
     valueContainerStyle: { flex: 1 } as ViewStyle,
     titleTextStyle: {
-      fontSize: responsiveFontSize(16),
+      fontSize: responsiveFontSize(15),
       color: color.palette.workoutSecText,
       textDecorationLine: "none",
     } as TextStyle,

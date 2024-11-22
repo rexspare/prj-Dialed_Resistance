@@ -209,7 +209,7 @@ Do Not Get Out Of The Saddle While Calibrating.
                        `}
                       </Text>
 
-                      <Text preset="calibration" style={{
+                      {/* <Text preset="calibration" style={{
                         fontSize: 14,
                         fontWeight: "600",
                         fontFamily: typography.primary,
@@ -220,7 +220,7 @@ Do Not Get Out Of The Saddle While Calibrating.
                         
 Double Note: If Your Resistance Levels Feel Wildly Off - It's Best To Re-Calibrate. This Can Be Done From The Edit Menu Of Your Profile.
                         `}
-                      </Text>
+                      </Text> */}
                     </View>
                     <Button
                       text="OK"
