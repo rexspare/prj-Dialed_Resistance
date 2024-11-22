@@ -16,12 +16,15 @@ import {
     requestSubscription,
 } from 'react-native-iap'
 import AsyncStorage from '@react-native-community/async-storage'
+import { boolean } from 'mobx-state-tree/dist/internal'
 
 export const AppContext = createContext({
     isSubscribed: false,
     setisSubscribed: (val: boolean) => { },
     handlePurchase: () => { },
-    subscribeAccessCode: (code: string) => { }
+    subscribeAccessCode: (code: string) => { },
+    isFineTuneEnabled: false,
+    setisFineTuneEnabled: (val: boolean) => { },
 })
 
 export const useApp = () => useContext(AppContext)
@@ -29,9 +32,11 @@ export const useApp = () => useContext(AppContext)
 export const AppProvider = ({ children }) => {
     const [isSubscribed, setisSubscribed] = useState<any>(false)
     const [subsciptionList, setsubsciptionList] = useState<any>([])
+    const [isFineTuneEnabled, setisFineTuneEnabled] = useState(false)
     const SUB_IDS = ['base-monthly-plan', 'base_monthly_plan']
     const ACCESS_CODE = ['GMT01']
     const USER_TYPE_KEY = "@USER_TYPE"
+    const FINE_TUNE_KEY = "@FINE_TUNE_KEY"
 
     const getSubs = async () => {
         try {
@@ -39,7 +44,7 @@ export const AppProvider = ({ children }) => {
                 // const result = await getProducts({ skus: PRODUCT_IDS })
                 // console.log('===>>', result)
                 const res = await getSubscriptions({ skus: SUB_IDS })
-                console.log('===>>', JSON.stringify(res))
+                // console.log('===>>', JSON.stringify(res))
                 setsubsciptionList(res)
             }
             catch (error) {
@@ -138,8 +143,36 @@ export const AppProvider = ({ children }) => {
         })
     }
 
+    const getIsFineTubeEnabled = async () => {
+        try {
+            const res = await AsyncStorage.getItem(FINE_TUNE_KEY)
+            if (res != 'true' && res != 'false') {
+                setisFineTuneEnabled(true)
+            } else if (res == 'true') {
+                setisFineTuneEnabled(true)
+            } else if (res == 'false') {
+                setisFineTuneEnabled(false)
+            } else {
+                setisFineTuneEnabled(false)
+            }
+        } catch (error) {
+            setisFineTuneEnabled(true)
+        }
+    }
+
+    const setIsFineTuneEnabled_ = async (val: boolean) => {
+        try {
+            const data = val == true ? 'true' : 'false'
+            await AsyncStorage.setItem(FINE_TUNE_KEY, data)
+            setisFineTuneEnabled(val)
+        } catch (error) {
+            setisFineTuneEnabled(val)
+        }
+    }
+
 
     useEffect(() => {
+        getIsFineTubeEnabled()
         const init = async () => {
             try {
                 console.log('connecting...')
@@ -181,6 +214,9 @@ export const AppProvider = ({ children }) => {
                 endConnection()
             }
         }
+
+
+
     }, [])
 
 
@@ -190,7 +226,9 @@ export const AppProvider = ({ children }) => {
                 isSubscribed,
                 setisSubscribed,
                 handlePurchase,
-                subscribeAccessCode
+                subscribeAccessCode,
+                isFineTuneEnabled,
+                setisFineTuneEnabled: setIsFineTuneEnabled_
             }}>
             {children}
         </AppContext.Provider>

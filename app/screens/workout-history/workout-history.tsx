@@ -4,14 +4,15 @@ import { observer } from "mobx-react-lite"
 import { useNavigation } from "@react-navigation/native"
 import { useStores } from "../../models"
 import { captureScreen } from "react-native-view-shot"
+import { useApp } from "../../context/appContext"
 // import { useStores } from "../models/root-store"
 
 export const WorkoutHistory: React.FunctionComponent = observer((props) => {
   // Pull in one of our MST stores
   // const { someStore, anotherStore } = useStores()
-
+  const { setisFineTuneEnabled } = useApp()
   const { personalRecords, selectedProfile, getRLRChnage } = useStores()
-
+  const [isFineTuneModalVisible, setisFineTuneModalVisible] = React.useState(false)
   // Pull in navigation via hook
 
   const navigation = useNavigation()
@@ -55,6 +56,10 @@ export const WorkoutHistory: React.FunctionComponent = observer((props) => {
       duration={props.route?.params?.duration}
       navigateToFeedback={navigateToFeedback}
       getRLRChnage={getRLRChnage}
+      isVisible={isFineTuneModalVisible}
+      onClose={() => setisFineTuneModalVisible(false)}
+      onOpen={() => setisFineTuneModalVisible(true)}
+      setisFineTuneEnabled={() => setisFineTuneEnabled(true)}
     />
   )
 })

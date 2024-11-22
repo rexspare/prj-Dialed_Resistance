@@ -1,9 +1,10 @@
 import * as React from "react"
-import { Alert, Image, TouchableOpacity, View, ViewStyle } from "react-native"
+import { Alert, Image, TouchableOpacity, View, ViewStyle, Text as TextRn } from "react-native"
 import { Text } from "../"
 import { color } from "../../theme"
 import { responsiveFontSize, responsiveHeight } from "../../utils/responsiveDimensions"
 import { CardPresetNames, cardPresets } from "./card.presets"
+import { useState } from "react"
 
 export interface CardProps {
   title: string
@@ -60,8 +61,16 @@ export function Card(props: CardProps) {
       ...style,
     } as ViewStyle,
   }
+
+  const [height, setheight] = useState(0)
+
   return (
-    <View style={{ ...outerViewStyle, ...styles.container }}>
+    <View
+      onLayout={(e) => {
+        const { x, y, width, height } = e.nativeEvent.layout;
+        setheight(height)
+      }}
+      style={{ ...outerViewStyle, ...styles.container }}>
       <View
         style={{
           ...viewStyle,
@@ -73,11 +82,28 @@ export function Card(props: CardProps) {
         }}
       >
         {showResistanceButtons === true && (
-          <View style={plusButtonContainerStyle}>
-            <TouchableOpacity onPress={onDecrementResistance}>
-              <Text style={plusButtonTextStyle}>-</Text>
-            </TouchableOpacity>
-          </View>
+          // <View style={plusButtonContainerStyle}>
+          <TouchableOpacity
+            style={{
+              backgroundColor: "rgba(3, 153, 165, 0.33)",
+              width: '25%',
+              height: height,
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderTopLeftRadius: 10,
+              borderBottomLeftRadius: 10,
+            }}
+            onPress={onDecrementResistance}>
+            <TextRn
+              style={{
+                fontWeight: 'bold',
+                fontSize: responsiveFontSize(15),
+                color: "#FAFAFAA8"
+              }}
+            // style={plusButtonTextStyle}
+            >Easier</TextRn>
+          </TouchableOpacity>
+          // </View>
         )}
         <View
           style={{
@@ -96,21 +122,40 @@ export function Card(props: CardProps) {
         </View>
         {(preset === "cardSmall" || title === "total output") && (
           <Text style={{
-            marginTop:20,
+            marginTop: 20,
             marginBottom: -10,
-          fontSize: (subTitle === "(EFQs)" || title === "total output") ? 12 : 15, 
-          color: color.palette.textColor,
-          opacity: (subTitle === "(EFQs)" || title === "total output") ? 0.6 : 0.5,
-          textAlign:"center",
-          fontWeight: (subTitle === "(EFQs)" || title === "total output") ? "400" : "bold"
-        }}>{subTitle}</Text>
+            fontSize: (subTitle === "(EFQs)" || title === "total output") ? 12 : 15,
+            color: color.palette.textColor,
+            opacity: (subTitle === "(EFQs)" || title === "total output") ? 0.6 : 0.5,
+            textAlign: "center",
+            fontWeight: (subTitle === "(EFQs)" || title === "total output") ? "400" : "bold"
+          }}>{subTitle}</Text>
         )}
         {showResistanceButtons === true && (
-          <View style={minusButtonContainerStyle}>
-            <TouchableOpacity onPress={onIncrementResistance}>
-              <Text style={minusButtonTextStyle}>+</Text>
-            </TouchableOpacity>
-          </View>
+          // <View style={minusButtonContainerStyle}>
+          <TouchableOpacity
+            style={{
+              backgroundColor: "rgba(3, 153, 165, 0.33)",
+              height: height,
+              justifyContent: 'center',
+              width: '25%',
+              height: height,
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderTopRightRadius: 10,
+              borderBottomRightRadius: 10,
+            }}
+            onPress={onIncrementResistance}>
+            <TextRn
+              style={{
+                fontWeight: 'bold',
+                fontSize: responsiveFontSize(15),
+                color: "#FAFAFAA8"
+              }}
+            // style={minusButtonTextStyle}
+            >Harder</TextRn>
+          </TouchableOpacity>
+          // </View>
         )}
       </View>
       {preset === "secondary" && (

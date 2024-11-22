@@ -6,6 +6,7 @@ import { Button, Card, Screen, Text } from "../../components"
 import { color } from "../../theme"
 import { responsiveHeight, responsiveWidth } from "../../utils/responsiveDimensions"
 import KeepAwake from "react-native-keep-awake"
+import FineTuneModal from "../../components/modals/fine-tune-modal"
 
 const ROOT: ViewStyle = {
   backgroundColor: color.palette.workoutBg,
@@ -23,6 +24,9 @@ export interface WorkoutProps {
   onIncrementResistance: () => void
   onDecrementResistance: () => void
   navigateToFeedback: () => void
+  isVisible: boolean
+  isFineTuneEnabled: boolean
+  onClose: () => void
 }
 
 export const Presentation = observer(
@@ -38,7 +42,10 @@ export const Presentation = observer(
     power,
     totalOutput,
     onRideComplete,
-    navigateToFeedback
+    navigateToFeedback,
+    isVisible = true,
+    isFineTuneEnabled,
+    onClose = () => { }
   }: WorkoutProps) => {
     const styles = {
       headerText: {
@@ -116,10 +123,11 @@ export const Presentation = observer(
             title="Resistance Level"
             preset="resistanceCard"
             value={Math.floor(Number(resistanceLevel))}
-            showResistanceButtons={enableIncrements}
+            showResistanceButtons={isFineTuneEnabled}
             onIncrementResistance={onIncrementResistance}
             onDecrementResistance={onDecrementResistance}
           />
+
           <View style={[styles.row, {
             flex: 1.2,
             backgroundColor: color.palette.secondaryBgColor,
@@ -165,6 +173,11 @@ export const Presentation = observer(
             />
           </View>
         </View>
+
+        <FineTuneModal
+          isVisible={isVisible}
+          onClose={onClose}
+        />
       </Screen>
     )
   },

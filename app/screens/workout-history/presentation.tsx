@@ -21,6 +21,7 @@ import { Dropdown } from "../../components/dropdown/dropdown-component"
 import { color, typography } from "../../theme"
 import { Popable } from "react-native-popable"
 import { palette } from "../../theme/palette"
+import FineTuneCalModal from "../../components/modals/fine-tune-cal-modal"
 
 const ROOT: ViewStyle = {
   backgroundColor: color.palette.mainBgColor,
@@ -33,6 +34,10 @@ export interface ResistancePromptProps {
   selectedProfile
   navigateToFeedback
   getRLRChnage
+  isVisible: boolean
+  onClose: () => void
+  onOpen: () => void
+  setisFineTuneEnabled: () => void
 }
 
 export const Presentation = ({
@@ -43,6 +48,10 @@ export const Presentation = ({
   selectedProfile,
   navigateToFeedback,
   getRLRChnage,
+  isVisible,
+  onClose = () => { },
+  onOpen = () => { },
+  setisFineTuneEnabled = () => { },
 }: ResistancePromptProps) => {
   const [length, setLength] = React.useState(duration)
   const [timeFrame, setTimeFrame] = React.useState("All Time")
@@ -109,7 +118,6 @@ export const Presentation = ({
     }
 
 
-    console.log(personalRecords);
 
     const durationData = personalRecords.filter((pr) => {
       if (pr.date > getpreviosTimeStamp(previousDate) && pr.profileId === selectedProfile.anonymous_id) {
@@ -135,7 +143,6 @@ export const Presentation = ({
     setTotalPRs(PRCount);
 
     const sortedRecords = durationData.sort((a, b) => b.date - a.date);
-    console.log(sortedRecords);
 
     if (sortedRecords.length === 1) {
       // setImprovement(`First Ride \n From here we grow stronger`);
@@ -189,7 +196,6 @@ export const Presentation = ({
       }
 
 
-      console.log(personalRecords);
 
       const durationData = personalRecords.filter((pr) => {
         if (pr.date > getpreviosTimeStamp(previousDate) && pr.profileId === selectedProfile.anonymous_id) {
@@ -215,7 +221,6 @@ export const Presentation = ({
       setTotalPRs(PRCount);
 
       const sortedRecords = durationData.sort((a, b) => b.date - a.date);
-      console.log(sortedRecords);
 
       if (sortedRecords.length === 1) {
         // setImprovement(`First Ride \n From here we grow stronger`);
@@ -372,82 +377,70 @@ export const Presentation = ({
   }
 
   return (
-    showMainCard ?
-      <View style={{ flex: 1 }}>
-        <Screen style={ROOT}>
-          <TouchableOpacity
-            onPress={navigateToFeedback}
-            style={{
-              borderWidth: 0,
-              borderColor: color.palette.textColor,
-              alignSelf: "flex-end",
-              paddingVertical: 3,
-              paddingHorizontal: 15,
-              borderRadius: 8,
-              top: 15,
-              left: 15,
-              position: "absolute",
-              backgroundColor: "#0399A5D9",
-              padding: 4,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 14,
-                color: color.palette.textColor,
-                fontWeight: "400",
-                fontFamily: "NotoSans-Regular",
-              }}
-            >
-              Feedback
-            </Text>
-          </TouchableOpacity>
-          <Text
-            preset="header"
-            text="Workout History"
-            style={{ margin: 20, alignSelf: "center", fontSize: 16 }}
-          />
-          {/* <View style={{ borderColor: color.primaryDarker, borderBottomWidth: 2 }} /> */}
-          <View style={{ flex: 1, justifyContent: "center" }}>
-            <View style={{ flex: 1, paddingBottom: 20, paddingHorizontal: 10 }}>
-              <View style={{ justifyContent: "space-between", alignItems: "center", flex: 1 }}>
-                <View></View>
-                <ScrollView
-                  showsVerticalScrollIndicator={false}
-                  contentContainerStyle={{
-                    width: "100%",
-                    // flex: 1,
-                    // justifyContent: "center",
-                    // alignItems: "center",
-                    paddingBottom: 20,
+    <>
+      {
+        showMainCard ?
+          <View style={{ flex: 1 }}>
+            <Screen style={ROOT}>
+              <TouchableOpacity
+                onPress={navigateToFeedback}
+                style={{
+                  borderWidth: 0,
+                  borderColor: color.palette.textColor,
+                  alignSelf: "flex-end",
+                  paddingVertical: 3,
+                  paddingHorizontal: 15,
+                  borderRadius: 8,
+                  top: 15,
+                  left: 15,
+                  position: "absolute",
+                  backgroundColor: "#0399A5D9",
+                  padding: 4,
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: 14,
+                    color: color.palette.textColor,
+                    fontWeight: "400",
+                    fontFamily: "NotoSans-Regular",
                   }}
                 >
-                  <View
-                    style={{
-                      backgroundColor: color.palette.secondaryBgColor,
-                      flex: 1,
-                      alignItems: "center",
-                      paddingVertical: 35,
-                      paddingHorizontal: 35,
-                      borderRadius: 8,
-                    }}
-                  >
-                    {
-                      personalRecords?.length == 1 ?
-                        <Text
-                          style={{
-                            marginTop: 14,
-                            fontSize: 21.5,
-                            fontFamily: typography.primaryBold,
-                            color: color.palette.textColor,
-                            textAlign: "center",
-                          }}
-                        >
-                          {`First Ride \n From here we grow stronger`}
-                        </Text>
-                        :
-                        <>
-                          {improvement === `New Ride Length!\nSetting up baselines.\nKeep Going.` ? (
+                  Feedback
+                </Text>
+              </TouchableOpacity>
+              <Text
+                preset="header"
+                text="Workout History"
+                style={{ margin: 20, alignSelf: "center", fontSize: 16 }}
+              />
+              {/* <View style={{ borderColor: color.primaryDarker, borderBottomWidth: 2 }} /> */}
+              <View style={{ flex: 1, justifyContent: "center" }}>
+                <View style={{ flex: 1, paddingBottom: 20, paddingHorizontal: 10 }}>
+                  <View style={{ justifyContent: "space-between", alignItems: "center", flex: 1 }}>
+                    <View></View>
+                    <ScrollView
+                      showsVerticalScrollIndicator={false}
+                      contentContainerStyle={{
+                        width: "100%",
+                        // flex: 1,
+                        // justifyContent: "center",
+                        // alignItems: "center",
+                        paddingBottom: 20,
+                      }}
+                    >
+                      <View
+                        style={{
+                          backgroundColor: color.palette.secondaryBgColor,
+                          flex: 1,
+                          alignItems: "center",
+                          paddingVertical: 35,
+                          paddingHorizontal: 35,
+                          borderRadius: 8,
+                        }}
+                      >
+                        {
+                          personalRecords?.length == 1 ?
                             <Text
                               style={{
                                 marginTop: 14,
@@ -457,343 +450,366 @@ export const Presentation = ({
                                 textAlign: "center",
                               }}
                             >
-                              {improvement}
+                              {`First Ride \n From here we grow stronger`}
                             </Text>
-                          ) : (
-                            <Text
-                              style={{
-                                marginTop: 14,
-                                fontSize: 27,
-                                fontFamily: typography.primaryBold,
-                                color: color.palette.textColor,
-                                textAlign: "center",
-                                lineHeight: 38,
-                              }}
-                            >
-                              {Number(improvement) !== 0 && Math.sign(Number(improvement)) === 1 ? (
-                                <>
-                                  <Text
-                                    style={{
-                                      fontSize: 18,
-                                      fontFamily: typography.primaryBold,
-                                      marginBottom: 8,
-                                    }}
-                                  >
-                                    You just accomplished {"\n"}
-                                  </Text>
-                                  {Math.round(Number(improvement))}%{" "}
-                                  {Number(improvement) !== 0 && Math.sign(Number(improvement)) === 1
-                                    ? "more \n"
-                                    : "\n"}
-                                  <Text
-                                    style={{
-                                      fontSize: 18,
-                                      fontFamily: typography.primaryBold,
-                                      marginTop: 8,
-                                    }}
-                                  >
-                                    than your average ride{" "}
-                                    {timeFrame === "All Time" ? getDurationFromFirstRide() : timeFrame} ago.{" "}
-                                  </Text>
-                                </>
+                            :
+                            <>
+                              {improvement === `New Ride Length!\nSetting up baselines.\nKeep Going.` ? (
+                                <Text
+                                  style={{
+                                    marginTop: 14,
+                                    fontSize: 21.5,
+                                    fontFamily: typography.primaryBold,
+                                    color: color.palette.textColor,
+                                    textAlign: "center",
+                                  }}
+                                >
+                                  {improvement}
+                                </Text>
                               ) : (
                                 <Text
                                   style={{
                                     marginTop: 14,
-                                    fontSize: 19.5,
+                                    fontSize: 27,
                                     fontFamily: typography.primaryBold,
                                     color: color.palette.textColor,
                                     textAlign: "center",
                                     lineHeight: 38,
                                   }}
                                 >
-                                  {`“Success is not the result of spontaneous combustion. You must set yourself on fire." - Arnold H. Glasow `}
+                                  {Number(improvement) !== 0 && Math.sign(Number(improvement)) === 1 ? (
+                                    <>
+                                      <Text
+                                        style={{
+                                          fontSize: 18,
+                                          fontFamily: typography.primaryBold,
+                                          marginBottom: 8,
+                                        }}
+                                      >
+                                        You just accomplished {"\n"}
+                                      </Text>
+                                      {Math.round(Number(improvement))}%{" "}
+                                      {Number(improvement) !== 0 && Math.sign(Number(improvement)) === 1
+                                        ? "more \n"
+                                        : "\n"}
+                                      <Text
+                                        style={{
+                                          fontSize: 18,
+                                          fontFamily: typography.primaryBold,
+                                          marginTop: 8,
+                                        }}
+                                      >
+                                        than your average ride{" "}
+                                        {timeFrame === "All Time" ? getDurationFromFirstRide() : timeFrame} ago.{" "}
+                                      </Text>
+                                    </>
+                                  ) : (
+                                    <Text
+                                      style={{
+                                        marginTop: 14,
+                                        fontSize: 19.5,
+                                        fontFamily: typography.primaryBold,
+                                        color: color.palette.textColor,
+                                        textAlign: "center",
+                                        lineHeight: 38,
+                                      }}
+                                    >
+                                      {`“Success is not the result of spontaneous combustion. You must set yourself on fire." - Arnold H. Glasow `}
+                                    </Text>
+                                  )}
                                 </Text>
                               )}
-                            </Text>
-                          )}
-                        </>
-                    }
+                            </>
+                        }
 
-                  </View>
-               
+                      </View>
 
-                  <View style={{
-                    width: "100%",
-                    flexDirection: "row",
-                    //  marginTop: 32 ,
-                    marginTop: 70
-                  }}>
+
+                      <View style={{
+                        width: "100%",
+                        flexDirection: "row",
+                        //  marginTop: 32 ,
+                        marginTop: 70
+                      }}>
+                        <View
+                          style={{
+                            backgroundColor: color.palette.secondaryBgColor,
+                            flex: 1,
+                            alignItems: "center",
+                            padding: 12,
+                            borderRadius: 8,
+                            marginRight: 6,
+                          }}
+                        >
+                          <Text
+                            style={{
+                              fontSize: 16,
+                              fontFamily: typography.primaryBold,
+                              marginTop: 8,
+                              color: palette.workoutText
+                            }}
+                          >
+                            Total Workouts
+                          </Text>
+                          <Text
+                            style={{
+                              fontSize: 35,
+                              fontFamily: typography.primaryBold,
+                              // marginTop: 12,
+                            }}
+                          >
+                            {totalRecords}
+                          </Text>
+                        </View>
+
+                      </View>
+
+                      <View style={{ width: "100%", flexDirection: "row", marginTop: 12 }}>
+
+                        <View
+                          style={{
+                            backgroundColor: color.palette.secondaryBgColor,
+                            flex: 1,
+                            alignItems: "center",
+                            padding: 12,
+                            borderRadius: 8,
+                            marginLeft: 6,
+                          }}
+                        >
+                          <Text
+                            style={{
+                              fontSize: 16,
+                              fontFamily: typography.primaryBold,
+                              marginTop: 8,
+                              color: palette.workoutText
+                            }}
+                          >
+                            Personal Records
+                          </Text>
+                          <Text
+                            style={{
+                              fontSize: 35,
+                              fontFamily: typography.primaryBold,
+                              // marginTop: 12,
+                            }}
+                          >
+                            {totalPRs}
+                          </Text>
+                        </View>
+                      </View>
+
+                    </ScrollView>
                     <View
-                      style={{
-                        backgroundColor: color.palette.secondaryBgColor,
-                        flex: 1,
-                        alignItems: "center",
-                        padding: 12,
-                        borderRadius: 8,
-                        marginRight: 6,
-                      }}
+                      style={{ width: "100%", flexDirection: "row", justifyContent: "space-between" }}
                     >
-                      <Text
+                      <Button
+                        text={`Fine\nTune`}
+                        preset="primary"
+                        // onPress={onFeedbackPressButton}
+                        onPress={onOpen}
                         style={{
-                          fontSize: 16,
-                          fontFamily: typography.primaryBold,
-                          marginTop: 8,
-                          color: palette.workoutText
+                          width: "20%",
+                          borderColor: color.palette.primaryColor,
+                          borderWidth: 1,
+                          backgroundColor: "transparent",
+                          maxHeight: 45,
                         }}
-                      >
-                        Total Workouts
-                      </Text>
-                      <Text
+                        textStyle={{
+                          opacity: 0.5,
+                          fontSize: 14,
+                          color: color.palette.textColor,
+                          fontWeight: "400",
+                          textAlign: "center",
+                        }}
+                      />
+                      <Button
+                        text="Back To Home"
+                        preset="primary"
+                        onPress={onPressButton}
                         style={{
-                          fontSize: 35,
-                          fontFamily: typography.primaryBold,
-                          // marginTop: 12,
+                          width: "78%",
+                          backgroundColor: color.palette.primaryColor,
+                          maxHeight: 45,
                         }}
-                      >
-                        {totalRecords}
-                      </Text>
-                    </View>
-                   
-                  </View>
-
-                  <View style={{ width: "100%", flexDirection: "row", marginTop: 12 }}>
-                    
-                    <View
-                      style={{
-                        backgroundColor: color.palette.secondaryBgColor,
-                        flex: 1,
-                        alignItems: "center",
-                        padding: 12,
-                        borderRadius: 8,
-                        marginLeft: 6,
-                      }}
-                    >
-                      <Text
-                        style={{
-                          fontSize: 16,
-                          fontFamily: typography.primaryBold,
-                          marginTop: 8,
-                          color: palette.workoutText
+                        textStyle={{
+                          fontSize: 14,
+                          color: color.palette.textColor,
+                          fontWeight: "400",
                         }}
-                      >
-                        Personal Records
-                      </Text>
-                      <Text
-                        style={{
-                          fontSize: 35,
-                          fontFamily: typography.primaryBold,
-                          // marginTop: 12,
-                        }}
-                      >
-                        {totalPRs}
-                      </Text>
+                      />
                     </View>
                   </View>
-                
-                </ScrollView>
-                <View
-                  style={{ width: "100%", flexDirection: "row", justifyContent: "space-between" }}
-                >
-                  <Button
-                    text={`Tweak\nRes. Lvl`}
-                    preset="primary"
-                    onPress={onFeedbackPressButton}
-                    style={{
-                      width: "20%",
-                      borderColor: color.palette.primaryColor,
-                      borderWidth: 1,
-                      backgroundColor: "transparent",
-                      maxHeight: 45,
-                    }}
-                    textStyle={{
-                      opacity: 0.5,
-                      fontSize: 14,
-                      color: color.palette.textColor,
-                      fontWeight: "400",
-                      textAlign: "center",
-                    }}
-                  />
-                  <Button
-                    text="Back To Home"
-                    preset="primary"
-                    onPress={onPressButton}
-                    style={{
-                      width: "78%",
-                      backgroundColor: color.palette.primaryColor,
-                      maxHeight: 45,
-                    }}
-                    textStyle={{
-                      fontSize: 14,
-                      color: color.palette.textColor,
-                      fontWeight: "400",
-                    }}
-                  />
                 </View>
               </View>
-            </View>
+
+              <Modal
+                animationType="slide"
+                transparent={true}
+                visible={lengthModalVisible}
+              // onRequestClose={() => {
+              //   Alert.alert("Modal has been closed.");
+              //   setModalVisible(!modalVisible);
+              // }}
+              >
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    backgroundColor: "#00000080",
+                  }}
+                >
+                  <View
+                    style={{
+                      margin: 20,
+                      backgroundColor: color.palette.mainBgColor,
+                      borderRadius: 16,
+                      paddingVertical: 14,
+                      paddingHorizontal: 35,
+                      alignItems: "center",
+                      width: "50%",
+                    }}
+                  >
+                    <TouchableOpacity
+                      onPress={() => setLengthModalVisible(false)}
+                      style={{ position: "absolute", right: 14, top: 14, padding: 10 }}
+                    >
+                      <Image style={{ width: 16, height: 16 }} source={require("./cross.png")}></Image>
+                    </TouchableOpacity>
+                    <Text
+                      style={{
+                        marginTop: 42,
+                        marginBottom: 14,
+                        fontSize: 19,
+                        color: color.palette.textColor,
+                      }}
+                    >
+                      Ride Length
+                    </Text>
+                    {timeDurations.map((ele, i) => (
+                      <Pressable
+                        onPress={() => {
+                          setLength(ele)
+                          setLengthModalVisible(false)
+                        }}
+                        style={{
+                          width: "100%",
+                          borderTopColor: color.palette.textColor,
+                          borderTopWidth: i === 0 ? 0 : 1,
+                          paddingVertical: 10,
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text
+                          style={{
+                            color: color.palette.textColor,
+                            fontSize: 16,
+                          }}
+                        >
+                          {ele} min
+                        </Text>
+                      </Pressable>
+                    ))}
+                  </View>
+                </View>
+              </Modal>
+
+              <Modal
+                animationType="slide"
+                transparent={true}
+                visible={timeFrameModalVisible}
+              // onRequestClose={() => {
+              //   Alert.alert("Modal has been closed.");
+              //   setModalVisible(!modalVisible);
+              // }}
+              >
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    backgroundColor: "#00000080",
+                  }}
+                >
+                  <View
+                    style={{
+                      margin: 20,
+                      backgroundColor: color.palette.mainBgColor,
+                      borderRadius: 16,
+                      paddingVertical: 14,
+                      paddingHorizontal: 35,
+                      alignItems: "center",
+                      width: "50%",
+                    }}
+                  >
+                    <TouchableOpacity
+                      onPress={() => setTimeFrameModalVisible(false)}
+                      style={{ position: "absolute", right: 14, top: 14, padding: 10 }}
+                    >
+                      <Image style={{ width: 16, height: 16 }} source={require("./cross.png")}></Image>
+                    </TouchableOpacity>
+                    <Text
+                      style={{
+                        marginTop: 42,
+                        marginBottom: 14,
+                        fontSize: 19,
+                        color: color.palette.textColor,
+                      }}
+                    >
+                      Timeframe
+                    </Text>
+                    {timeframes.map((ele, i) => (
+                      <Pressable
+                        onPress={() => {
+                          setTimeFrame(ele)
+                          setTimeFrameModalVisible(false)
+                        }}
+                        style={{
+                          width: "100%",
+                          borderTopColor: color.palette.textColor,
+                          borderTopWidth: i === 0 ? 0 : 1,
+                          paddingVertical: 10,
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text
+                          style={{
+                            color: color.palette.textColor,
+                            fontSize: 16,
+                          }}
+                        >
+                          {ele}
+                        </Text>
+                      </Pressable>
+                    ))}
+                  </View>
+                </View>
+              </Modal>
+            </Screen>
           </View>
-
-          <Modal
-            animationType="slide"
-            transparent={true}
-            visible={lengthModalVisible}
-          // onRequestClose={() => {
-          //   Alert.alert("Modal has been closed.");
-          //   setModalVisible(!modalVisible);
-          // }}
-          >
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-                backgroundColor: "#00000080",
-              }}
-            >
-              <View
-                style={{
-                  margin: 20,
-                  backgroundColor: color.palette.mainBgColor,
-                  borderRadius: 16,
-                  paddingVertical: 14,
-                  paddingHorizontal: 35,
-                  alignItems: "center",
-                  width: "50%",
-                }}
-              >
-                <TouchableOpacity
-                  onPress={() => setLengthModalVisible(false)}
-                  style={{ position: "absolute", right: 14, top: 14, padding: 10 }}
-                >
-                  <Image style={{ width: 16, height: 16 }} source={require("./cross.png")}></Image>
-                </TouchableOpacity>
-                <Text
-                  style={{
-                    marginTop: 42,
-                    marginBottom: 14,
-                    fontSize: 19,
-                    color: color.palette.textColor,
-                  }}
-                >
-                  Ride Length
-                </Text>
-                {timeDurations.map((ele, i) => (
-                  <Pressable
-                    onPress={() => {
-                      setLength(ele)
-                      setLengthModalVisible(false)
-                    }}
-                    style={{
-                      width: "100%",
-                      borderTopColor: color.palette.textColor,
-                      borderTopWidth: i === 0 ? 0 : 1,
-                      paddingVertical: 10,
-                      alignItems: "center",
-                    }}
-                  >
-                    <Text
-                      style={{
-                        color: color.palette.textColor,
-                        fontSize: 16,
-                      }}
-                    >
-                      {ele} min
-                    </Text>
-                  </Pressable>
-                ))}
-              </View>
-            </View>
-          </Modal>
-
-          <Modal
-            animationType="slide"
-            transparent={true}
-            visible={timeFrameModalVisible}
-          // onRequestClose={() => {
-          //   Alert.alert("Modal has been closed.");
-          //   setModalVisible(!modalVisible);
-          // }}
-          >
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-                backgroundColor: "#00000080",
-              }}
-            >
-              <View
-                style={{
-                  margin: 20,
-                  backgroundColor: color.palette.mainBgColor,
-                  borderRadius: 16,
-                  paddingVertical: 14,
-                  paddingHorizontal: 35,
-                  alignItems: "center",
-                  width: "50%",
-                }}
-              >
-                <TouchableOpacity
-                  onPress={() => setTimeFrameModalVisible(false)}
-                  style={{ position: "absolute", right: 14, top: 14, padding: 10 }}
-                >
-                  <Image style={{ width: 16, height: 16 }} source={require("./cross.png")}></Image>
-                </TouchableOpacity>
-                <Text
-                  style={{
-                    marginTop: 42,
-                    marginBottom: 14,
-                    fontSize: 19,
-                    color: color.palette.textColor,
-                  }}
-                >
-                  Timeframe
-                </Text>
-                {timeframes.map((ele, i) => (
-                  <Pressable
-                    onPress={() => {
-                      setTimeFrame(ele)
-                      setTimeFrameModalVisible(false)
-                    }}
-                    style={{
-                      width: "100%",
-                      borderTopColor: color.palette.textColor,
-                      borderTopWidth: i === 0 ? 0 : 1,
-                      paddingVertical: 10,
-                      alignItems: "center",
-                    }}
-                  >
-                    <Text
-                      style={{
-                        color: color.palette.textColor,
-                        fontSize: 16,
-                      }}
-                    >
-                      {ele}
-                    </Text>
-                  </Pressable>
-                ))}
-              </View>
-            </View>
-          </Modal>
-        </Screen>
-      </View>
-      :
-      <>
-        <StatusBar backgroundColor="#222529" barStyle="light-content" />
-        <View style={{
-          backgroundColor: color.palette.mainBgColor,
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center"
-        }}>
-          {/* <Image style={{
+          :
+          <>
+            <StatusBar backgroundColor="#222529" barStyle="light-content" />
+            <View style={{
+              backgroundColor: color.palette.mainBgColor,
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center"
+            }}>
+              {/* <Image style={{
             width: "60%",
             resizeMode: "contain"
           }} source={require("../../../assets/loading.gif")}></Image> */}
-          <ActivityIndicator color={color.palette.primaryColor} size={'large'}/>
-        </View>
-      </>
+              <ActivityIndicator color={color.palette.primaryColor} size={'large'} />
+            </View>
+          </>
+      }
+
+      <FineTuneCalModal
+        isVisible={isVisible}
+        onClose={onClose}
+        setisFineTuneEnabled={setisFineTuneEnabled}
+      />
+    </>
   )
 }

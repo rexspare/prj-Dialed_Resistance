@@ -6,7 +6,7 @@ import { captureScreen } from "react-native-view-shot"
 // import { useStores } from "../models/root-store"
 
 export const Output: React.FunctionComponent<OutputProps> = observer((props) => {
-  const {totalOutput, duration, sendToFeedback, previousPR} = props.route.params
+  const { totalOutput, duration, sendToFeedback, previousPR } = props.route.params
 
   // Pull in one of our MST stores
   // const { someStore, anotherStore } = useStores()
@@ -16,19 +16,20 @@ export const Output: React.FunctionComponent<OutputProps> = observer((props) => 
 
   const NextScreen = () => {
     if (sendToFeedback) {
-      props.navigation.navigate("workoutfeedback", { duration, totalOutput })
+      // props.navigation.navigate("workoutfeedback", { duration, totalOutput })
+      props.navigation.navigate("workouthistory", { duration, totalOutput })
     } else {
       props.navigation.navigate("workouthistory", { duration, totalOutput })
     }
   }
 
 
-   
 
 
-    const navigateToFeedback = async() => {
+
+  const navigateToFeedback = async () => {
     try {
-    // Capture the screen
+      // Capture the screen
       const uri = await captureScreen({
         format: "png",
         quality: 0.8,
