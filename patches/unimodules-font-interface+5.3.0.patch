@@ -1,0 +1,408 @@
+diff --git a/node_modules/unimodules-font-interface/android/build.gradle b/node_modules/unimodules-font-interface/android/build.gradle
+index 87a091d..c2474ee 100644
+--- a/node_modules/unimodules-font-interface/android/build.gradle
++++ b/node_modules/unimodules-font-interface/android/build.gradle
+@@ -1,5 +1,5 @@
+ apply plugin: 'com.android.library'
+-apply plugin: 'maven'
++apply plugin: 'maven-publish'
+ 
+ group = 'org.unimodules'
+ version = '5.3.0'
+@@ -25,11 +25,10 @@ artifacts {
+   archives androidSourcesJar
+ }
+ 
+-uploadArchives {
++publishing {
+   repositories {
+-    mavenDeployer {
+-      configuration = configurations.deployerJars
+-      repository(url: mavenLocal().url)
++    maven {
++      url = uri("${rootProject.projectDir}/maven-repo")
+     }
+   }
+ }
+diff --git a/node_modules/unimodules-font-interface/android/build/.transforms/471b142bc8667468a602654dc24cd0ff/results.bin b/node_modules/unimodules-font-interface/android/build/.transforms/471b142bc8667468a602654dc24cd0ff/results.bin
+new file mode 100644
+index 0000000..5ff383e
+--- /dev/null
++++ b/node_modules/unimodules-font-interface/android/build/.transforms/471b142bc8667468a602654dc24cd0ff/results.bin
+@@ -0,0 +1 @@
++o/debug
+diff --git a/node_modules/unimodules-font-interface/android/build/.transforms/471b142bc8667468a602654dc24cd0ff/transformed/debug/org/unimodules/interfaces/font/BuildConfig.dex b/node_modules/unimodules-font-interface/android/build/.transforms/471b142bc8667468a602654dc24cd0ff/transformed/debug/org/unimodules/interfaces/font/BuildConfig.dex
+new file mode 100644
+index 0000000..e4b2ac9
+Binary files /dev/null and b/node_modules/unimodules-font-interface/android/build/.transforms/471b142bc8667468a602654dc24cd0ff/transformed/debug/org/unimodules/interfaces/font/BuildConfig.dex differ
+diff --git a/node_modules/unimodules-font-interface/android/build/.transforms/471b142bc8667468a602654dc24cd0ff/transformed/debug/org/unimodules/interfaces/font/FontManager.dex b/node_modules/unimodules-font-interface/android/build/.transforms/471b142bc8667468a602654dc24cd0ff/transformed/debug/org/unimodules/interfaces/font/FontManager.dex
+new file mode 100644
+index 0000000..dcaf629
+Binary files /dev/null and b/node_modules/unimodules-font-interface/android/build/.transforms/471b142bc8667468a602654dc24cd0ff/transformed/debug/org/unimodules/interfaces/font/FontManager.dex differ
+diff --git a/node_modules/unimodules-font-interface/android/build/.transforms/471b142bc8667468a602654dc24cd0ff/transformed/desugar_graph.bin b/node_modules/unimodules-font-interface/android/build/.transforms/471b142bc8667468a602654dc24cd0ff/transformed/desugar_graph.bin
+new file mode 100644
+index 0000000..601f245
+Binary files /dev/null and b/node_modules/unimodules-font-interface/android/build/.transforms/471b142bc8667468a602654dc24cd0ff/transformed/desugar_graph.bin differ
+diff --git a/node_modules/unimodules-font-interface/android/build/.transforms/8b2dad430242d0c71a2dc9141580e841/results.bin b/node_modules/unimodules-font-interface/android/build/.transforms/8b2dad430242d0c71a2dc9141580e841/results.bin
+new file mode 100644
+index 0000000..0d259dd
+--- /dev/null
++++ b/node_modules/unimodules-font-interface/android/build/.transforms/8b2dad430242d0c71a2dc9141580e841/results.bin
+@@ -0,0 +1 @@
++o/classes
+diff --git a/node_modules/unimodules-font-interface/android/build/.transforms/8b2dad430242d0c71a2dc9141580e841/transformed/classes/classes.dex b/node_modules/unimodules-font-interface/android/build/.transforms/8b2dad430242d0c71a2dc9141580e841/transformed/classes/classes.dex
+new file mode 100644
+index 0000000..0c53fed
+Binary files /dev/null and b/node_modules/unimodules-font-interface/android/build/.transforms/8b2dad430242d0c71a2dc9141580e841/transformed/classes/classes.dex differ
+diff --git a/node_modules/unimodules-font-interface/android/build/.transforms/acb2a1d5e1fe298739db7d9514089f6b/results.bin b/node_modules/unimodules-font-interface/android/build/.transforms/acb2a1d5e1fe298739db7d9514089f6b/results.bin
+new file mode 100644
+index 0000000..1ed65e0
+--- /dev/null
++++ b/node_modules/unimodules-font-interface/android/build/.transforms/acb2a1d5e1fe298739db7d9514089f6b/results.bin
+@@ -0,0 +1 @@
++i/
+diff --git a/node_modules/unimodules-font-interface/android/build/generated/source/buildConfig/debug/org/unimodules/interfaces/font/BuildConfig.java b/node_modules/unimodules-font-interface/android/build/generated/source/buildConfig/debug/org/unimodules/interfaces/font/BuildConfig.java
+new file mode 100644
+index 0000000..816f3a9
+--- /dev/null
++++ b/node_modules/unimodules-font-interface/android/build/generated/source/buildConfig/debug/org/unimodules/interfaces/font/BuildConfig.java
+@@ -0,0 +1,10 @@
++/**
++ * Automatically generated file. DO NOT MODIFY
++ */
++package org.unimodules.interfaces.font;
++
++public final class BuildConfig {
++  public static final boolean DEBUG = Boolean.parseBoolean("true");
++  public static final String LIBRARY_PACKAGE_NAME = "org.unimodules.interfaces.font";
++  public static final String BUILD_TYPE = "debug";
++}
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/AndroidManifest.xml b/node_modules/unimodules-font-interface/android/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/AndroidManifest.xml
+new file mode 100644
+index 0000000..d8da2b2
+--- /dev/null
++++ b/node_modules/unimodules-font-interface/android/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/AndroidManifest.xml
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="org.unimodules.interfaces.font" >
++
++    <uses-sdk android:minSdkVersion="21" />
++
++</manifest>
+\ No newline at end of file
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/output-metadata.json b/node_modules/unimodules-font-interface/android/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/output-metadata.json
+new file mode 100644
+index 0000000..1435d04
+--- /dev/null
++++ b/node_modules/unimodules-font-interface/android/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/output-metadata.json
+@@ -0,0 +1,18 @@
++{
++  "version": 3,
++  "artifactType": {
++    "type": "AAPT_FRIENDLY_MERGED_MANIFESTS",
++    "kind": "Directory"
++  },
++  "applicationId": "org.unimodules.interfaces.font",
++  "variantName": "debug",
++  "elements": [
++    {
++      "type": "SINGLE",
++      "filters": [],
++      "attributes": [],
++      "outputFile": "AndroidManifest.xml"
++    }
++  ],
++  "elementType": "File"
++}
+\ No newline at end of file
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/aar_metadata/debug/aar-metadata.properties b/node_modules/unimodules-font-interface/android/build/intermediates/aar_metadata/debug/aar-metadata.properties
+new file mode 100644
+index 0000000..776557e
+--- /dev/null
++++ b/node_modules/unimodules-font-interface/android/build/intermediates/aar_metadata/debug/aar-metadata.properties
+@@ -0,0 +1,5 @@
++aarFormatVersion=1.0
++aarMetadataVersion=1.0
++minCompileSdk=1
++minCompileSdkExtension=0
++minAndroidGradlePluginVersion=1.0.0
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/annotation_processor_list/debug/annotationProcessors.json b/node_modules/unimodules-font-interface/android/build/intermediates/annotation_processor_list/debug/annotationProcessors.json
+new file mode 100644
+index 0000000..9e26dfe
+--- /dev/null
++++ b/node_modules/unimodules-font-interface/android/build/intermediates/annotation_processor_list/debug/annotationProcessors.json
+@@ -0,0 +1 @@
++{}
+\ No newline at end of file
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/compile_library_classes_jar/debug/classes.jar b/node_modules/unimodules-font-interface/android/build/intermediates/compile_library_classes_jar/debug/classes.jar
+new file mode 100644
+index 0000000..8dc30b4
+Binary files /dev/null and b/node_modules/unimodules-font-interface/android/build/intermediates/compile_library_classes_jar/debug/classes.jar differ
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar b/node_modules/unimodules-font-interface/android/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar
+new file mode 100644
+index 0000000..8e867ea
+Binary files /dev/null and b/node_modules/unimodules-font-interface/android/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar differ
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/compile_r_class_jar/debug/R.jar b/node_modules/unimodules-font-interface/android/build/intermediates/compile_r_class_jar/debug/R.jar
+new file mode 100644
+index 0000000..e24843c
+Binary files /dev/null and b/node_modules/unimodules-font-interface/android/build/intermediates/compile_r_class_jar/debug/R.jar differ
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/compile_symbol_list/debug/R.txt b/node_modules/unimodules-font-interface/android/build/intermediates/compile_symbol_list/debug/R.txt
+new file mode 100644
+index 0000000..e69de29
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/incremental/debug-mergeNativeLibs/merge-state b/node_modules/unimodules-font-interface/android/build/intermediates/incremental/debug-mergeNativeLibs/merge-state
+new file mode 100644
+index 0000000..9504731
+Binary files /dev/null and b/node_modules/unimodules-font-interface/android/build/intermediates/incremental/debug-mergeNativeLibs/merge-state differ
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties b/node_modules/unimodules-font-interface/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties
+new file mode 100644
+index 0000000..e96eaa6
+--- /dev/null
++++ b/node_modules/unimodules-font-interface/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties
+@@ -0,0 +1 @@
++#Tue Jul 08 17:01:43 PKT 2025
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/incremental/debug/packageDebugResources/merger.xml b/node_modules/unimodules-font-interface/android/build/intermediates/incremental/debug/packageDebugResources/merger.xml
+new file mode 100644
+index 0000000..00275ae
+--- /dev/null
++++ b/node_modules/unimodules-font-interface/android/build/intermediates/incremental/debug/packageDebugResources/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/main/res"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/build/generated/res/rs/debug"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/build/generated/res/resValues/debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main" generated-set="main$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/main/res"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/build/generated/res/rs/debug"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/build/generated/res/resValues/debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug" generated-set="debug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"/><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated" generated-set="generated$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"/><mergedItems/></merger>
+\ No newline at end of file
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml b/node_modules/unimodules-font-interface/android/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml
+new file mode 100644
+index 0000000..1aeb7ba
+--- /dev/null
++++ b/node_modules/unimodules-font-interface/android/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/main/jniLibs"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/debug/jniLibs"/></dataSet></merger>
+\ No newline at end of file
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/incremental/mergeDebugShaders/merger.xml b/node_modules/unimodules-font-interface/android/build/intermediates/incremental/mergeDebugShaders/merger.xml
+new file mode 100644
+index 0000000..07d0c90
+--- /dev/null
++++ b/node_modules/unimodules-font-interface/android/build/intermediates/incremental/mergeDebugShaders/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/main/shaders"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/debug/shaders"/></dataSet></merger>
+\ No newline at end of file
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/incremental/packageDebugAssets/merger.xml b/node_modules/unimodules-font-interface/android/build/intermediates/incremental/packageDebugAssets/merger.xml
+new file mode 100644
+index 0000000..f396b17
+--- /dev/null
++++ b/node_modules/unimodules-font-interface/android/build/intermediates/incremental/packageDebugAssets/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/main/assets"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/build/intermediates/shader_assets/debug/out"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/debug/assets"/></dataSet></merger>
+\ No newline at end of file
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/incremental/packageDebugResources/compile-file-map.properties b/node_modules/unimodules-font-interface/android/build/intermediates/incremental/packageDebugResources/compile-file-map.properties
+new file mode 100644
+index 0000000..b4cf826
+--- /dev/null
++++ b/node_modules/unimodules-font-interface/android/build/intermediates/incremental/packageDebugResources/compile-file-map.properties
+@@ -0,0 +1 @@
++#Tue Jul 08 15:47:45 PKT 2025
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/incremental/packageDebugResources/merger.xml b/node_modules/unimodules-font-interface/android/build/intermediates/incremental/packageDebugResources/merger.xml
+new file mode 100644
+index 0000000..a842c0f
+--- /dev/null
++++ b/node_modules/unimodules-font-interface/android/build/intermediates/incremental/packageDebugResources/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/main/res"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/build/generated/res/rs/debug"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/build/generated/res/resValues/debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main" generated-set="main$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/main/res"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/build/generated/res/rs/debug"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/build/generated/res/resValues/debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug" generated-set="debug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/debug/res"/></dataSet><mergedItems/></merger>
+\ No newline at end of file
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/font/BuildConfig.class b/node_modules/unimodules-font-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/font/BuildConfig.class
+new file mode 100644
+index 0000000..02f0dd7
+Binary files /dev/null and b/node_modules/unimodules-font-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/font/BuildConfig.class differ
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/font/FontManager.class b/node_modules/unimodules-font-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/font/FontManager.class
+new file mode 100644
+index 0000000..fcbbafc
+Binary files /dev/null and b/node_modules/unimodules-font-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/font/FontManager.class differ
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml b/node_modules/unimodules-font-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml
+new file mode 100644
+index 0000000..06b1834
+--- /dev/null
++++ b/node_modules/unimodules-font-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="org.unimodules.interfaces.font"
++    android:versionCode="23"
++    android:versionName="5.3.0" >
++
++    <uses-sdk
++        android:minSdkVersion="21"
++        android:targetSdkVersion="35" />
++
++</manifest>
+\ No newline at end of file
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/local_only_symbol_list/debug/R-def.txt b/node_modules/unimodules-font-interface/android/build/intermediates/local_only_symbol_list/debug/R-def.txt
+new file mode 100644
+index 0000000..78ac5b8
+--- /dev/null
++++ b/node_modules/unimodules-font-interface/android/build/intermediates/local_only_symbol_list/debug/R-def.txt
+@@ -0,0 +1,2 @@
++R_DEF: Internal format may change without notice
++local
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt b/node_modules/unimodules-font-interface/android/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt
+new file mode 100644
+index 0000000..d395ce0
+--- /dev/null
++++ b/node_modules/unimodules-font-interface/android/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt
+@@ -0,0 +1,8 @@
++1<?xml version="1.0" encoding="utf-8"?>
++2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++3    package="org.unimodules.interfaces.font" >
++4
++5    <uses-sdk android:minSdkVersion="21" />
++5-->/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/main/AndroidManifest.xml
++6
++7</manifest>
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml b/node_modules/unimodules-font-interface/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml
+new file mode 100644
+index 0000000..d8da2b2
+--- /dev/null
++++ b/node_modules/unimodules-font-interface/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="org.unimodules.interfaces.font" >
++
++    <uses-sdk android:minSdkVersion="21" />
++
++</manifest>
+\ No newline at end of file
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/merged_manifests/debug/output.json b/node_modules/unimodules-font-interface/android/build/intermediates/merged_manifests/debug/output.json
+new file mode 100644
+index 0000000..db43bac
+--- /dev/null
++++ b/node_modules/unimodules-font-interface/android/build/intermediates/merged_manifests/debug/output.json
+@@ -0,0 +1,27 @@
++{
++  "version": 1,
++  "applicationId": "org.unimodules.interfaces.font",
++  "variantType": "LIBRARY",
++  "elements": [
++    {
++      "outputType": {
++        "type": "MERGED_MANIFESTS"
++      },
++      "apkData": {
++        "type": "MAIN",
++        "splits": [],
++        "versionCode": 23,
++        "versionName": "5.3.0",
++        "outputFile": "unimodules-font-interface-debug.aar",
++        "fullName": "debug",
++        "baseName": "debug",
++        "dirName": ""
++      },
++      "path": "../../library_manifest/debug/AndroidManifest.xml",
++      "properties": {
++        "packageId": "org.unimodules.interfaces.font",
++        "split": ""
++      }
++    }
++  ]
++}
+\ No newline at end of file
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/navigation_json/debug/navigation.json b/node_modules/unimodules-font-interface/android/build/intermediates/navigation_json/debug/navigation.json
+new file mode 100644
+index 0000000..0637a08
+--- /dev/null
++++ b/node_modules/unimodules-font-interface/android/build/intermediates/navigation_json/debug/navigation.json
+@@ -0,0 +1 @@
++[]
+\ No newline at end of file
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/packaged_manifests/debug/output-metadata.json b/node_modules/unimodules-font-interface/android/build/intermediates/packaged_manifests/debug/output-metadata.json
+new file mode 100644
+index 0000000..e236516
+--- /dev/null
++++ b/node_modules/unimodules-font-interface/android/build/intermediates/packaged_manifests/debug/output-metadata.json
+@@ -0,0 +1,18 @@
++{
++  "version": 3,
++  "artifactType": {
++    "type": "PACKAGED_MANIFESTS",
++    "kind": "Directory"
++  },
++  "applicationId": "org.unimodules.interfaces.font",
++  "variantName": "debug",
++  "elements": [
++    {
++      "type": "SINGLE",
++      "filters": [],
++      "attributes": [],
++      "outputFile": "../../merged_manifest/debug/AndroidManifest.xml"
++    }
++  ],
++  "elementType": "File"
++}
+\ No newline at end of file
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/font/BuildConfig.class b/node_modules/unimodules-font-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/font/BuildConfig.class
+new file mode 100644
+index 0000000..02f0dd7
+Binary files /dev/null and b/node_modules/unimodules-font-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/font/BuildConfig.class differ
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/font/FontManager.class b/node_modules/unimodules-font-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/font/FontManager.class
+new file mode 100644
+index 0000000..fcbbafc
+Binary files /dev/null and b/node_modules/unimodules-font-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/font/FontManager.class differ
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/runtime_library_classes_jar/debug/classes.jar b/node_modules/unimodules-font-interface/android/build/intermediates/runtime_library_classes_jar/debug/classes.jar
+new file mode 100644
+index 0000000..ae843a2
+Binary files /dev/null and b/node_modules/unimodules-font-interface/android/build/intermediates/runtime_library_classes_jar/debug/classes.jar differ
+diff --git a/node_modules/unimodules-font-interface/android/build/intermediates/symbol_list_with_package_name/debug/package-aware-r.txt b/node_modules/unimodules-font-interface/android/build/intermediates/symbol_list_with_package_name/debug/package-aware-r.txt
+new file mode 100644
+index 0000000..f843cc7
+--- /dev/null
++++ b/node_modules/unimodules-font-interface/android/build/intermediates/symbol_list_with_package_name/debug/package-aware-r.txt
+@@ -0,0 +1 @@
++org.unimodules.interfaces.font
+diff --git a/node_modules/unimodules-font-interface/android/build/outputs/logs/manifest-merger-debug-report.txt b/node_modules/unimodules-font-interface/android/build/outputs/logs/manifest-merger-debug-report.txt
+new file mode 100644
+index 0000000..c8b3b79
+--- /dev/null
++++ b/node_modules/unimodules-font-interface/android/build/outputs/logs/manifest-merger-debug-report.txt
+@@ -0,0 +1,25 @@
++-- Merging decision tree log ---
++manifest
++ADDED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/main/AndroidManifest.xml:2:1-4:12
++INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/main/AndroidManifest.xml:2:1-4:12
++INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/main/AndroidManifest.xml:2:1-4:12
++	package
++		ADDED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/main/AndroidManifest.xml:2:11-51
++		INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/main/AndroidManifest.xml
++		INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/main/AndroidManifest.xml
++	xmlns:android
++		ADDED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/main/AndroidManifest.xml:2:1-4:12
++uses-sdk
++INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/main/AndroidManifest.xml reason: use-sdk injection requested
++INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/main/AndroidManifest.xml
++INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/main/AndroidManifest.xml
++INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/main/AndroidManifest.xml
++INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/main/AndroidManifest.xml
++	android:targetSdkVersion
++		INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/main/AndroidManifest.xml
++		ADDED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/main/AndroidManifest.xml
++		INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/main/AndroidManifest.xml
++	android:minSdkVersion
++		INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/main/AndroidManifest.xml
++		ADDED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/main/AndroidManifest.xml
++		INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-font-interface/android/src/main/AndroidManifest.xml
+diff --git a/node_modules/unimodules-font-interface/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin b/node_modules/unimodules-font-interface/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin
+new file mode 100644
+index 0000000..eae6b35
+Binary files /dev/null and b/node_modules/unimodules-font-interface/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin differ
+diff --git a/node_modules/unimodules-font-interface/android/build/tmp/compileDebugJavaWithJavac/source-classes-mapping.txt b/node_modules/unimodules-font-interface/android/build/tmp/compileDebugJavaWithJavac/source-classes-mapping.txt
+new file mode 100644
+index 0000000..8f534ae
+--- /dev/null
++++ b/node_modules/unimodules-font-interface/android/build/tmp/compileDebugJavaWithJavac/source-classes-mapping.txt
+@@ -0,0 +1,4 @@
++org/unimodules/interfaces/font/BuildConfig.java
++ org.unimodules.interfaces.font.BuildConfig
++org/unimodules/interfaces/font/FontManager.java
++ org.unimodules.interfaces.font.FontManager

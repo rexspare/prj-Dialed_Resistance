@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-native-iap/android/build.gradle b/node_modules/react-native-iap/android/build.gradle
+index 777b696..b6990bb 100644
+--- a/node_modules/react-native-iap/android/build.gradle
++++ b/node_modules/react-native-iap/android/build.gradle
+@@ -158,7 +158,7 @@ dependencies {
+   testImplementation "junit:junit:4.13.2"
+   testImplementation "io.mockk:mockk:1.12.4"
+ 
+-  playImplementation "com.android.billingclient:billing-ktx:5.0.0"
++  playImplementation "com.android.billingclient:billing-ktx:7.0.0"
+   playImplementation "com.google.android.gms:play-services-base:$playServicesVersion"
+ 
+   amazonImplementation fileTree(dir: "libs", include: ["*.jar"])

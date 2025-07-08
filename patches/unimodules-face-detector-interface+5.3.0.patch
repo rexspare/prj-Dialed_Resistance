@@ -1,0 +1,478 @@
+diff --git a/node_modules/unimodules-face-detector-interface/android/build.gradle b/node_modules/unimodules-face-detector-interface/android/build.gradle
+index b26d1cc..72ca558 100644
+--- a/node_modules/unimodules-face-detector-interface/android/build.gradle
++++ b/node_modules/unimodules-face-detector-interface/android/build.gradle
+@@ -1,5 +1,5 @@
+ apply plugin: 'com.android.library'
+-apply plugin: 'maven'
++apply plugin: 'maven-publish'
+ 
+ group = 'org.unimodules'
+ version = '5.3.0'
+@@ -25,11 +25,10 @@ artifacts {
+   archives androidSourcesJar
+ }
+ 
+-uploadArchives {
++publishing {
+   repositories {
+-    mavenDeployer {
+-      configuration = configurations.deployerJars
+-      repository(url: mavenLocal().url)
++    maven {
++      url = uri("${rootProject.projectDir}/maven-repo")
+     }
+   }
+ }
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/.transforms/4cc89d3d74e821f7ba8f0e1161b3d0dc/results.bin b/node_modules/unimodules-face-detector-interface/android/build/.transforms/4cc89d3d74e821f7ba8f0e1161b3d0dc/results.bin
+new file mode 100644
+index 0000000..5ff383e
+--- /dev/null
++++ b/node_modules/unimodules-face-detector-interface/android/build/.transforms/4cc89d3d74e821f7ba8f0e1161b3d0dc/results.bin
+@@ -0,0 +1 @@
++o/debug
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/.transforms/4cc89d3d74e821f7ba8f0e1161b3d0dc/transformed/debug/org/unimodules/interfaces/facedetector/BuildConfig.dex b/node_modules/unimodules-face-detector-interface/android/build/.transforms/4cc89d3d74e821f7ba8f0e1161b3d0dc/transformed/debug/org/unimodules/interfaces/facedetector/BuildConfig.dex
+new file mode 100644
+index 0000000..ebc4c95
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/.transforms/4cc89d3d74e821f7ba8f0e1161b3d0dc/transformed/debug/org/unimodules/interfaces/facedetector/BuildConfig.dex differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/.transforms/4cc89d3d74e821f7ba8f0e1161b3d0dc/transformed/debug/org/unimodules/interfaces/facedetector/FaceDetectionError.dex b/node_modules/unimodules-face-detector-interface/android/build/.transforms/4cc89d3d74e821f7ba8f0e1161b3d0dc/transformed/debug/org/unimodules/interfaces/facedetector/FaceDetectionError.dex
+new file mode 100644
+index 0000000..777cf97
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/.transforms/4cc89d3d74e821f7ba8f0e1161b3d0dc/transformed/debug/org/unimodules/interfaces/facedetector/FaceDetectionError.dex differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/.transforms/4cc89d3d74e821f7ba8f0e1161b3d0dc/transformed/debug/org/unimodules/interfaces/facedetector/FaceDetectionSkipped.dex b/node_modules/unimodules-face-detector-interface/android/build/.transforms/4cc89d3d74e821f7ba8f0e1161b3d0dc/transformed/debug/org/unimodules/interfaces/facedetector/FaceDetectionSkipped.dex
+new file mode 100644
+index 0000000..c2c5f7b
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/.transforms/4cc89d3d74e821f7ba8f0e1161b3d0dc/transformed/debug/org/unimodules/interfaces/facedetector/FaceDetectionSkipped.dex differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/.transforms/4cc89d3d74e821f7ba8f0e1161b3d0dc/transformed/debug/org/unimodules/interfaces/facedetector/FaceDetectionUnspecifiedError.dex b/node_modules/unimodules-face-detector-interface/android/build/.transforms/4cc89d3d74e821f7ba8f0e1161b3d0dc/transformed/debug/org/unimodules/interfaces/facedetector/FaceDetectionUnspecifiedError.dex
+new file mode 100644
+index 0000000..65ed423
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/.transforms/4cc89d3d74e821f7ba8f0e1161b3d0dc/transformed/debug/org/unimodules/interfaces/facedetector/FaceDetectionUnspecifiedError.dex differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/.transforms/4cc89d3d74e821f7ba8f0e1161b3d0dc/transformed/debug/org/unimodules/interfaces/facedetector/FaceDetector.dex b/node_modules/unimodules-face-detector-interface/android/build/.transforms/4cc89d3d74e821f7ba8f0e1161b3d0dc/transformed/debug/org/unimodules/interfaces/facedetector/FaceDetector.dex
+new file mode 100644
+index 0000000..08b0db6
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/.transforms/4cc89d3d74e821f7ba8f0e1161b3d0dc/transformed/debug/org/unimodules/interfaces/facedetector/FaceDetector.dex differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/.transforms/4cc89d3d74e821f7ba8f0e1161b3d0dc/transformed/debug/org/unimodules/interfaces/facedetector/FaceDetectorProvider.dex b/node_modules/unimodules-face-detector-interface/android/build/.transforms/4cc89d3d74e821f7ba8f0e1161b3d0dc/transformed/debug/org/unimodules/interfaces/facedetector/FaceDetectorProvider.dex
+new file mode 100644
+index 0000000..27003f0
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/.transforms/4cc89d3d74e821f7ba8f0e1161b3d0dc/transformed/debug/org/unimodules/interfaces/facedetector/FaceDetectorProvider.dex differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/.transforms/4cc89d3d74e821f7ba8f0e1161b3d0dc/transformed/debug/org/unimodules/interfaces/facedetector/FacesDetectionCompleted.dex b/node_modules/unimodules-face-detector-interface/android/build/.transforms/4cc89d3d74e821f7ba8f0e1161b3d0dc/transformed/debug/org/unimodules/interfaces/facedetector/FacesDetectionCompleted.dex
+new file mode 100644
+index 0000000..8899af4
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/.transforms/4cc89d3d74e821f7ba8f0e1161b3d0dc/transformed/debug/org/unimodules/interfaces/facedetector/FacesDetectionCompleted.dex differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/.transforms/4cc89d3d74e821f7ba8f0e1161b3d0dc/transformed/desugar_graph.bin b/node_modules/unimodules-face-detector-interface/android/build/.transforms/4cc89d3d74e821f7ba8f0e1161b3d0dc/transformed/desugar_graph.bin
+new file mode 100644
+index 0000000..601f245
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/.transforms/4cc89d3d74e821f7ba8f0e1161b3d0dc/transformed/desugar_graph.bin differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/.transforms/6415a10010fc22e4c666704cb8318122/results.bin b/node_modules/unimodules-face-detector-interface/android/build/.transforms/6415a10010fc22e4c666704cb8318122/results.bin
+new file mode 100644
+index 0000000..1ed65e0
+--- /dev/null
++++ b/node_modules/unimodules-face-detector-interface/android/build/.transforms/6415a10010fc22e4c666704cb8318122/results.bin
+@@ -0,0 +1 @@
++i/
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/.transforms/98ee1e4afd35ca254c259bdf07f8fad6/results.bin b/node_modules/unimodules-face-detector-interface/android/build/.transforms/98ee1e4afd35ca254c259bdf07f8fad6/results.bin
+new file mode 100644
+index 0000000..0d259dd
+--- /dev/null
++++ b/node_modules/unimodules-face-detector-interface/android/build/.transforms/98ee1e4afd35ca254c259bdf07f8fad6/results.bin
+@@ -0,0 +1 @@
++o/classes
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/.transforms/98ee1e4afd35ca254c259bdf07f8fad6/transformed/classes/classes.dex b/node_modules/unimodules-face-detector-interface/android/build/.transforms/98ee1e4afd35ca254c259bdf07f8fad6/transformed/classes/classes.dex
+new file mode 100644
+index 0000000..8981922
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/.transforms/98ee1e4afd35ca254c259bdf07f8fad6/transformed/classes/classes.dex differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/generated/source/buildConfig/debug/org/unimodules/interfaces/facedetector/BuildConfig.java b/node_modules/unimodules-face-detector-interface/android/build/generated/source/buildConfig/debug/org/unimodules/interfaces/facedetector/BuildConfig.java
+new file mode 100644
+index 0000000..a37c61c
+--- /dev/null
++++ b/node_modules/unimodules-face-detector-interface/android/build/generated/source/buildConfig/debug/org/unimodules/interfaces/facedetector/BuildConfig.java
+@@ -0,0 +1,10 @@
++/**
++ * Automatically generated file. DO NOT MODIFY
++ */
++package org.unimodules.interfaces.facedetector;
++
++public final class BuildConfig {
++  public static final boolean DEBUG = Boolean.parseBoolean("true");
++  public static final String LIBRARY_PACKAGE_NAME = "org.unimodules.interfaces.facedetector";
++  public static final String BUILD_TYPE = "debug";
++}
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/AndroidManifest.xml b/node_modules/unimodules-face-detector-interface/android/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/AndroidManifest.xml
+new file mode 100644
+index 0000000..e62b532
+--- /dev/null
++++ b/node_modules/unimodules-face-detector-interface/android/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/AndroidManifest.xml
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="org.unimodules.interfaces.facedetector" >
++
++    <uses-sdk android:minSdkVersion="21" />
++
++</manifest>
+\ No newline at end of file
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/output-metadata.json b/node_modules/unimodules-face-detector-interface/android/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/output-metadata.json
+new file mode 100644
+index 0000000..c525973
+--- /dev/null
++++ b/node_modules/unimodules-face-detector-interface/android/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/output-metadata.json
+@@ -0,0 +1,18 @@
++{
++  "version": 3,
++  "artifactType": {
++    "type": "AAPT_FRIENDLY_MERGED_MANIFESTS",
++    "kind": "Directory"
++  },
++  "applicationId": "org.unimodules.interfaces.facedetector",
++  "variantName": "debug",
++  "elements": [
++    {
++      "type": "SINGLE",
++      "filters": [],
++      "attributes": [],
++      "outputFile": "AndroidManifest.xml"
++    }
++  ],
++  "elementType": "File"
++}
+\ No newline at end of file
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/aar_metadata/debug/aar-metadata.properties b/node_modules/unimodules-face-detector-interface/android/build/intermediates/aar_metadata/debug/aar-metadata.properties
+new file mode 100644
+index 0000000..776557e
+--- /dev/null
++++ b/node_modules/unimodules-face-detector-interface/android/build/intermediates/aar_metadata/debug/aar-metadata.properties
+@@ -0,0 +1,5 @@
++aarFormatVersion=1.0
++aarMetadataVersion=1.0
++minCompileSdk=1
++minCompileSdkExtension=0
++minAndroidGradlePluginVersion=1.0.0
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/annotation_processor_list/debug/annotationProcessors.json b/node_modules/unimodules-face-detector-interface/android/build/intermediates/annotation_processor_list/debug/annotationProcessors.json
+new file mode 100644
+index 0000000..9e26dfe
+--- /dev/null
++++ b/node_modules/unimodules-face-detector-interface/android/build/intermediates/annotation_processor_list/debug/annotationProcessors.json
+@@ -0,0 +1 @@
++{}
+\ No newline at end of file
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/compile_library_classes_jar/debug/classes.jar b/node_modules/unimodules-face-detector-interface/android/build/intermediates/compile_library_classes_jar/debug/classes.jar
+new file mode 100644
+index 0000000..eb997df
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/intermediates/compile_library_classes_jar/debug/classes.jar differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar b/node_modules/unimodules-face-detector-interface/android/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar
+new file mode 100644
+index 0000000..79e3d29
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/compile_r_class_jar/debug/R.jar b/node_modules/unimodules-face-detector-interface/android/build/intermediates/compile_r_class_jar/debug/R.jar
+new file mode 100644
+index 0000000..c520aa3
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/intermediates/compile_r_class_jar/debug/R.jar differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/compile_symbol_list/debug/R.txt b/node_modules/unimodules-face-detector-interface/android/build/intermediates/compile_symbol_list/debug/R.txt
+new file mode 100644
+index 0000000..e69de29
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/incremental/debug-mergeNativeLibs/merge-state b/node_modules/unimodules-face-detector-interface/android/build/intermediates/incremental/debug-mergeNativeLibs/merge-state
+new file mode 100644
+index 0000000..185a78d
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/intermediates/incremental/debug-mergeNativeLibs/merge-state differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties b/node_modules/unimodules-face-detector-interface/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties
+new file mode 100644
+index 0000000..e96eaa6
+--- /dev/null
++++ b/node_modules/unimodules-face-detector-interface/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties
+@@ -0,0 +1 @@
++#Tue Jul 08 17:01:43 PKT 2025
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/incremental/debug/packageDebugResources/merger.xml b/node_modules/unimodules-face-detector-interface/android/build/intermediates/incremental/debug/packageDebugResources/merger.xml
+new file mode 100644
+index 0000000..7105f56
+--- /dev/null
++++ b/node_modules/unimodules-face-detector-interface/android/build/intermediates/incremental/debug/packageDebugResources/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/main/res"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/build/generated/res/rs/debug"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/build/generated/res/resValues/debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main" generated-set="main$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/main/res"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/build/generated/res/rs/debug"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/build/generated/res/resValues/debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug" generated-set="debug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"/><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated" generated-set="generated$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"/><mergedItems/></merger>
+\ No newline at end of file
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml b/node_modules/unimodules-face-detector-interface/android/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml
+new file mode 100644
+index 0000000..e58f8a6
+--- /dev/null
++++ b/node_modules/unimodules-face-detector-interface/android/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/main/jniLibs"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/debug/jniLibs"/></dataSet></merger>
+\ No newline at end of file
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/incremental/mergeDebugShaders/merger.xml b/node_modules/unimodules-face-detector-interface/android/build/intermediates/incremental/mergeDebugShaders/merger.xml
+new file mode 100644
+index 0000000..9182940
+--- /dev/null
++++ b/node_modules/unimodules-face-detector-interface/android/build/intermediates/incremental/mergeDebugShaders/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/main/shaders"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/debug/shaders"/></dataSet></merger>
+\ No newline at end of file
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/incremental/packageDebugAssets/merger.xml b/node_modules/unimodules-face-detector-interface/android/build/intermediates/incremental/packageDebugAssets/merger.xml
+new file mode 100644
+index 0000000..4e78fb5
+--- /dev/null
++++ b/node_modules/unimodules-face-detector-interface/android/build/intermediates/incremental/packageDebugAssets/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/main/assets"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/build/intermediates/shader_assets/debug/out"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/debug/assets"/></dataSet></merger>
+\ No newline at end of file
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/incremental/packageDebugResources/compile-file-map.properties b/node_modules/unimodules-face-detector-interface/android/build/intermediates/incremental/packageDebugResources/compile-file-map.properties
+new file mode 100644
+index 0000000..b4cf826
+--- /dev/null
++++ b/node_modules/unimodules-face-detector-interface/android/build/intermediates/incremental/packageDebugResources/compile-file-map.properties
+@@ -0,0 +1 @@
++#Tue Jul 08 15:47:45 PKT 2025
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/incremental/packageDebugResources/merger.xml b/node_modules/unimodules-face-detector-interface/android/build/intermediates/incremental/packageDebugResources/merger.xml
+new file mode 100644
+index 0000000..489d764
+--- /dev/null
++++ b/node_modules/unimodules-face-detector-interface/android/build/intermediates/incremental/packageDebugResources/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/main/res"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/build/generated/res/rs/debug"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/build/generated/res/resValues/debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main" generated-set="main$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/main/res"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/build/generated/res/rs/debug"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/build/generated/res/resValues/debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug" generated-set="debug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/debug/res"/></dataSet><mergedItems/></merger>
+\ No newline at end of file
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/facedetector/BuildConfig.class b/node_modules/unimodules-face-detector-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/facedetector/BuildConfig.class
+new file mode 100644
+index 0000000..184a18b
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/facedetector/BuildConfig.class differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/facedetector/FaceDetectionError.class b/node_modules/unimodules-face-detector-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/facedetector/FaceDetectionError.class
+new file mode 100644
+index 0000000..a70d072
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/facedetector/FaceDetectionError.class differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/facedetector/FaceDetectionSkipped.class b/node_modules/unimodules-face-detector-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/facedetector/FaceDetectionSkipped.class
+new file mode 100644
+index 0000000..b45a689
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/facedetector/FaceDetectionSkipped.class differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/facedetector/FaceDetectionUnspecifiedError.class b/node_modules/unimodules-face-detector-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/facedetector/FaceDetectionUnspecifiedError.class
+new file mode 100644
+index 0000000..8696a04
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/facedetector/FaceDetectionUnspecifiedError.class differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/facedetector/FaceDetector.class b/node_modules/unimodules-face-detector-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/facedetector/FaceDetector.class
+new file mode 100644
+index 0000000..a9810d6
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/facedetector/FaceDetector.class differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/facedetector/FaceDetectorProvider.class b/node_modules/unimodules-face-detector-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/facedetector/FaceDetectorProvider.class
+new file mode 100644
+index 0000000..7768ef8
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/facedetector/FaceDetectorProvider.class differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/facedetector/FacesDetectionCompleted.class b/node_modules/unimodules-face-detector-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/facedetector/FacesDetectionCompleted.class
+new file mode 100644
+index 0000000..75eda01
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/facedetector/FacesDetectionCompleted.class differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml b/node_modules/unimodules-face-detector-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml
+new file mode 100644
+index 0000000..c364fa4
+--- /dev/null
++++ b/node_modules/unimodules-face-detector-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="org.unimodules.interfaces.facedetector"
++    android:versionCode="24"
++    android:versionName="5.3.0" >
++
++    <uses-sdk
++        android:minSdkVersion="21"
++        android:targetSdkVersion="35" />
++
++</manifest>
+\ No newline at end of file
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/local_only_symbol_list/debug/R-def.txt b/node_modules/unimodules-face-detector-interface/android/build/intermediates/local_only_symbol_list/debug/R-def.txt
+new file mode 100644
+index 0000000..78ac5b8
+--- /dev/null
++++ b/node_modules/unimodules-face-detector-interface/android/build/intermediates/local_only_symbol_list/debug/R-def.txt
+@@ -0,0 +1,2 @@
++R_DEF: Internal format may change without notice
++local
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt b/node_modules/unimodules-face-detector-interface/android/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt
+new file mode 100644
+index 0000000..f56e854
+--- /dev/null
++++ b/node_modules/unimodules-face-detector-interface/android/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt
+@@ -0,0 +1,8 @@
++1<?xml version="1.0" encoding="utf-8"?>
++2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++3    package="org.unimodules.interfaces.facedetector" >
++4
++5    <uses-sdk android:minSdkVersion="21" />
++5-->/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/main/AndroidManifest.xml
++6
++7</manifest>
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml b/node_modules/unimodules-face-detector-interface/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml
+new file mode 100644
+index 0000000..e62b532
+--- /dev/null
++++ b/node_modules/unimodules-face-detector-interface/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="org.unimodules.interfaces.facedetector" >
++
++    <uses-sdk android:minSdkVersion="21" />
++
++</manifest>
+\ No newline at end of file
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/merged_manifests/debug/output.json b/node_modules/unimodules-face-detector-interface/android/build/intermediates/merged_manifests/debug/output.json
+new file mode 100644
+index 0000000..98e48a3
+--- /dev/null
++++ b/node_modules/unimodules-face-detector-interface/android/build/intermediates/merged_manifests/debug/output.json
+@@ -0,0 +1,27 @@
++{
++  "version": 1,
++  "applicationId": "org.unimodules.interfaces.facedetector",
++  "variantType": "LIBRARY",
++  "elements": [
++    {
++      "outputType": {
++        "type": "MERGED_MANIFESTS"
++      },
++      "apkData": {
++        "type": "MAIN",
++        "splits": [],
++        "versionCode": 24,
++        "versionName": "5.3.0",
++        "outputFile": "unimodules-face-detector-interface-debug.aar",
++        "fullName": "debug",
++        "baseName": "debug",
++        "dirName": ""
++      },
++      "path": "../../library_manifest/debug/AndroidManifest.xml",
++      "properties": {
++        "packageId": "org.unimodules.interfaces.facedetector",
++        "split": ""
++      }
++    }
++  ]
++}
+\ No newline at end of file
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/navigation_json/debug/navigation.json b/node_modules/unimodules-face-detector-interface/android/build/intermediates/navigation_json/debug/navigation.json
+new file mode 100644
+index 0000000..0637a08
+--- /dev/null
++++ b/node_modules/unimodules-face-detector-interface/android/build/intermediates/navigation_json/debug/navigation.json
+@@ -0,0 +1 @@
++[]
+\ No newline at end of file
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/packaged_manifests/debug/output-metadata.json b/node_modules/unimodules-face-detector-interface/android/build/intermediates/packaged_manifests/debug/output-metadata.json
+new file mode 100644
+index 0000000..5af4df5
+--- /dev/null
++++ b/node_modules/unimodules-face-detector-interface/android/build/intermediates/packaged_manifests/debug/output-metadata.json
+@@ -0,0 +1,18 @@
++{
++  "version": 3,
++  "artifactType": {
++    "type": "PACKAGED_MANIFESTS",
++    "kind": "Directory"
++  },
++  "applicationId": "org.unimodules.interfaces.facedetector",
++  "variantName": "debug",
++  "elements": [
++    {
++      "type": "SINGLE",
++      "filters": [],
++      "attributes": [],
++      "outputFile": "../../merged_manifest/debug/AndroidManifest.xml"
++    }
++  ],
++  "elementType": "File"
++}
+\ No newline at end of file
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/facedetector/BuildConfig.class b/node_modules/unimodules-face-detector-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/facedetector/BuildConfig.class
+new file mode 100644
+index 0000000..184a18b
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/facedetector/BuildConfig.class differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/facedetector/FaceDetectionError.class b/node_modules/unimodules-face-detector-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/facedetector/FaceDetectionError.class
+new file mode 100644
+index 0000000..a70d072
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/facedetector/FaceDetectionError.class differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/facedetector/FaceDetectionSkipped.class b/node_modules/unimodules-face-detector-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/facedetector/FaceDetectionSkipped.class
+new file mode 100644
+index 0000000..b45a689
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/facedetector/FaceDetectionSkipped.class differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/facedetector/FaceDetectionUnspecifiedError.class b/node_modules/unimodules-face-detector-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/facedetector/FaceDetectionUnspecifiedError.class
+new file mode 100644
+index 0000000..8696a04
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/facedetector/FaceDetectionUnspecifiedError.class differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/facedetector/FaceDetector.class b/node_modules/unimodules-face-detector-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/facedetector/FaceDetector.class
+new file mode 100644
+index 0000000..a9810d6
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/facedetector/FaceDetector.class differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/facedetector/FaceDetectorProvider.class b/node_modules/unimodules-face-detector-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/facedetector/FaceDetectorProvider.class
+new file mode 100644
+index 0000000..7768ef8
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/facedetector/FaceDetectorProvider.class differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/facedetector/FacesDetectionCompleted.class b/node_modules/unimodules-face-detector-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/facedetector/FacesDetectionCompleted.class
+new file mode 100644
+index 0000000..75eda01
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/facedetector/FacesDetectionCompleted.class differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/runtime_library_classes_jar/debug/classes.jar b/node_modules/unimodules-face-detector-interface/android/build/intermediates/runtime_library_classes_jar/debug/classes.jar
+new file mode 100644
+index 0000000..1563834
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/intermediates/runtime_library_classes_jar/debug/classes.jar differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/intermediates/symbol_list_with_package_name/debug/package-aware-r.txt b/node_modules/unimodules-face-detector-interface/android/build/intermediates/symbol_list_with_package_name/debug/package-aware-r.txt
+new file mode 100644
+index 0000000..8584861
+--- /dev/null
++++ b/node_modules/unimodules-face-detector-interface/android/build/intermediates/symbol_list_with_package_name/debug/package-aware-r.txt
+@@ -0,0 +1 @@
++org.unimodules.interfaces.facedetector
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/outputs/logs/manifest-merger-debug-report.txt b/node_modules/unimodules-face-detector-interface/android/build/outputs/logs/manifest-merger-debug-report.txt
+new file mode 100644
+index 0000000..faccccf
+--- /dev/null
++++ b/node_modules/unimodules-face-detector-interface/android/build/outputs/logs/manifest-merger-debug-report.txt
+@@ -0,0 +1,25 @@
++-- Merging decision tree log ---
++manifest
++ADDED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/main/AndroidManifest.xml:2:1-4:12
++INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/main/AndroidManifest.xml:2:1-4:12
++INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/main/AndroidManifest.xml:2:1-4:12
++	package
++		ADDED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/main/AndroidManifest.xml:2:11-59
++		INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/main/AndroidManifest.xml
++		INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/main/AndroidManifest.xml
++	xmlns:android
++		ADDED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/main/AndroidManifest.xml:2:1-4:12
++uses-sdk
++INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/main/AndroidManifest.xml reason: use-sdk injection requested
++INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/main/AndroidManifest.xml
++INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/main/AndroidManifest.xml
++INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/main/AndroidManifest.xml
++INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/main/AndroidManifest.xml
++	android:targetSdkVersion
++		INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/main/AndroidManifest.xml
++		ADDED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/main/AndroidManifest.xml
++		INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/main/AndroidManifest.xml
++	android:minSdkVersion
++		INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/main/AndroidManifest.xml
++		ADDED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/main/AndroidManifest.xml
++		INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-face-detector-interface/android/src/main/AndroidManifest.xml
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin b/node_modules/unimodules-face-detector-interface/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin
+new file mode 100644
+index 0000000..9798da8
+Binary files /dev/null and b/node_modules/unimodules-face-detector-interface/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin differ
+diff --git a/node_modules/unimodules-face-detector-interface/android/build/tmp/compileDebugJavaWithJavac/source-classes-mapping.txt b/node_modules/unimodules-face-detector-interface/android/build/tmp/compileDebugJavaWithJavac/source-classes-mapping.txt
+new file mode 100644
+index 0000000..4898451
+--- /dev/null
++++ b/node_modules/unimodules-face-detector-interface/android/build/tmp/compileDebugJavaWithJavac/source-classes-mapping.txt
+@@ -0,0 +1,14 @@
++org/unimodules/interfaces/facedetector/FaceDetector.java
++ org.unimodules.interfaces.facedetector.FaceDetector
++org/unimodules/interfaces/facedetector/FaceDetectionUnspecifiedError.java
++ org.unimodules.interfaces.facedetector.FaceDetectionUnspecifiedError
++org/unimodules/interfaces/facedetector/FacesDetectionCompleted.java
++ org.unimodules.interfaces.facedetector.FacesDetectionCompleted
++org/unimodules/interfaces/facedetector/BuildConfig.java
++ org.unimodules.interfaces.facedetector.BuildConfig
++org/unimodules/interfaces/facedetector/FaceDetectorProvider.java
++ org.unimodules.interfaces.facedetector.FaceDetectorProvider
++org/unimodules/interfaces/facedetector/FaceDetectionSkipped.java
++ org.unimodules.interfaces.facedetector.FaceDetectionSkipped
++org/unimodules/interfaces/facedetector/FaceDetectionError.java
++ org.unimodules.interfaces.facedetector.FaceDetectionError

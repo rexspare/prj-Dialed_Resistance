@@ -1,0 +1,436 @@
+diff --git a/node_modules/expo-constants/android/build.gradle b/node_modules/expo-constants/android/build.gradle
+index 9798d9f..9460bdc 100644
+--- a/node_modules/expo-constants/android/build.gradle
++++ b/node_modules/expo-constants/android/build.gradle
+@@ -1,5 +1,5 @@
+ apply plugin: 'com.android.library'
+-apply plugin: 'maven'
++apply plugin: 'maven-publish'
+ 
+ group = 'host.exp.exponent'
+ version = '9.2.0'
+@@ -25,11 +25,10 @@ artifacts {
+   archives androidSourcesJar
+ }
+ 
+-uploadArchives {
++publishing {
+   repositories {
+-    mavenDeployer {
+-      configuration = configurations.deployerJars
+-      repository(url: mavenLocal().url)
++    maven {
++      url = uri("${rootProject.projectDir}/maven-repo")
+     }
+   }
+ }
+diff --git a/node_modules/expo-constants/android/build/.transforms/01cd57ddf8521d1f30f26d071a986d20/results.bin b/node_modules/expo-constants/android/build/.transforms/01cd57ddf8521d1f30f26d071a986d20/results.bin
+new file mode 100644
+index 0000000..1ed65e0
+--- /dev/null
++++ b/node_modules/expo-constants/android/build/.transforms/01cd57ddf8521d1f30f26d071a986d20/results.bin
+@@ -0,0 +1 @@
++i/
+diff --git a/node_modules/expo-constants/android/build/.transforms/30500d3709ec11c65fece261ada605b2/results.bin b/node_modules/expo-constants/android/build/.transforms/30500d3709ec11c65fece261ada605b2/results.bin
+new file mode 100644
+index 0000000..5ff383e
+--- /dev/null
++++ b/node_modules/expo-constants/android/build/.transforms/30500d3709ec11c65fece261ada605b2/results.bin
+@@ -0,0 +1 @@
++o/debug
+diff --git a/node_modules/expo-constants/android/build/.transforms/30500d3709ec11c65fece261ada605b2/transformed/debug/expo/modules/constants/BuildConfig.dex b/node_modules/expo-constants/android/build/.transforms/30500d3709ec11c65fece261ada605b2/transformed/debug/expo/modules/constants/BuildConfig.dex
+new file mode 100644
+index 0000000..debfbc9
+Binary files /dev/null and b/node_modules/expo-constants/android/build/.transforms/30500d3709ec11c65fece261ada605b2/transformed/debug/expo/modules/constants/BuildConfig.dex differ
+diff --git a/node_modules/expo-constants/android/build/.transforms/30500d3709ec11c65fece261ada605b2/transformed/debug/expo/modules/constants/ConstantsModule.dex b/node_modules/expo-constants/android/build/.transforms/30500d3709ec11c65fece261ada605b2/transformed/debug/expo/modules/constants/ConstantsModule.dex
+new file mode 100644
+index 0000000..c52404a
+Binary files /dev/null and b/node_modules/expo-constants/android/build/.transforms/30500d3709ec11c65fece261ada605b2/transformed/debug/expo/modules/constants/ConstantsModule.dex differ
+diff --git a/node_modules/expo-constants/android/build/.transforms/30500d3709ec11c65fece261ada605b2/transformed/debug/expo/modules/constants/ConstantsPackage.dex b/node_modules/expo-constants/android/build/.transforms/30500d3709ec11c65fece261ada605b2/transformed/debug/expo/modules/constants/ConstantsPackage.dex
+new file mode 100644
+index 0000000..56bc9a7
+Binary files /dev/null and b/node_modules/expo-constants/android/build/.transforms/30500d3709ec11c65fece261ada605b2/transformed/debug/expo/modules/constants/ConstantsPackage.dex differ
+diff --git a/node_modules/expo-constants/android/build/.transforms/30500d3709ec11c65fece261ada605b2/transformed/debug/expo/modules/constants/ConstantsService.dex b/node_modules/expo-constants/android/build/.transforms/30500d3709ec11c65fece261ada605b2/transformed/debug/expo/modules/constants/ConstantsService.dex
+new file mode 100644
+index 0000000..f2a3aff
+Binary files /dev/null and b/node_modules/expo-constants/android/build/.transforms/30500d3709ec11c65fece261ada605b2/transformed/debug/expo/modules/constants/ConstantsService.dex differ
+diff --git a/node_modules/expo-constants/android/build/.transforms/30500d3709ec11c65fece261ada605b2/transformed/desugar_graph.bin b/node_modules/expo-constants/android/build/.transforms/30500d3709ec11c65fece261ada605b2/transformed/desugar_graph.bin
+new file mode 100644
+index 0000000..601f245
+Binary files /dev/null and b/node_modules/expo-constants/android/build/.transforms/30500d3709ec11c65fece261ada605b2/transformed/desugar_graph.bin differ
+diff --git a/node_modules/expo-constants/android/build/.transforms/b57d0cfec6ed29219207eb832e916cb9/results.bin b/node_modules/expo-constants/android/build/.transforms/b57d0cfec6ed29219207eb832e916cb9/results.bin
+new file mode 100644
+index 0000000..0d259dd
+--- /dev/null
++++ b/node_modules/expo-constants/android/build/.transforms/b57d0cfec6ed29219207eb832e916cb9/results.bin
+@@ -0,0 +1 @@
++o/classes
+diff --git a/node_modules/expo-constants/android/build/.transforms/b57d0cfec6ed29219207eb832e916cb9/transformed/classes/classes.dex b/node_modules/expo-constants/android/build/.transforms/b57d0cfec6ed29219207eb832e916cb9/transformed/classes/classes.dex
+new file mode 100644
+index 0000000..f2056d8
+Binary files /dev/null and b/node_modules/expo-constants/android/build/.transforms/b57d0cfec6ed29219207eb832e916cb9/transformed/classes/classes.dex differ
+diff --git a/node_modules/expo-constants/android/build/generated/source/buildConfig/debug/expo/modules/constants/BuildConfig.java b/node_modules/expo-constants/android/build/generated/source/buildConfig/debug/expo/modules/constants/BuildConfig.java
+new file mode 100644
+index 0000000..7280ad3
+--- /dev/null
++++ b/node_modules/expo-constants/android/build/generated/source/buildConfig/debug/expo/modules/constants/BuildConfig.java
+@@ -0,0 +1,10 @@
++/**
++ * Automatically generated file. DO NOT MODIFY
++ */
++package expo.modules.constants;
++
++public final class BuildConfig {
++  public static final boolean DEBUG = Boolean.parseBoolean("true");
++  public static final String LIBRARY_PACKAGE_NAME = "expo.modules.constants";
++  public static final String BUILD_TYPE = "debug";
++}
+diff --git a/node_modules/expo-constants/android/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/AndroidManifest.xml b/node_modules/expo-constants/android/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/AndroidManifest.xml
+new file mode 100644
+index 0000000..5c61fcd
+--- /dev/null
++++ b/node_modules/expo-constants/android/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/AndroidManifest.xml
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="expo.modules.constants" >
++
++    <uses-sdk android:minSdkVersion="21" />
++
++</manifest>
+\ No newline at end of file
+diff --git a/node_modules/expo-constants/android/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/output-metadata.json b/node_modules/expo-constants/android/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/output-metadata.json
+new file mode 100644
+index 0000000..7f61d77
+--- /dev/null
++++ b/node_modules/expo-constants/android/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/output-metadata.json
+@@ -0,0 +1,18 @@
++{
++  "version": 3,
++  "artifactType": {
++    "type": "AAPT_FRIENDLY_MERGED_MANIFESTS",
++    "kind": "Directory"
++  },
++  "applicationId": "expo.modules.constants",
++  "variantName": "debug",
++  "elements": [
++    {
++      "type": "SINGLE",
++      "filters": [],
++      "attributes": [],
++      "outputFile": "AndroidManifest.xml"
++    }
++  ],
++  "elementType": "File"
++}
+\ No newline at end of file
+diff --git a/node_modules/expo-constants/android/build/intermediates/aar_metadata/debug/aar-metadata.properties b/node_modules/expo-constants/android/build/intermediates/aar_metadata/debug/aar-metadata.properties
+new file mode 100644
+index 0000000..776557e
+--- /dev/null
++++ b/node_modules/expo-constants/android/build/intermediates/aar_metadata/debug/aar-metadata.properties
+@@ -0,0 +1,5 @@
++aarFormatVersion=1.0
++aarMetadataVersion=1.0
++minCompileSdk=1
++minCompileSdkExtension=0
++minAndroidGradlePluginVersion=1.0.0
+diff --git a/node_modules/expo-constants/android/build/intermediates/annotation_processor_list/debug/annotationProcessors.json b/node_modules/expo-constants/android/build/intermediates/annotation_processor_list/debug/annotationProcessors.json
+new file mode 100644
+index 0000000..9e26dfe
+--- /dev/null
++++ b/node_modules/expo-constants/android/build/intermediates/annotation_processor_list/debug/annotationProcessors.json
+@@ -0,0 +1 @@
++{}
+\ No newline at end of file
+diff --git a/node_modules/expo-constants/android/build/intermediates/compile_library_classes_jar/debug/classes.jar b/node_modules/expo-constants/android/build/intermediates/compile_library_classes_jar/debug/classes.jar
+new file mode 100644
+index 0000000..3e874ed
+Binary files /dev/null and b/node_modules/expo-constants/android/build/intermediates/compile_library_classes_jar/debug/classes.jar differ
+diff --git a/node_modules/expo-constants/android/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar b/node_modules/expo-constants/android/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar
+new file mode 100644
+index 0000000..411236d
+Binary files /dev/null and b/node_modules/expo-constants/android/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar differ
+diff --git a/node_modules/expo-constants/android/build/intermediates/compile_r_class_jar/debug/R.jar b/node_modules/expo-constants/android/build/intermediates/compile_r_class_jar/debug/R.jar
+new file mode 100644
+index 0000000..167266f
+Binary files /dev/null and b/node_modules/expo-constants/android/build/intermediates/compile_r_class_jar/debug/R.jar differ
+diff --git a/node_modules/expo-constants/android/build/intermediates/compile_symbol_list/debug/R.txt b/node_modules/expo-constants/android/build/intermediates/compile_symbol_list/debug/R.txt
+new file mode 100644
+index 0000000..e69de29
+diff --git a/node_modules/expo-constants/android/build/intermediates/incremental/debug-mergeNativeLibs/merge-state b/node_modules/expo-constants/android/build/intermediates/incremental/debug-mergeNativeLibs/merge-state
+new file mode 100644
+index 0000000..1c82bb7
+Binary files /dev/null and b/node_modules/expo-constants/android/build/intermediates/incremental/debug-mergeNativeLibs/merge-state differ
+diff --git a/node_modules/expo-constants/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties b/node_modules/expo-constants/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties
+new file mode 100644
+index 0000000..e96eaa6
+--- /dev/null
++++ b/node_modules/expo-constants/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties
+@@ -0,0 +1 @@
++#Tue Jul 08 17:01:43 PKT 2025
+diff --git a/node_modules/expo-constants/android/build/intermediates/incremental/debug/packageDebugResources/merger.xml b/node_modules/expo-constants/android/build/intermediates/incremental/debug/packageDebugResources/merger.xml
+new file mode 100644
+index 0000000..ff0302b
+--- /dev/null
++++ b/node_modules/expo-constants/android/build/intermediates/incremental/debug/packageDebugResources/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/main/res"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/build/generated/res/rs/debug"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/build/generated/res/resValues/debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main" generated-set="main$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/main/res"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/build/generated/res/rs/debug"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/build/generated/res/resValues/debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug" generated-set="debug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"/><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated" generated-set="generated$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"/><mergedItems/></merger>
+\ No newline at end of file
+diff --git a/node_modules/expo-constants/android/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml b/node_modules/expo-constants/android/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml
+new file mode 100644
+index 0000000..c78bb2d
+--- /dev/null
++++ b/node_modules/expo-constants/android/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/main/jniLibs"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/debug/jniLibs"/></dataSet></merger>
+\ No newline at end of file
+diff --git a/node_modules/expo-constants/android/build/intermediates/incremental/mergeDebugShaders/merger.xml b/node_modules/expo-constants/android/build/intermediates/incremental/mergeDebugShaders/merger.xml
+new file mode 100644
+index 0000000..68dd20f
+--- /dev/null
++++ b/node_modules/expo-constants/android/build/intermediates/incremental/mergeDebugShaders/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/main/shaders"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/debug/shaders"/></dataSet></merger>
+\ No newline at end of file
+diff --git a/node_modules/expo-constants/android/build/intermediates/incremental/packageDebugAssets/merger.xml b/node_modules/expo-constants/android/build/intermediates/incremental/packageDebugAssets/merger.xml
+new file mode 100644
+index 0000000..2537b22
+--- /dev/null
++++ b/node_modules/expo-constants/android/build/intermediates/incremental/packageDebugAssets/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/main/assets"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/build/intermediates/shader_assets/debug/out"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/debug/assets"/></dataSet></merger>
+\ No newline at end of file
+diff --git a/node_modules/expo-constants/android/build/intermediates/incremental/packageDebugResources/compile-file-map.properties b/node_modules/expo-constants/android/build/intermediates/incremental/packageDebugResources/compile-file-map.properties
+new file mode 100644
+index 0000000..b4cf826
+--- /dev/null
++++ b/node_modules/expo-constants/android/build/intermediates/incremental/packageDebugResources/compile-file-map.properties
+@@ -0,0 +1 @@
++#Tue Jul 08 15:47:45 PKT 2025
+diff --git a/node_modules/expo-constants/android/build/intermediates/incremental/packageDebugResources/merger.xml b/node_modules/expo-constants/android/build/intermediates/incremental/packageDebugResources/merger.xml
+new file mode 100644
+index 0000000..5432650
+--- /dev/null
++++ b/node_modules/expo-constants/android/build/intermediates/incremental/packageDebugResources/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/main/res"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/build/generated/res/rs/debug"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/build/generated/res/resValues/debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main" generated-set="main$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/main/res"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/build/generated/res/rs/debug"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/build/generated/res/resValues/debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug" generated-set="debug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/debug/res"/></dataSet><mergedItems/></merger>
+\ No newline at end of file
+diff --git a/node_modules/expo-constants/android/build/intermediates/javac/debug/classes/expo/modules/constants/BuildConfig.class b/node_modules/expo-constants/android/build/intermediates/javac/debug/classes/expo/modules/constants/BuildConfig.class
+new file mode 100644
+index 0000000..d1c862b
+Binary files /dev/null and b/node_modules/expo-constants/android/build/intermediates/javac/debug/classes/expo/modules/constants/BuildConfig.class differ
+diff --git a/node_modules/expo-constants/android/build/intermediates/javac/debug/classes/expo/modules/constants/ConstantsModule.class b/node_modules/expo-constants/android/build/intermediates/javac/debug/classes/expo/modules/constants/ConstantsModule.class
+new file mode 100644
+index 0000000..cd190f1
+Binary files /dev/null and b/node_modules/expo-constants/android/build/intermediates/javac/debug/classes/expo/modules/constants/ConstantsModule.class differ
+diff --git a/node_modules/expo-constants/android/build/intermediates/javac/debug/classes/expo/modules/constants/ConstantsPackage.class b/node_modules/expo-constants/android/build/intermediates/javac/debug/classes/expo/modules/constants/ConstantsPackage.class
+new file mode 100644
+index 0000000..5bbcc8e
+Binary files /dev/null and b/node_modules/expo-constants/android/build/intermediates/javac/debug/classes/expo/modules/constants/ConstantsPackage.class differ
+diff --git a/node_modules/expo-constants/android/build/intermediates/javac/debug/classes/expo/modules/constants/ConstantsService.class b/node_modules/expo-constants/android/build/intermediates/javac/debug/classes/expo/modules/constants/ConstantsService.class
+new file mode 100644
+index 0000000..75c541b
+Binary files /dev/null and b/node_modules/expo-constants/android/build/intermediates/javac/debug/classes/expo/modules/constants/ConstantsService.class differ
+diff --git a/node_modules/expo-constants/android/build/intermediates/library_manifest/debug/AndroidManifest.xml b/node_modules/expo-constants/android/build/intermediates/library_manifest/debug/AndroidManifest.xml
+new file mode 100644
+index 0000000..828462b
+--- /dev/null
++++ b/node_modules/expo-constants/android/build/intermediates/library_manifest/debug/AndroidManifest.xml
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="expo.modules.constants"
++    android:versionCode="26"
++    android:versionName="9.2.0" >
++
++    <uses-sdk
++        android:minSdkVersion="21"
++        android:targetSdkVersion="35" />
++
++</manifest>
+\ No newline at end of file
+diff --git a/node_modules/expo-constants/android/build/intermediates/local_only_symbol_list/debug/R-def.txt b/node_modules/expo-constants/android/build/intermediates/local_only_symbol_list/debug/R-def.txt
+new file mode 100644
+index 0000000..78ac5b8
+--- /dev/null
++++ b/node_modules/expo-constants/android/build/intermediates/local_only_symbol_list/debug/R-def.txt
+@@ -0,0 +1,2 @@
++R_DEF: Internal format may change without notice
++local
+diff --git a/node_modules/expo-constants/android/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt b/node_modules/expo-constants/android/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt
+new file mode 100644
+index 0000000..b3fec64
+--- /dev/null
++++ b/node_modules/expo-constants/android/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt
+@@ -0,0 +1,8 @@
++1<?xml version="1.0" encoding="utf-8"?>
++2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++3    package="expo.modules.constants" >
++4
++5    <uses-sdk android:minSdkVersion="21" />
++5-->/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/main/AndroidManifest.xml
++6
++7</manifest>
+diff --git a/node_modules/expo-constants/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml b/node_modules/expo-constants/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml
+new file mode 100644
+index 0000000..5c61fcd
+--- /dev/null
++++ b/node_modules/expo-constants/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="expo.modules.constants" >
++
++    <uses-sdk android:minSdkVersion="21" />
++
++</manifest>
+\ No newline at end of file
+diff --git a/node_modules/expo-constants/android/build/intermediates/merged_manifests/debug/output.json b/node_modules/expo-constants/android/build/intermediates/merged_manifests/debug/output.json
+new file mode 100644
+index 0000000..0129ae9
+--- /dev/null
++++ b/node_modules/expo-constants/android/build/intermediates/merged_manifests/debug/output.json
+@@ -0,0 +1,27 @@
++{
++  "version": 1,
++  "applicationId": "expo.modules.constants",
++  "variantType": "LIBRARY",
++  "elements": [
++    {
++      "outputType": {
++        "type": "MERGED_MANIFESTS"
++      },
++      "apkData": {
++        "type": "MAIN",
++        "splits": [],
++        "versionCode": 26,
++        "versionName": "9.2.0",
++        "outputFile": "expo-constants-debug.aar",
++        "fullName": "debug",
++        "baseName": "debug",
++        "dirName": ""
++      },
++      "path": "../../library_manifest/debug/AndroidManifest.xml",
++      "properties": {
++        "packageId": "expo.modules.constants",
++        "split": ""
++      }
++    }
++  ]
++}
+\ No newline at end of file
+diff --git a/node_modules/expo-constants/android/build/intermediates/navigation_json/debug/navigation.json b/node_modules/expo-constants/android/build/intermediates/navigation_json/debug/navigation.json
+new file mode 100644
+index 0000000..0637a08
+--- /dev/null
++++ b/node_modules/expo-constants/android/build/intermediates/navigation_json/debug/navigation.json
+@@ -0,0 +1 @@
++[]
+\ No newline at end of file
+diff --git a/node_modules/expo-constants/android/build/intermediates/packaged_manifests/debug/output-metadata.json b/node_modules/expo-constants/android/build/intermediates/packaged_manifests/debug/output-metadata.json
+new file mode 100644
+index 0000000..dbd3f50
+--- /dev/null
++++ b/node_modules/expo-constants/android/build/intermediates/packaged_manifests/debug/output-metadata.json
+@@ -0,0 +1,18 @@
++{
++  "version": 3,
++  "artifactType": {
++    "type": "PACKAGED_MANIFESTS",
++    "kind": "Directory"
++  },
++  "applicationId": "expo.modules.constants",
++  "variantName": "debug",
++  "elements": [
++    {
++      "type": "SINGLE",
++      "filters": [],
++      "attributes": [],
++      "outputFile": "../../merged_manifest/debug/AndroidManifest.xml"
++    }
++  ],
++  "elementType": "File"
++}
+\ No newline at end of file
+diff --git a/node_modules/expo-constants/android/build/intermediates/runtime_library_classes_dir/debug/expo/modules/constants/BuildConfig.class b/node_modules/expo-constants/android/build/intermediates/runtime_library_classes_dir/debug/expo/modules/constants/BuildConfig.class
+new file mode 100644
+index 0000000..d1c862b
+Binary files /dev/null and b/node_modules/expo-constants/android/build/intermediates/runtime_library_classes_dir/debug/expo/modules/constants/BuildConfig.class differ
+diff --git a/node_modules/expo-constants/android/build/intermediates/runtime_library_classes_dir/debug/expo/modules/constants/ConstantsModule.class b/node_modules/expo-constants/android/build/intermediates/runtime_library_classes_dir/debug/expo/modules/constants/ConstantsModule.class
+new file mode 100644
+index 0000000..cd190f1
+Binary files /dev/null and b/node_modules/expo-constants/android/build/intermediates/runtime_library_classes_dir/debug/expo/modules/constants/ConstantsModule.class differ
+diff --git a/node_modules/expo-constants/android/build/intermediates/runtime_library_classes_dir/debug/expo/modules/constants/ConstantsPackage.class b/node_modules/expo-constants/android/build/intermediates/runtime_library_classes_dir/debug/expo/modules/constants/ConstantsPackage.class
+new file mode 100644
+index 0000000..5bbcc8e
+Binary files /dev/null and b/node_modules/expo-constants/android/build/intermediates/runtime_library_classes_dir/debug/expo/modules/constants/ConstantsPackage.class differ
+diff --git a/node_modules/expo-constants/android/build/intermediates/runtime_library_classes_dir/debug/expo/modules/constants/ConstantsService.class b/node_modules/expo-constants/android/build/intermediates/runtime_library_classes_dir/debug/expo/modules/constants/ConstantsService.class
+new file mode 100644
+index 0000000..75c541b
+Binary files /dev/null and b/node_modules/expo-constants/android/build/intermediates/runtime_library_classes_dir/debug/expo/modules/constants/ConstantsService.class differ
+diff --git a/node_modules/expo-constants/android/build/intermediates/runtime_library_classes_jar/debug/classes.jar b/node_modules/expo-constants/android/build/intermediates/runtime_library_classes_jar/debug/classes.jar
+new file mode 100644
+index 0000000..178ad2d
+Binary files /dev/null and b/node_modules/expo-constants/android/build/intermediates/runtime_library_classes_jar/debug/classes.jar differ
+diff --git a/node_modules/expo-constants/android/build/intermediates/symbol_list_with_package_name/debug/package-aware-r.txt b/node_modules/expo-constants/android/build/intermediates/symbol_list_with_package_name/debug/package-aware-r.txt
+new file mode 100644
+index 0000000..010a114
+--- /dev/null
++++ b/node_modules/expo-constants/android/build/intermediates/symbol_list_with_package_name/debug/package-aware-r.txt
+@@ -0,0 +1 @@
++expo.modules.constants
+diff --git a/node_modules/expo-constants/android/build/outputs/logs/manifest-merger-debug-report.txt b/node_modules/expo-constants/android/build/outputs/logs/manifest-merger-debug-report.txt
+new file mode 100644
+index 0000000..316a78e
+--- /dev/null
++++ b/node_modules/expo-constants/android/build/outputs/logs/manifest-merger-debug-report.txt
+@@ -0,0 +1,25 @@
++-- Merging decision tree log ---
++manifest
++ADDED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/main/AndroidManifest.xml:2:1-4:12
++INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/main/AndroidManifest.xml:2:1-4:12
++INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/main/AndroidManifest.xml:2:1-4:12
++	package
++		ADDED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/main/AndroidManifest.xml:2:11-43
++		INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/main/AndroidManifest.xml
++		INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/main/AndroidManifest.xml
++	xmlns:android
++		ADDED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/main/AndroidManifest.xml:2:1-4:12
++uses-sdk
++INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/main/AndroidManifest.xml reason: use-sdk injection requested
++INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/main/AndroidManifest.xml
++INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/main/AndroidManifest.xml
++INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/main/AndroidManifest.xml
++INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/main/AndroidManifest.xml
++	android:targetSdkVersion
++		INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/main/AndroidManifest.xml
++		ADDED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/main/AndroidManifest.xml
++		INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/main/AndroidManifest.xml
++	android:minSdkVersion
++		INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/main/AndroidManifest.xml
++		ADDED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/main/AndroidManifest.xml
++		INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/expo-constants/android/src/main/AndroidManifest.xml
+diff --git a/node_modules/expo-constants/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin b/node_modules/expo-constants/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin
+new file mode 100644
+index 0000000..d19fe09
+Binary files /dev/null and b/node_modules/expo-constants/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin differ
+diff --git a/node_modules/expo-constants/android/build/tmp/compileDebugJavaWithJavac/source-classes-mapping.txt b/node_modules/expo-constants/android/build/tmp/compileDebugJavaWithJavac/source-classes-mapping.txt
+new file mode 100644
+index 0000000..a8464ad
+--- /dev/null
++++ b/node_modules/expo-constants/android/build/tmp/compileDebugJavaWithJavac/source-classes-mapping.txt
+@@ -0,0 +1,8 @@
++expo/modules/constants/BuildConfig.java
++ expo.modules.constants.BuildConfig
++expo/modules/constants/ConstantsService.java
++ expo.modules.constants.ConstantsService
++expo/modules/constants/ConstantsPackage.java
++ expo.modules.constants.ConstantsPackage
++expo/modules/constants/ConstantsModule.java
++ expo.modules.constants.ConstantsModule

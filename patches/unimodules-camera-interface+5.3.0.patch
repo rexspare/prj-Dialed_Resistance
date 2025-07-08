@@ -1,0 +1,408 @@
+diff --git a/node_modules/unimodules-camera-interface/android/build.gradle b/node_modules/unimodules-camera-interface/android/build.gradle
+index b26d1cc..72ca558 100644
+--- a/node_modules/unimodules-camera-interface/android/build.gradle
++++ b/node_modules/unimodules-camera-interface/android/build.gradle
+@@ -1,5 +1,5 @@
+ apply plugin: 'com.android.library'
+-apply plugin: 'maven'
++apply plugin: 'maven-publish'
+ 
+ group = 'org.unimodules'
+ version = '5.3.0'
+@@ -25,11 +25,10 @@ artifacts {
+   archives androidSourcesJar
+ }
+ 
+-uploadArchives {
++publishing {
+   repositories {
+-    mavenDeployer {
+-      configuration = configurations.deployerJars
+-      repository(url: mavenLocal().url)
++    maven {
++      url = uri("${rootProject.projectDir}/maven-repo")
+     }
+   }
+ }
+diff --git a/node_modules/unimodules-camera-interface/android/build/.transforms/297eae805ea9a45c05478bfdfcc60356/results.bin b/node_modules/unimodules-camera-interface/android/build/.transforms/297eae805ea9a45c05478bfdfcc60356/results.bin
+new file mode 100644
+index 0000000..0d259dd
+--- /dev/null
++++ b/node_modules/unimodules-camera-interface/android/build/.transforms/297eae805ea9a45c05478bfdfcc60356/results.bin
+@@ -0,0 +1 @@
++o/classes
+diff --git a/node_modules/unimodules-camera-interface/android/build/.transforms/297eae805ea9a45c05478bfdfcc60356/transformed/classes/classes.dex b/node_modules/unimodules-camera-interface/android/build/.transforms/297eae805ea9a45c05478bfdfcc60356/transformed/classes/classes.dex
+new file mode 100644
+index 0000000..7845cf0
+Binary files /dev/null and b/node_modules/unimodules-camera-interface/android/build/.transforms/297eae805ea9a45c05478bfdfcc60356/transformed/classes/classes.dex differ
+diff --git a/node_modules/unimodules-camera-interface/android/build/.transforms/960a20035b444e82a24629df44dd7924/results.bin b/node_modules/unimodules-camera-interface/android/build/.transforms/960a20035b444e82a24629df44dd7924/results.bin
+new file mode 100644
+index 0000000..1ed65e0
+--- /dev/null
++++ b/node_modules/unimodules-camera-interface/android/build/.transforms/960a20035b444e82a24629df44dd7924/results.bin
+@@ -0,0 +1 @@
++i/
+diff --git a/node_modules/unimodules-camera-interface/android/build/.transforms/d97a73430caed0279a111d1096d2d237/results.bin b/node_modules/unimodules-camera-interface/android/build/.transforms/d97a73430caed0279a111d1096d2d237/results.bin
+new file mode 100644
+index 0000000..5ff383e
+--- /dev/null
++++ b/node_modules/unimodules-camera-interface/android/build/.transforms/d97a73430caed0279a111d1096d2d237/results.bin
+@@ -0,0 +1 @@
++o/debug
+diff --git a/node_modules/unimodules-camera-interface/android/build/.transforms/d97a73430caed0279a111d1096d2d237/transformed/debug/org/unimodules/interfaces/camera/BuildConfig.dex b/node_modules/unimodules-camera-interface/android/build/.transforms/d97a73430caed0279a111d1096d2d237/transformed/debug/org/unimodules/interfaces/camera/BuildConfig.dex
+new file mode 100644
+index 0000000..2a361eb
+Binary files /dev/null and b/node_modules/unimodules-camera-interface/android/build/.transforms/d97a73430caed0279a111d1096d2d237/transformed/debug/org/unimodules/interfaces/camera/BuildConfig.dex differ
+diff --git a/node_modules/unimodules-camera-interface/android/build/.transforms/d97a73430caed0279a111d1096d2d237/transformed/debug/org/unimodules/interfaces/camera/CameraViewInterface.dex b/node_modules/unimodules-camera-interface/android/build/.transforms/d97a73430caed0279a111d1096d2d237/transformed/debug/org/unimodules/interfaces/camera/CameraViewInterface.dex
+new file mode 100644
+index 0000000..03b45a3
+Binary files /dev/null and b/node_modules/unimodules-camera-interface/android/build/.transforms/d97a73430caed0279a111d1096d2d237/transformed/debug/org/unimodules/interfaces/camera/CameraViewInterface.dex differ
+diff --git a/node_modules/unimodules-camera-interface/android/build/.transforms/d97a73430caed0279a111d1096d2d237/transformed/desugar_graph.bin b/node_modules/unimodules-camera-interface/android/build/.transforms/d97a73430caed0279a111d1096d2d237/transformed/desugar_graph.bin
+new file mode 100644
+index 0000000..601f245
+Binary files /dev/null and b/node_modules/unimodules-camera-interface/android/build/.transforms/d97a73430caed0279a111d1096d2d237/transformed/desugar_graph.bin differ
+diff --git a/node_modules/unimodules-camera-interface/android/build/generated/source/buildConfig/debug/org/unimodules/interfaces/camera/BuildConfig.java b/node_modules/unimodules-camera-interface/android/build/generated/source/buildConfig/debug/org/unimodules/interfaces/camera/BuildConfig.java
+new file mode 100644
+index 0000000..84014fc
+--- /dev/null
++++ b/node_modules/unimodules-camera-interface/android/build/generated/source/buildConfig/debug/org/unimodules/interfaces/camera/BuildConfig.java
+@@ -0,0 +1,10 @@
++/**
++ * Automatically generated file. DO NOT MODIFY
++ */
++package org.unimodules.interfaces.camera;
++
++public final class BuildConfig {
++  public static final boolean DEBUG = Boolean.parseBoolean("true");
++  public static final String LIBRARY_PACKAGE_NAME = "org.unimodules.interfaces.camera";
++  public static final String BUILD_TYPE = "debug";
++}
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/AndroidManifest.xml b/node_modules/unimodules-camera-interface/android/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/AndroidManifest.xml
+new file mode 100644
+index 0000000..7e00c12
+--- /dev/null
++++ b/node_modules/unimodules-camera-interface/android/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/AndroidManifest.xml
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="org.unimodules.interfaces.camera" >
++
++    <uses-sdk android:minSdkVersion="21" />
++
++</manifest>
+\ No newline at end of file
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/output-metadata.json b/node_modules/unimodules-camera-interface/android/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/output-metadata.json
+new file mode 100644
+index 0000000..a9cd4f6
+--- /dev/null
++++ b/node_modules/unimodules-camera-interface/android/build/intermediates/aapt_friendly_merged_manifests/debug/aapt/output-metadata.json
+@@ -0,0 +1,18 @@
++{
++  "version": 3,
++  "artifactType": {
++    "type": "AAPT_FRIENDLY_MERGED_MANIFESTS",
++    "kind": "Directory"
++  },
++  "applicationId": "org.unimodules.interfaces.camera",
++  "variantName": "debug",
++  "elements": [
++    {
++      "type": "SINGLE",
++      "filters": [],
++      "attributes": [],
++      "outputFile": "AndroidManifest.xml"
++    }
++  ],
++  "elementType": "File"
++}
+\ No newline at end of file
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/aar_metadata/debug/aar-metadata.properties b/node_modules/unimodules-camera-interface/android/build/intermediates/aar_metadata/debug/aar-metadata.properties
+new file mode 100644
+index 0000000..776557e
+--- /dev/null
++++ b/node_modules/unimodules-camera-interface/android/build/intermediates/aar_metadata/debug/aar-metadata.properties
+@@ -0,0 +1,5 @@
++aarFormatVersion=1.0
++aarMetadataVersion=1.0
++minCompileSdk=1
++minCompileSdkExtension=0
++minAndroidGradlePluginVersion=1.0.0
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/annotation_processor_list/debug/annotationProcessors.json b/node_modules/unimodules-camera-interface/android/build/intermediates/annotation_processor_list/debug/annotationProcessors.json
+new file mode 100644
+index 0000000..9e26dfe
+--- /dev/null
++++ b/node_modules/unimodules-camera-interface/android/build/intermediates/annotation_processor_list/debug/annotationProcessors.json
+@@ -0,0 +1 @@
++{}
+\ No newline at end of file
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/compile_library_classes_jar/debug/classes.jar b/node_modules/unimodules-camera-interface/android/build/intermediates/compile_library_classes_jar/debug/classes.jar
+new file mode 100644
+index 0000000..b7efaa8
+Binary files /dev/null and b/node_modules/unimodules-camera-interface/android/build/intermediates/compile_library_classes_jar/debug/classes.jar differ
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar b/node_modules/unimodules-camera-interface/android/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar
+new file mode 100644
+index 0000000..8a8aaba
+Binary files /dev/null and b/node_modules/unimodules-camera-interface/android/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar differ
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/compile_r_class_jar/debug/R.jar b/node_modules/unimodules-camera-interface/android/build/intermediates/compile_r_class_jar/debug/R.jar
+new file mode 100644
+index 0000000..1cd2249
+Binary files /dev/null and b/node_modules/unimodules-camera-interface/android/build/intermediates/compile_r_class_jar/debug/R.jar differ
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/compile_symbol_list/debug/R.txt b/node_modules/unimodules-camera-interface/android/build/intermediates/compile_symbol_list/debug/R.txt
+new file mode 100644
+index 0000000..e69de29
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/incremental/debug-mergeNativeLibs/merge-state b/node_modules/unimodules-camera-interface/android/build/intermediates/incremental/debug-mergeNativeLibs/merge-state
+new file mode 100644
+index 0000000..dfe3669
+Binary files /dev/null and b/node_modules/unimodules-camera-interface/android/build/intermediates/incremental/debug-mergeNativeLibs/merge-state differ
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties b/node_modules/unimodules-camera-interface/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties
+new file mode 100644
+index 0000000..e96eaa6
+--- /dev/null
++++ b/node_modules/unimodules-camera-interface/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties
+@@ -0,0 +1 @@
++#Tue Jul 08 17:01:43 PKT 2025
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/incremental/debug/packageDebugResources/merger.xml b/node_modules/unimodules-camera-interface/android/build/intermediates/incremental/debug/packageDebugResources/merger.xml
+new file mode 100644
+index 0000000..daa99b4
+--- /dev/null
++++ b/node_modules/unimodules-camera-interface/android/build/intermediates/incremental/debug/packageDebugResources/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/main/res"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/build/generated/res/rs/debug"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/build/generated/res/resValues/debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main" generated-set="main$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/main/res"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/build/generated/res/rs/debug"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/build/generated/res/resValues/debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug" generated-set="debug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"/><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated" generated-set="generated$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"/><mergedItems/></merger>
+\ No newline at end of file
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml b/node_modules/unimodules-camera-interface/android/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml
+new file mode 100644
+index 0000000..a9353a8
+--- /dev/null
++++ b/node_modules/unimodules-camera-interface/android/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/main/jniLibs"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/debug/jniLibs"/></dataSet></merger>
+\ No newline at end of file
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/incremental/mergeDebugShaders/merger.xml b/node_modules/unimodules-camera-interface/android/build/intermediates/incremental/mergeDebugShaders/merger.xml
+new file mode 100644
+index 0000000..101b28b
+--- /dev/null
++++ b/node_modules/unimodules-camera-interface/android/build/intermediates/incremental/mergeDebugShaders/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/main/shaders"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/debug/shaders"/></dataSet></merger>
+\ No newline at end of file
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/incremental/packageDebugAssets/merger.xml b/node_modules/unimodules-camera-interface/android/build/intermediates/incremental/packageDebugAssets/merger.xml
+new file mode 100644
+index 0000000..7ae3dc6
+--- /dev/null
++++ b/node_modules/unimodules-camera-interface/android/build/intermediates/incremental/packageDebugAssets/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/main/assets"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/build/intermediates/shader_assets/debug/out"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/debug/assets"/></dataSet></merger>
+\ No newline at end of file
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/incremental/packageDebugResources/compile-file-map.properties b/node_modules/unimodules-camera-interface/android/build/intermediates/incremental/packageDebugResources/compile-file-map.properties
+new file mode 100644
+index 0000000..b4cf826
+--- /dev/null
++++ b/node_modules/unimodules-camera-interface/android/build/intermediates/incremental/packageDebugResources/compile-file-map.properties
+@@ -0,0 +1 @@
++#Tue Jul 08 15:47:45 PKT 2025
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/incremental/packageDebugResources/merger.xml b/node_modules/unimodules-camera-interface/android/build/intermediates/incremental/packageDebugResources/merger.xml
+new file mode 100644
+index 0000000..79f01a3
+--- /dev/null
++++ b/node_modules/unimodules-camera-interface/android/build/intermediates/incremental/packageDebugResources/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/main/res"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/build/generated/res/rs/debug"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/build/generated/res/resValues/debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main" generated-set="main$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/main/res"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/build/generated/res/rs/debug"/><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/build/generated/res/resValues/debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug" generated-set="debug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/debug/res"/></dataSet><mergedItems/></merger>
+\ No newline at end of file
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/camera/BuildConfig.class b/node_modules/unimodules-camera-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/camera/BuildConfig.class
+new file mode 100644
+index 0000000..b74705a
+Binary files /dev/null and b/node_modules/unimodules-camera-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/camera/BuildConfig.class differ
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/camera/CameraViewInterface.class b/node_modules/unimodules-camera-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/camera/CameraViewInterface.class
+new file mode 100644
+index 0000000..d58ba0f
+Binary files /dev/null and b/node_modules/unimodules-camera-interface/android/build/intermediates/javac/debug/classes/org/unimodules/interfaces/camera/CameraViewInterface.class differ
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml b/node_modules/unimodules-camera-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml
+new file mode 100644
+index 0000000..b499d70
+--- /dev/null
++++ b/node_modules/unimodules-camera-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="org.unimodules.interfaces.camera"
++    android:versionCode="24"
++    android:versionName="5.3.0" >
++
++    <uses-sdk
++        android:minSdkVersion="21"
++        android:targetSdkVersion="35" />
++
++</manifest>
+\ No newline at end of file
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/local_only_symbol_list/debug/R-def.txt b/node_modules/unimodules-camera-interface/android/build/intermediates/local_only_symbol_list/debug/R-def.txt
+new file mode 100644
+index 0000000..78ac5b8
+--- /dev/null
++++ b/node_modules/unimodules-camera-interface/android/build/intermediates/local_only_symbol_list/debug/R-def.txt
+@@ -0,0 +1,2 @@
++R_DEF: Internal format may change without notice
++local
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt b/node_modules/unimodules-camera-interface/android/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt
+new file mode 100644
+index 0000000..1d6478d
+--- /dev/null
++++ b/node_modules/unimodules-camera-interface/android/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt
+@@ -0,0 +1,8 @@
++1<?xml version="1.0" encoding="utf-8"?>
++2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++3    package="org.unimodules.interfaces.camera" >
++4
++5    <uses-sdk android:minSdkVersion="21" />
++5-->/Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/main/AndroidManifest.xml
++6
++7</manifest>
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml b/node_modules/unimodules-camera-interface/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml
+new file mode 100644
+index 0000000..7e00c12
+--- /dev/null
++++ b/node_modules/unimodules-camera-interface/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="org.unimodules.interfaces.camera" >
++
++    <uses-sdk android:minSdkVersion="21" />
++
++</manifest>
+\ No newline at end of file
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/merged_manifests/debug/output.json b/node_modules/unimodules-camera-interface/android/build/intermediates/merged_manifests/debug/output.json
+new file mode 100644
+index 0000000..cc88dec
+--- /dev/null
++++ b/node_modules/unimodules-camera-interface/android/build/intermediates/merged_manifests/debug/output.json
+@@ -0,0 +1,27 @@
++{
++  "version": 1,
++  "applicationId": "org.unimodules.interfaces.camera",
++  "variantType": "LIBRARY",
++  "elements": [
++    {
++      "outputType": {
++        "type": "MERGED_MANIFESTS"
++      },
++      "apkData": {
++        "type": "MAIN",
++        "splits": [],
++        "versionCode": 24,
++        "versionName": "5.3.0",
++        "outputFile": "unimodules-camera-interface-debug.aar",
++        "fullName": "debug",
++        "baseName": "debug",
++        "dirName": ""
++      },
++      "path": "../../library_manifest/debug/AndroidManifest.xml",
++      "properties": {
++        "packageId": "org.unimodules.interfaces.camera",
++        "split": ""
++      }
++    }
++  ]
++}
+\ No newline at end of file
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/navigation_json/debug/navigation.json b/node_modules/unimodules-camera-interface/android/build/intermediates/navigation_json/debug/navigation.json
+new file mode 100644
+index 0000000..0637a08
+--- /dev/null
++++ b/node_modules/unimodules-camera-interface/android/build/intermediates/navigation_json/debug/navigation.json
+@@ -0,0 +1 @@
++[]
+\ No newline at end of file
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/packaged_manifests/debug/output-metadata.json b/node_modules/unimodules-camera-interface/android/build/intermediates/packaged_manifests/debug/output-metadata.json
+new file mode 100644
+index 0000000..49d77e8
+--- /dev/null
++++ b/node_modules/unimodules-camera-interface/android/build/intermediates/packaged_manifests/debug/output-metadata.json
+@@ -0,0 +1,18 @@
++{
++  "version": 3,
++  "artifactType": {
++    "type": "PACKAGED_MANIFESTS",
++    "kind": "Directory"
++  },
++  "applicationId": "org.unimodules.interfaces.camera",
++  "variantName": "debug",
++  "elements": [
++    {
++      "type": "SINGLE",
++      "filters": [],
++      "attributes": [],
++      "outputFile": "../../merged_manifest/debug/AndroidManifest.xml"
++    }
++  ],
++  "elementType": "File"
++}
+\ No newline at end of file
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/camera/BuildConfig.class b/node_modules/unimodules-camera-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/camera/BuildConfig.class
+new file mode 100644
+index 0000000..b74705a
+Binary files /dev/null and b/node_modules/unimodules-camera-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/camera/BuildConfig.class differ
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/camera/CameraViewInterface.class b/node_modules/unimodules-camera-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/camera/CameraViewInterface.class
+new file mode 100644
+index 0000000..d58ba0f
+Binary files /dev/null and b/node_modules/unimodules-camera-interface/android/build/intermediates/runtime_library_classes_dir/debug/org/unimodules/interfaces/camera/CameraViewInterface.class differ
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/runtime_library_classes_jar/debug/classes.jar b/node_modules/unimodules-camera-interface/android/build/intermediates/runtime_library_classes_jar/debug/classes.jar
+new file mode 100644
+index 0000000..0ff09fb
+Binary files /dev/null and b/node_modules/unimodules-camera-interface/android/build/intermediates/runtime_library_classes_jar/debug/classes.jar differ
+diff --git a/node_modules/unimodules-camera-interface/android/build/intermediates/symbol_list_with_package_name/debug/package-aware-r.txt b/node_modules/unimodules-camera-interface/android/build/intermediates/symbol_list_with_package_name/debug/package-aware-r.txt
+new file mode 100644
+index 0000000..7744c7f
+--- /dev/null
++++ b/node_modules/unimodules-camera-interface/android/build/intermediates/symbol_list_with_package_name/debug/package-aware-r.txt
+@@ -0,0 +1 @@
++org.unimodules.interfaces.camera
+diff --git a/node_modules/unimodules-camera-interface/android/build/outputs/logs/manifest-merger-debug-report.txt b/node_modules/unimodules-camera-interface/android/build/outputs/logs/manifest-merger-debug-report.txt
+new file mode 100644
+index 0000000..2cf2fb3
+--- /dev/null
++++ b/node_modules/unimodules-camera-interface/android/build/outputs/logs/manifest-merger-debug-report.txt
+@@ -0,0 +1,25 @@
++-- Merging decision tree log ---
++manifest
++ADDED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/main/AndroidManifest.xml:2:1-4:12
++INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/main/AndroidManifest.xml:2:1-4:12
++INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/main/AndroidManifest.xml:2:1-4:12
++	package
++		ADDED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/main/AndroidManifest.xml:2:11-53
++		INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/main/AndroidManifest.xml
++		INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/main/AndroidManifest.xml
++	xmlns:android
++		ADDED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/main/AndroidManifest.xml:2:1-4:12
++uses-sdk
++INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/main/AndroidManifest.xml reason: use-sdk injection requested
++INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/main/AndroidManifest.xml
++INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/main/AndroidManifest.xml
++INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/main/AndroidManifest.xml
++INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/main/AndroidManifest.xml
++	android:targetSdkVersion
++		INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/main/AndroidManifest.xml
++		ADDED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/main/AndroidManifest.xml
++		INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/main/AndroidManifest.xml
++	android:minSdkVersion
++		INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/main/AndroidManifest.xml
++		ADDED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/main/AndroidManifest.xml
++		INJECTED from /Users/hamzazafar/Desktop/RNP/Kristopher S/Dialed_Resistance_Source_File/node_modules/unimodules-camera-interface/android/src/main/AndroidManifest.xml
+diff --git a/node_modules/unimodules-camera-interface/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin b/node_modules/unimodules-camera-interface/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin
+new file mode 100644
+index 0000000..959a5ec
+Binary files /dev/null and b/node_modules/unimodules-camera-interface/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin differ
+diff --git a/node_modules/unimodules-camera-interface/android/build/tmp/compileDebugJavaWithJavac/source-classes-mapping.txt b/node_modules/unimodules-camera-interface/android/build/tmp/compileDebugJavaWithJavac/source-classes-mapping.txt
+new file mode 100644
+index 0000000..64d9249
+--- /dev/null
++++ b/node_modules/unimodules-camera-interface/android/build/tmp/compileDebugJavaWithJavac/source-classes-mapping.txt
+@@ -0,0 +1,4 @@
++org/unimodules/interfaces/camera/CameraViewInterface.java
++ org.unimodules.interfaces.camera.CameraViewInterface
++org/unimodules/interfaces/camera/BuildConfig.java
++ org.unimodules.interfaces.camera.BuildConfig
