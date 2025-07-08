@@ -11,6 +11,8 @@ import { getCurrentUnixTime } from "../../utils/dateUtils"
 import { storeLogs } from "../../services/storage/asyncServices"
 import { useApp } from "../../context/appContext"
 // import { useStores } from "../models/root-store"
+import PushNotification from 'react-native-push-notification';
+
 
 function formatSecondsToTime(seconds) {
   const hours = Math.floor(seconds / 3600)
@@ -41,7 +43,7 @@ export const Workout: React.FunctionComponent<WorkoutProps> = observer((props) =
     selectedProfile,
     variables,
     updateUEL,
-    updateProfile
+    updateProfile,
   } = useStores()
 
 
@@ -111,6 +113,7 @@ export const Workout: React.FunctionComponent<WorkoutProps> = observer((props) =
 
 
   const onRideComplete = () => {
+    const CURRENT_RIDE_NO = (personalRecords?.length || 0) + 1
     const isRideValidfor60Seconds = variables?.find((x) => x?.title == '60 second ride')
     const TIME_VALIDATION = isRideValidfor60Seconds?.value == 'No' ? 0.85 : 0.1
     if (timeInRide >= params.duration * 60 * TIME_VALIDATION) {
@@ -223,7 +226,47 @@ export const Workout: React.FunctionComponent<WorkoutProps> = observer((props) =
     } catch (e) {
       console.log(e)
     }
+
     setisFineTuneEnabled(false)
+
+
+    // SCHEDULE A NITIFICATION
+    if (CURRENT_RIDE_NO == 4) {
+      PushNotification.localNotificationSchedule({
+        channelId: "default-channel-id",
+        title: "How’s Your Ride Going?",
+        message: "Help us improve Dialed Resistance — tap to answer 4 quick questions about your rides.",
+        date: new Date(Date.now() + 90 * 60 * 1000), // 90 minutes
+        allowWhileIdle: true,
+        smallIcon: "ic_launcher",
+        color: "#12939f",
+        link: "https://forms.gle/knbU3nXnmE3uZad59"
+      });
+    } else if (CURRENT_RIDE_NO == 8) {
+      PushNotification.localNotificationSchedule({
+        channelId: "default-channel-id",
+        title: "What’s Working? What’s Not?",
+        message: "Tell us what’s helping, what’s frustrating, and what you wish was there.",
+        date: new Date(Date.now() + 90 * 60 * 1000), // 90 minutes
+        allowWhileIdle: true,
+        smallIcon: "ic_launcher",
+        color: "#12939f",
+        link: "https://forms.gle/zMSHwwdCijrBr2438"
+      });
+    } else if (CURRENT_RIDE_NO == 12) {
+      PushNotification.localNotificationSchedule({
+        channelId: "default-channel-id",
+        title: "Help Us Get Future Pricing Right",
+        message: "4 quick questions on what price feels fair — and what would make it a no-brainer.",
+        date: new Date(Date.now() + 90 * 60 * 1000), // 90 minutes
+        allowWhileIdle: true,
+        smallIcon: "ic_launcher",
+        color: "#12939f",
+        link: "https://forms.gle/Ltu6otDEpADhqtCK6"
+      });
+    }
+    //
+
 
     if (totalOutput <= (personalRecord.total_output ? personalRecord.total_output : 0)) {
       if (postWorkoutFeedback?.isRight) {
@@ -249,7 +292,7 @@ export const Workout: React.FunctionComponent<WorkoutProps> = observer((props) =
 
 
   const onPlus = () => {
-  
+
     updateUEL((Number(selectedProfile.RLR) + 1) * selectedProfile.ridePreferenceValue)
     updateProfile("Update Profile", {
       ...selectedProfile,
@@ -258,7 +301,7 @@ export const Workout: React.FunctionComponent<WorkoutProps> = observer((props) =
   }
 
   const onMinus = () => {
-    
+
     updateUEL((Number(selectedProfile.RLR) - 1) * selectedProfile.ridePreferenceValue)
     updateProfile("Update Profile", {
       ...selectedProfile,

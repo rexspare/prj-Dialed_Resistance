@@ -34,7 +34,7 @@ import { setJSExceptionHandler, getJSExceptionHandler, setNativeExceptionHandler
 import { enableScreens } from "react-native-screens"
 import { SDKContext, SDKProvider } from "./utils/bluetoothSdk"
 import { props } from "ramda"
-import { Alert, Dimensions, LogBox, Platform } from "react-native"
+import { Alert, Dimensions, LogBox, PermissionsAndroid, Platform } from "react-native"
 import Orientation from "react-native-orientation-locker"
 import Toast, { BaseToast, ErrorToast } from 'react-native-toast-message';
 import {
@@ -51,6 +51,7 @@ import {
   PurchaseError
 } from 'react-native-iap'
 import { AppProvider } from "./context/appContext"
+import PushNotification from 'react-native-push-notification';
 
 enableScreens()
 
@@ -80,6 +81,60 @@ function App(props) {
     storage,
     NAVIGATION_PERSISTENCE_KEY,
   )
+
+
+  const requestPostNotificationPermission = async () => {
+    if (Platform.OS === "android" && Platform.Version > 32) {
+      try {
+        PermissionsAndroid.check('android.permission.POST_NOTIFICATIONS').then(
+          response => {
+            if (!response) {
+              PermissionsAndroid.request('android.permission.POST_NOTIFICATIONS', {
+                title: 'Notification',
+                message:
+                  'Dialed Resistance App needs access to your notification ' +
+                  'so you can get Updates',
+                buttonNeutral: 'Ask Me Later',
+                buttonNegative: 'Cancel',
+                buttonPositive: 'OK',
+              })
+            }
+          }
+        ).catch(
+          err => {
+            console.log("Notification Error=====>", err);
+          }
+        )
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+
+
+  useEffect(() => {
+    requestPostNotificationPermission()
+
+    // Configure Notifications
+    PushNotification.configure({
+      onNotification: function (notification) {
+        console.log('Notification Received ==>> ', notification);
+      },
+      requestPermissions: Platform.OS === 'ios',
+    });
+
+    // Create Notification Channel for Android
+    PushNotification.createChannel(
+      {
+        channelId: "default-channel-id",
+        channelName: "Default Channel",
+        importance: 4,
+        vibrate: true,
+      },
+      (created) => console.log(`Notification Channel Created: ${created}`)
+    );
+  }, [])
+
 
 
 

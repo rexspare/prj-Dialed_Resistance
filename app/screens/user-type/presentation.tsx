@@ -7,6 +7,8 @@ import { Screen, Text } from "../../components"
 // import { useStores } from "../models/root-store"
 import { color } from "../../theme"
 import { SDKContext } from "../../utils/bluetoothSdk"
+import PushNotification from 'react-native-push-notification';
+
 export type devices = "all" | "puck" | "wahoo" | false
 const ROOT: ViewStyle = {
   backgroundColor: color.palette.mainBgColor,
@@ -143,7 +145,15 @@ export const Presentation = observer(
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}
-                onPress={() => navigatoToGymCode()}
+                // onPress={() => navigatoToGymCode()}
+                onPress={() => {
+                  PushNotification.localNotificationSchedule({
+                    channelId: "default-channel-id",
+                    message: "This is a scheduled notification!",
+                    date: new Date(Date.now() + 5 * 1000),
+                    allowWhileIdle: true,
+                  });
+                }}
               >
                 <Text style={{
                   color: '#FFFFFF',
