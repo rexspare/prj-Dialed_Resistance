@@ -37,21 +37,9 @@ import { props } from "ramda"
 import { Alert, Dimensions, LogBox, PermissionsAndroid, Platform } from "react-native"
 import Orientation from "react-native-orientation-locker"
 import Toast, { BaseToast, ErrorToast } from 'react-native-toast-message';
-import {
-  initConnection,
-  endConnection,
-  flushFailedPurchasesCachedAsPendingAndroid,
-  getSubscriptions,
-  getAvailablePurchases,
-  getProducts, //For fetching available products
-  requestPurchase, //For initiating in-app purchases
-  purchaseUpdatedListener, //For listening to purchase events
-  purchaseErrorListener, //For listening to purchase errors
-  finishTransaction, //For acknowledging a purchase
-  PurchaseError
-} from 'react-native-iap'
 import { AppProvider } from "./context/appContext"
 import PushNotification from 'react-native-push-notification';
+import messaging from '@react-native-firebase/messaging';
 
 enableScreens()
 
@@ -74,7 +62,7 @@ function App(props) {
   const navigationRef = useRef<NavigationContainerRef>()
   const [rootStore, setRootStore] = useState<RootStore | undefined>(undefined)
 
-
+  console.log = () => { }
   setRootNavigation(navigationRef)
   useBackButtonHandler(navigationRef, canExit)
   const { initialNavigationState, onNavigationStateChange } = useNavigationPersistence(
@@ -82,9 +70,31 @@ function App(props) {
     NAVIGATION_PERSISTENCE_KEY,
   )
 
+  const getFcmToken = async () => {
+    try {
+      const fcmToken = await messaging().getToken();
+      console.info("The new token ==>>", fcmToken);
+    } catch (error) {
+      console.info("Error", error);
+    }
+  };
+
+
+  const requestUserPermission = async () => {
+    const authStatus = await messaging().requestPermission();
+    const enabled =
+      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+
+    if (enabled) {
+      console.log("Authorization status:", authStatus);
+      getFcmToken();
+    }
+  };
+
 
   const requestPostNotificationPermission = async () => {
-    if (Platform.OS === "android" && Platform.Version > 32) {
+    if (Platform.OS === "android" && Number(Platform.Version) > 32) {
       try {
         PermissionsAndroid.check('android.permission.POST_NOTIFICATIONS').then(
           response => {
@@ -111,28 +121,49 @@ function App(props) {
     }
   };
 
+  const notificationListener = async () => {
+    try {
+      messaging().onNotificationOpenedApp((remoteMessage) => {
+        console.log(
+          "Notification caused app to open from background state:",
+          remoteMessage.notification
+        );
+        // navigation.navigate(remoteMessage.data.type);
+      });
+      messaging().onMessage(async (remoteMessage) => {
+        console.log("Received in Foreground", remoteMessage);
+        PushNotification.createChannel({
+          channelId: "channel-id", // (required)
+          channelName: "My channel", // (required)
+        });
+        PushNotification.localNotification({
+          channelId: "channel-id",
+          title: remoteMessage.notification.title,
+          message: remoteMessage.notification.body, // (required)
+          showWhen: true,
+          color: "red",
+        });
+      });
+      messaging()
+        .getInitialNotification()
+        .then((remoteMessage) => {
+          if (remoteMessage) {
+            console.log(
+              "Notification caused app to open from quit state:",
+              remoteMessage.notification
+            );
+          }
+        });
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
+
 
   useEffect(() => {
     requestPostNotificationPermission()
-
-    // Configure Notifications
-    PushNotification.configure({
-      onNotification: function (notification) {
-        console.log('Notification Received ==>> ', notification);
-      },
-      requestPermissions: Platform.OS === 'ios',
-    });
-
-    // Create Notification Channel for Android
-    PushNotification.createChannel(
-      {
-        channelId: "default-channel-id",
-        channelName: "Default Channel",
-        importance: 4,
-        vibrate: true,
-      },
-      (created) => console.log(`Notification Channel Created: ${created}`)
-    );
+    requestUserPermission();
+    notificationListener();
   }, [])
 
 
