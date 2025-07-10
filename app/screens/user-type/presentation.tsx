@@ -7,7 +7,9 @@ import { Screen, Text } from "../../components"
 // import { useStores } from "../models/root-store"
 import { color } from "../../theme"
 import { SDKContext } from "../../utils/bluetoothSdk"
-import PushNotification from 'react-native-push-notification';
+import messaging from '@react-native-firebase/messaging';
+import functions from "@react-native-firebase/functions";
+
 
 export type devices = "all" | "puck" | "wahoo" | false
 const ROOT: ViewStyle = {
@@ -146,13 +148,35 @@ export const Presentation = observer(
                   alignItems: 'center',
                 }}
                 // onPress={() => navigatoToGymCode()}
-                onPress={() => {
-                  PushNotification.localNotificationSchedule({
-                    channelId: "default-channel-id",
-                    message: "This is a scheduled notification!",
-                    date: new Date(Date.now() + 5 * 1000),
-                    allowWhileIdle: true,
-                  });
+                onPress={async () => {
+                  try {
+                    const fcmToken = await messaging().getToken();
+                    console.info("FCM Token:", fcmToken);
+
+                    const data = {
+                      token: fcmToken,
+                      notification: {
+                        title: "Dialed Resistance",
+                        body: "Your test notification sent successfully 🚀"
+                      },
+                      data: {
+                        screen: "CheckIn",
+                        customKey1: "value1"
+                      }
+                    };
+
+                    const notification = functions().httpsCallable("sendPushNotification");
+
+                    notification(data)
+                      .then((response) => {
+                        console.info("Push Notification Response:", response.data);
+                      })
+                      .catch((err) => {
+                        console.info("Error sending push notification:", err);
+                      });
+                  } catch (err) {
+                    console.info("Error fetching FCM token:", err);
+                  }
                 }}
               >
                 <Text style={{
